@@ -1,168 +1,2842 @@
-<!doctype html>
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Hey Lil Bird — Psychology, Mental Health & Understanding</title>
-<meta name="description" content="Hey Lil Bird is a warm psychology and mental-health education space for learning, reflection, stories, research and supportive conversation.">
-<meta name="theme-color" content="#0a3323">
-<link rel="canonical" href="https://example.com/">
-<link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Hey Lil Bird — Explore the Human Mind</title>
+
+<meta name="description"
+content="Hey Lil Bird is a whimsical psychology and mental-health learning space where curiosity meets science.">
+
+<style>
+
+/* =========================================================
+   HEY LIL BIRD
+   VISUAL SYSTEM
+========================================================= */
+
+:root{
+    --night:#090713;
+    --violet:#261732;
+    --deep-violet:#3f2548;
+    --indigo:#35369c;
+    --blue:#5e77b6;
+    --ice:#c8d6ea;
+    --sage:#83885a;
+    --sage-light:#aead89;
+    --water:#357cb6;
+    --berry:#db3e8c;
+    --wine:#711f45;
+    --pink:#ffafeb;
+    --gold:#d5a25e;
+    --cream:#f3ead4;
+    --white:#f8f7f2;
+
+    --glass:rgba(255,255,255,.07);
+    --border:rgba(255,255,255,.14);
+}
+
+/* RESET */
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    background:var(--night);
+    color:var(--white);
+    font-family:
+        Inter,
+        ui-sans-serif,
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+
+    overflow-x:hidden;
+}
+
+button,
+input{
+    font:inherit;
+}
+
+button{
+    cursor:pointer;
+}
+
+a{
+    text-decoration:none;
+    color:inherit;
+}
+
+
+/* =========================================================
+   BACKGROUND
+========================================================= */
+
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    z-index:-5;
+
+    background:
+        radial-gradient(
+            circle at 20% 20%,
+            rgba(119,88,163,.16),
+            transparent 30%
+        ),
+
+        radial-gradient(
+            circle at 80% 70%,
+            rgba(53,124,182,.14),
+            transparent 30%
+        );
+}
+
+
+/* =========================================================
+   FLOATING PARTICLES
+========================================================= */
+
+.particles{
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    z-index:-1;
+    overflow:hidden;
+}
+
+.particle{
+    position:absolute;
+    width:4px;
+    height:4px;
+    border-radius:50%;
+
+    background:rgba(255,255,255,.5);
+
+    animation:
+        floatParticle
+        linear
+        infinite;
+}
+
+@keyframes floatParticle{
+
+    0%{
+        transform:translateY(110vh) scale(.4);
+        opacity:0;
+    }
+
+    15%{
+        opacity:.8;
+    }
+
+    85%{
+        opacity:.7;
+    }
+
+    100%{
+        transform:translateY(-20vh) scale(1.2);
+        opacity:0;
+    }
+}
+
+
+/* =========================================================
+   NAVIGATION
+========================================================= */
+
+.nav{
+    position:fixed;
+    top:0;
+    left:0;
+    right:0;
+
+    height:72px;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    padding:0 6vw;
+
+    z-index:100;
+
+    background:rgba(9,7,19,.72);
+    backdrop-filter:blur(18px);
+
+    border-bottom:1px solid rgba(255,255,255,.08);
+}
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:10px;
+
+    font-weight:800;
+    letter-spacing:-.02em;
+}
+
+.logo-bird{
+    width:36px;
+    height:36px;
+
+    border-radius:50% 50% 45% 55%;
+
+    display:grid;
+    place-items:center;
+
+    color:#10101b;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--pink),
+            var(--blue),
+            var(--indigo)
+        );
+
+    box-shadow:
+        0 0 25px rgba(119,88,163,.4);
+}
+
+.nav-links{
+    display:flex;
+    gap:26px;
+
+    color:#c8c4d1;
+    font-size:.86rem;
+}
+
+.nav-links a:hover{
+    color:white;
+}
+
+.menu{
+    display:none;
+    border:0;
+    background:none;
+    color:white;
+    font-size:1.5rem;
+}
+
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.hero{
+    min-height:100vh;
+
+    display:grid;
+    grid-template-columns:
+        minmax(0,1fr)
+        minmax(350px,.8fr);
+
+    align-items:center;
+
+    padding:
+        130px
+        8vw
+        80px;
+
+    position:relative;
+
+    overflow:hidden;
+
+    background:
+
+        radial-gradient(
+            circle at 70% 35%,
+            rgba(53,54,156,.55),
+            transparent 28%
+        ),
+
+        radial-gradient(
+            circle at 80% 70%,
+            rgba(219,62,140,.18),
+            transparent 25%
+        ),
+
+        linear-gradient(
+            140deg,
+            #090713,
+            #261732 48%,
+            #0c2143
+        );
+}
+
+.hero::after{
+    content:"";
+
+    position:absolute;
+
+    width:700px;
+    height:700px;
+
+    right:-250px;
+    bottom:-300px;
+
+    border-radius:50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(94,119,182,.2),
+            transparent 65%
+        );
+
+    filter:blur(20px);
+}
+
+.eyebrow{
+    text-transform:uppercase;
+    letter-spacing:.2em;
+
+    color:#b5c9ec;
+
+    font-size:.68rem;
+    font-weight:700;
+
+    margin-bottom:18px;
+}
+
+.hero h1{
+    font-size:
+        clamp(
+            4rem,
+            9vw,
+            8.5rem
+        );
+
+    line-height:.83;
+
+    letter-spacing:-.07em;
+
+    max-width:850px;
+}
+
+.hero h1 span{
+    color:var(--pink);
+
+    font-family:
+        Georgia,
+        serif;
+
+    font-style:italic;
+}
+
+.hero-description{
+    margin-top:28px;
+
+    max-width:650px;
+
+    font-size:1.08rem;
+
+    color:#c8c5d1;
+}
+
+.hero-buttons{
+    display:flex;
+    gap:12px;
+
+    flex-wrap:wrap;
+
+    margin-top:30px;
+}
+
+.btn{
+    border:1px solid var(--border);
+
+    border-radius:999px;
+
+    padding:13px 22px;
+
+    color:white;
+
+    background:rgba(255,255,255,.05);
+
+    transition:.25s;
+}
+
+.btn:hover{
+    transform:translateY(-3px);
+
+    background:rgba(255,255,255,.1);
+}
+
+.btn-main{
+    color:#17101b;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--pink),
+            var(--gold)
+        );
+
+    border:0;
+
+    font-weight:800;
+}
+
+.hero-note{
+    margin-top:20px;
+
+    font-size:.72rem;
+
+    color:#858092;
+}
+
+
+/* =========================================================
+   LIL BIRD CHARACTER
+========================================================= */
+
+.bird-stage{
+    min-height:520px;
+
+    display:grid;
+    place-items:center;
+
+    position:relative;
+}
+
+.bird-world{
+    width:380px;
+    height:380px;
+
+    position:relative;
+
+    border-radius:50%;
+
+    background:
+
+        radial-gradient(
+            circle at 50% 45%,
+            rgba(200,214,234,.16),
+            transparent 45%
+        ),
+
+        radial-gradient(
+            circle at 30% 30%,
+            rgba(219,62,140,.2),
+            transparent 35%
+        ),
+
+        #151025;
+
+    border:
+        1px solid rgba(255,255,255,.14);
+
+    box-shadow:
+        0 0 80px rgba(53,54,156,.35),
+        inset 0 0 60px rgba(255,255,255,.04);
+
+    animation:
+        birdFloat
+        5s
+        ease-in-out
+        infinite;
+}
+
+@keyframes birdFloat{
+
+    0%,100%{
+        transform:translateY(0);
+    }
+
+    50%{
+        transform:translateY(-13px);
+    }
+}
+
+
+/* orbit */
+
+.orbit{
+    position:absolute;
+
+    inset:28px;
+
+    border:
+        1px solid
+        rgba(200,214,234,.18);
+
+    border-radius:50%;
+
+    transform:rotate(-20deg);
+}
+
+.orbit.two{
+    inset:65px;
+
+    transform:rotate(50deg);
+}
+
+
+/* character body */
+
+.lil-bird{
+    position:absolute;
+
+    width:155px;
+    height:155px;
+
+    left:50%;
+    top:50%;
+
+    transform:
+        translate(-50%,-50%);
+
+    border-radius:
+        52%
+        48%
+        55%
+        45%;
+
+    background:
+
+        radial-gradient(
+            circle at 35% 25%,
+            #b8c9ef,
+            #6179bd 32%,
+            #35369c 70%,
+            #241634
+        );
+
+    box-shadow:
+        -18px 25px 0 -8px #241634,
+        18px 30px 0 -15px #db3e8c,
+        0 25px 50px rgba(0,0,0,.5);
+}
+
+.lil-bird::before{
+    content:"";
+
+    position:absolute;
+
+    width:58px;
+    height:42px;
+
+    right:-25px;
+    top:18px;
+
+    border-radius:
+        80%
+        20%
+        70%
+        30%;
+
+    background:
+        linear-gradient(
+            145deg,
+            #ffafeb,
+            #db3e8c
+        );
+
+    transform:rotate(-18deg);
+}
+
+.lil-bird::after{
+    content:"";
+
+    position:absolute;
+
+    width:35px;
+    height:35px;
+
+    right:-30px;
+    top:42px;
+
+    background:#d5a25e;
+
+    clip-path:
+        polygon(
+            0 50%,
+            100% 0,
+            100% 100%
+        );
+}
+
+
+/* eyes */
+
+.eye{
+    position:absolute;
+
+    width:17px;
+    height:22px;
+
+    top:55px;
+
+    background:#080711;
+
+    border-radius:50%;
+}
+
+.eye.left{
+    left:45px;
+}
+
+.eye.right{
+    right:45px;
+}
+
+.eye::after{
+    content:"";
+
+    position:absolute;
+
+    width:5px;
+    height:5px;
+
+    background:white;
+
+    border-radius:50%;
+
+    top:4px;
+    left:4px;
+}
+
+
+/* wing */
+
+.wing{
+    position:absolute;
+
+    width:72px;
+    height:100px;
+
+    left:12px;
+    bottom:-15px;
+
+    border-radius:
+        70%
+        30%
+        60%
+        40%;
+
+    background:
+        linear-gradient(
+            135deg,
+            #83885a,
+            #35369c
+        );
+
+    transform:rotate(18deg);
+}
+
+
+/* character sparkles */
+
+.spark{
+    position:absolute;
+
+    color:#f6d88f;
+
+    font-size:18px;
+
+    animation:
+        sparkle
+        2.5s
+        ease-in-out
+        infinite;
+}
+
+.s1{
+    top:45px;
+    left:65px;
+}
+
+.s2{
+    right:60px;
+    bottom:65px;
+
+    animation-delay:1s;
+}
+
+.s3{
+    left:80px;
+    bottom:35px;
+
+    animation-delay:.5s;
+}
+
+@keyframes sparkle{
+
+    0%,100%{
+        opacity:.3;
+        transform:scale(.7) rotate(0);
+    }
+
+    50%{
+        opacity:1;
+        transform:scale(1.3) rotate(25deg);
+    }
+}
+
+
+/* speech bubble */
+
+.bird-speech{
+    position:absolute;
+
+    right:-50px;
+    top:30px;
+
+    width:200px;
+
+    padding:14px 17px;
+
+    background:
+        rgba(255,255,255,.1);
+
+    border:
+        1px solid
+        rgba(255,255,255,.17);
+
+    backdrop-filter:blur(14px);
+
+    border-radius:
+        18px
+        18px
+        18px
+        4px;
+
+    font-size:.8rem;
+
+    color:#e8e5ef;
+}
+
+
+/* =========================================================
+   INTRO STRIP
+========================================================= */
+
+.intro{
+    padding:65px 8vw;
+
+    background:
+        linear-gradient(
+            90deg,
+            #d5a25e,
+            #ffafeb,
+            #83885a
+        );
+
+    color:#17101b;
+
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    gap:50px;
+
+    align-items:center;
+}
+
+.intro h2{
+    font:
+        2.8rem/1.05
+        Georgia,
+        serif;
+}
+
+.intro p{
+    font-size:1rem;
+}
+
+
+/* =========================================================
+   GENERAL SECTIONS
+========================================================= */
+
+.section{
+    padding:110px 8vw;
+
+    position:relative;
+}
+
+.section-header{
+    max-width:850px;
+
+    margin-bottom:55px;
+}
+
+.section-header h2{
+    font-size:
+        clamp(
+            2.5rem,
+            6vw,
+            5rem
+        );
+
+    line-height:.95;
+
+    letter-spacing:-.055em;
+}
+
+.section-header p:last-child{
+    margin-top:18px;
+
+    max-width:700px;
+
+    color:#aaa5b6;
+}
+
+
+/* =========================================================
+   TOPIC WORLDS
+========================================================= */
+
+.topic-worlds{
+    display:grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap:18px;
+}
+
+.world{
+    min-height:310px;
+
+    position:relative;
+
+    overflow:hidden;
+
+    padding:30px;
+
+    border-radius:32px;
+
+    border:
+        1px solid
+        rgba(255,255,255,.12);
+
+    transition:.3s;
+
+    cursor:pointer;
+}
+
+.world:hover{
+    transform:
+        translateY(-8px)
+        rotate(.3deg);
+
+    box-shadow:
+        0 30px 70px rgba(0,0,0,.35);
+}
+
+.world-number{
+    font-size:.7rem;
+
+    letter-spacing:.18em;
+
+    opacity:.7;
+}
+
+.world h3{
+    margin-top:80px;
+
+    font-size:2rem;
+
+    letter-spacing:-.04em;
+}
+
+.world p{
+    margin-top:8px;
+
+    color:rgba(255,255,255,.72);
+
+    max-width:310px;
+}
+
+.world::after{
+    content:"";
+
+    position:absolute;
+
+    width:190px;
+    height:190px;
+
+    border-radius:50%;
+
+    right:-65px;
+    bottom:-65px;
+
+    background:
+        rgba(255,255,255,.08);
+
+    filter:blur(2px);
+}
+
+
+/* world colors */
+
+.psychology{
+    background:
+        radial-gradient(
+            circle at 70% 30%,
+            rgba(219,62,140,.4),
+            transparent 40%
+        ),
+        linear-gradient(
+            145deg,
+            #261732,
+            #711f45
+        );
+}
+
+.neuroscience{
+    background:
+        radial-gradient(
+            circle at 75% 25%,
+            rgba(200,214,234,.3),
+            transparent 35%
+        ),
+        linear-gradient(
+            145deg,
+            #07152e,
+            #35369c
+        );
+}
+
+.mental{
+    background:
+        radial-gradient(
+            circle at 70% 20%,
+            rgba(181,228,200,.3),
+            transparent 35%
+        ),
+        linear-gradient(
+            145deg,
+            #18291f,
+            #596443
+        );
+}
+
+.research{
+    background:
+        radial-gradient(
+            circle at 30% 30%,
+            rgba(255,175,235,.18),
+            transparent 35%
+        ),
+        linear-gradient(
+            145deg,
+            #16101d,
+            #3f2548
+        );
+}
+
+.stories{
+    background:
+        radial-gradient(
+            circle at 75% 30%,
+            rgba(213,162,94,.25),
+            transparent 35%
+        ),
+        linear-gradient(
+            145deg,
+            #46152d,
+            #711f45
+        );
+}
+
+.library{
+    background:
+        radial-gradient(
+            circle at 30% 20%,
+            rgba(94,119,182,.35),
+            transparent 40%
+        ),
+        linear-gradient(
+            145deg,
+            #071b37,
+            #357cb6
+        );
+}
+
+
+/* =========================================================
+   WHIMSICAL ART STRIP
+========================================================= */
+
+.art-strip{
+    min-height:380px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    position:relative;
+
+    overflow:hidden;
+
+    background:
+
+        radial-gradient(
+            ellipse at 20% 50%,
+            rgba(255,175,235,.4),
+            transparent 25%
+        ),
+
+        radial-gradient(
+            ellipse at 80% 30%,
+            rgba(94,119,182,.45),
+            transparent 30%
+        ),
+
+        radial-gradient(
+            ellipse at 50% 80%,
+            rgba(131,136,90,.3),
+            transparent 30%
+        ),
+
+        #100b19;
+}
+
+.paint{
+    position:absolute;
+
+    width:420px;
+    height:170px;
+
+    border-radius:
+        55%
+        45%
+        60%
+        40%;
+
+    filter:blur(8px);
+
+    opacity:.7;
+
+    transform:rotate(-12deg);
+}
+
+.paint.one{
+    background:#db3e8c;
+    left:-80px;
+    top:80px;
+}
+
+.paint.two{
+    background:#35369c;
+    right:-90px;
+    top:20px;
+    transform:rotate(25deg);
+}
+
+.paint.three{
+    background:#83885a;
+    left:35%;
+    bottom:-100px;
+}
+
+.art-text{
+    position:relative;
+    z-index:2;
+
+    text-align:center;
+
+    max-width:750px;
+}
+
+.art-text h2{
+    font:
+        clamp(2.8rem,6vw,5.8rem)/.9
+        Georgia,
+        serif;
+
+    font-style:italic;
+}
+
+.art-text p{
+    margin-top:18px;
+
+    color:#d2ccdc;
+}
+
+
+/* =========================================================
+   CHARACTER INTRO
+========================================================= */
+
+.character{
+    background:
+        linear-gradient(
+            135deg,
+            #090713,
+            #261732 45%,
+            #071b37
+        );
+}
+
+.character-layout{
+    display:grid;
+
+    grid-template-columns:.8fr 1.2fr;
+
+    gap:70px;
+
+    align-items:center;
+}
+
+.character-card{
+    padding:38px;
+
+    border:
+        1px solid
+        rgba(255,255,255,.12);
+
+    border-radius:28px;
+
+    background:
+        rgba(255,255,255,.045);
+
+    backdrop-filter:blur(15px);
+}
+
+.character-card h3{
+    font:
+        2.3rem/1.1
+        Georgia,
+        serif;
+
+    color:var(--pink);
+}
+
+.character-card p{
+    margin-top:18px;
+
+    color:#b7b1c0;
+}
+
+.traits{
+    display:flex;
+
+    flex-wrap:wrap;
+
+    gap:10px;
+
+    margin-top:25px;
+}
+
+.trait{
+    padding:8px 13px;
+
+    border-radius:999px;
+
+    background:rgba(255,255,255,.06);
+
+    border:1px solid rgba(255,255,255,.1);
+
+    font-size:.75rem;
+}
+
+
+/* =========================================================
+   LEARNING LAYERS
+========================================================= */
+
+.layers{
+    background:#f3ead4;
+
+    color:#25162c;
+}
+
+.layers .section-header p:last-child{
+    color:#645b61;
+}
+
+.layer-grid{
+    display:grid;
+
+    grid-template-columns:
+        repeat(5,1fr);
+
+    gap:10px;
+}
+
+.layer{
+    padding:25px 20px;
+
+    min-height:210px;
+
+    border-radius:22px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:space-between;
+
+    transition:.25s;
+}
+
+.layer:hover{
+    transform:translateY(-7px);
+}
+
+.layer:nth-child(1){
+    background:#c8d6ea;
+}
+
+.layer:nth-child(2){
+    background:#aead89;
+}
+
+.layer:nth-child(3){
+    background:#9c91c8;
+}
+
+.layer:nth-child(4){
+    background:#db3e8c;
+    color:white;
+}
+
+.layer:nth-child(5){
+    background:#35369c;
+    color:white;
+}
+
+.layer strong{
+    font-size:1.2rem;
+}
+
+
+/* =========================================================
+   CHAT
+========================================================= */
+
+.chat-section{
+    background:
+        radial-gradient(
+            circle at 80% 20%,
+            rgba(219,62,140,.15),
+            transparent 25%
+        ),
+        #0d0914;
+}
+
+.chat-container{
+    max-width:950px;
+
+    margin:auto;
+
+    border:
+        1px solid
+        rgba(255,255,255,.13);
+
+    border-radius:30px;
+
+    overflow:hidden;
+
+    background:
+        rgba(255,255,255,.035);
+
+    box-shadow:
+        0 30px 100px rgba(0,0,0,.4);
+}
+
+.chat-header{
+    padding:20px;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:13px;
+
+    border-bottom:
+        1px solid
+        rgba(255,255,255,.1);
+}
+
+.chat-avatar{
+    width:45px;
+    height:45px;
+
+    border-radius:50%;
+
+    display:grid;
+    place-items:center;
+
+    color:#17101b;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--pink),
+            var(--blue)
+        );
+}
+
+.chat-header small{
+    display:block;
+
+    color:#8e8997;
+}
+
+.messages{
+    height:380px;
+
+    overflow-y:auto;
+
+    padding:25px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:12px;
+}
+
+.message{
+    max-width:78%;
+
+    padding:14px 17px;
+
+    border-radius:18px;
+
+    font-size:.92rem;
+
+    line-height:1.6;
+}
+
+.bird-message{
+    background:#20172e;
+
+    border:
+        1px solid
+        rgba(255,175,235,.1);
+
+    border-top-left-radius:5px;
+}
+
+.user-message{
+    align-self:flex-end;
+
+    background:#315b73;
+
+    border-top-right-radius:5px;
+}
+
+.chat-form{
+    display:flex;
+
+    gap:8px;
+
+    padding:15px;
+
+    border-top:
+        1px solid
+        rgba(255,255,255,.1);
+}
+
+.chat-input{
+    flex:1;
+
+    padding:14px 16px;
+
+    border-radius:14px;
+
+    border:
+        1px solid
+        rgba(255,255,255,.12);
+
+    background:#090713;
+
+    color:white;
+
+    outline:none;
+}
+
+.chat-input:focus{
+    border-color:#5e77b6;
+}
+
+.chat-send{
+    border:0;
+
+    padding:0 20px;
+
+    border-radius:14px;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--pink),
+            var(--gold)
+        );
+
+    font-weight:800;
+}
+
+
+/* =========================================================
+   SAFETY
+========================================================= */
+
+.safety{
+    background:
+        linear-gradient(
+            135deg,
+            #171126,
+            #241633
+        );
+}
+
+.safety-box{
+    max-width:850px;
+
+    padding:30px;
+
+    border-radius:25px;
+
+    border:
+        1px solid
+        rgba(255,255,255,.12);
+
+    background:
+        rgba(255,255,255,.04);
+}
+
+.safety-box strong{
+    color:var(--pink);
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+footer{
+    padding:50px 8vw;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    gap:30px;
+
+    flex-wrap:wrap;
+
+    color:#8f8999;
+
+    border-top:
+        1px solid
+        rgba(255,255,255,.08);
+}
+
+footer strong{
+    color:white;
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media(max-width:900px){
+
+    .nav-links{
+        display:none;
+    }
+
+    .menu{
+        display:block;
+    }
+
+    .hero{
+        grid-template-columns:1fr;
+
+        padding:
+            120px
+            6vw
+            60px;
+    }
+
+    .bird-stage{
+        min-height:400px;
+    }
+
+    .topic-worlds{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .character-layout{
+        grid-template-columns:1fr;
+    }
+
+    .layer-grid{
+        grid-template-columns:
+            repeat(2,1fr);
+    }
+
+    .intro{
+        grid-template-columns:1fr;
+    }
+}
+
+
+@media(max-width:600px){
+
+    .hero h1{
+        font-size:4rem;
+    }
+
+    .bird-world{
+        width:290px;
+        height:290px;
+    }
+
+    .bird-speech{
+        right:-15px;
+        top:0;
+    }
+
+    .topic-worlds{
+        grid-template-columns:1fr;
+    }
+
+    .layer-grid{
+        grid-template-columns:1fr;
+    }
+
+    .section{
+        padding:80px 6vw;
+    }
+
+    .message{
+        max-width:90%;
+    }
+}
+
+
+/* =========================================================
+   ACCESSIBILITY
+========================================================= */
+
+@media(prefers-reduced-motion:reduce){
+
+    *,
+    *::before,
+    *::after{
+        animation:none!important;
+        transition:none!important;
+        scroll-behavior:auto!important;
+    }
+}
+
+</style>
 </head>
+
+
 <body>
-<header class="site-header">
-  <a class="brand" href="#home" aria-label="Hey Lil Bird home"><span class="bird">✦</span><span>hey lil bird</span></a>
-  <button class="menu-btn" id="menuBtn" aria-label="Open navigation">☰</button>
-  <nav id="mainNav">
-    <a href="#learn">Learn</a><a href="#mental-health">Mental health</a><a href="#stories">Stories</a><a href="#library">Library</a><a href="#resources">Resources</a><a href="#talk">Talk</a>
-  </nav>
+
+
+<!-- FLOATING PARTICLES -->
+
+<div class="particles" aria-hidden="true">
+
+    <span class="particle" style="left:5%;animation-duration:14s"></span>
+    <span class="particle" style="left:15%;animation-duration:19s"></span>
+    <span class="particle" style="left:27%;animation-duration:16s"></span>
+    <span class="particle" style="left:39%;animation-duration:22s"></span>
+    <span class="particle" style="left:51%;animation-duration:17s"></span>
+    <span class="particle" style="left:63%;animation-duration:20s"></span>
+    <span class="particle" style="left:76%;animation-duration:15s"></span>
+    <span class="particle" style="left:88%;animation-duration:23s"></span>
+
+</div>
+
+
+<!-- NAVIGATION -->
+
+<header class="nav">
+
+    <a href="#" class="logo">
+
+        <span class="logo-bird">
+            ✦
+        </span>
+
+        <span>
+            hey lil bird
+        </span>
+
+    </a>
+
+
+    <nav class="nav-links">
+
+        <a href="#worlds">Explore</a>
+
+        <a href="#character">Lil Bird</a>
+
+        <a href="#layers">How it works</a>
+
+        <a href="#chat">Talk</a>
+
+    </nav>
+
+
+    <button class="menu">
+        ☰
+    </button>
+
 </header>
 
-<main>
-<section id="home" class="hero">
-  <div class="glow g1"></div><div class="glow g2"></div>
-  <div class="hero-copy">
-    <p class="eyebrow">Psychology · neuroscience · mental health · human stories</p>
-    <h1>Hey, human.<br><em>I'm Lil Bird.</em></h1>
-    <p class="tagline">Here for your assistance. Just ask, human.</p>
-    <p class="lead">A quiet place to pause, understand what you're experiencing, learn how the mind works, and find the next kind step.</p>
-    <div class="actions"><a class="btn primary" href="#talk">Talk to Lil Bird</a><a class="btn secondary" href="#learn">Explore the mind</a></div>
-    <p class="micro">Educational and supportive AI experience. Lil Bird does not diagnose, prescribe medication, or replace qualified professional or emergency care.</p>
-  </div>
-  <div class="hero-art" aria-hidden="true"><div class="orbit o1"></div><div class="orbit o2"></div><div class="orbit o3"></div><div class="bird-large">✦</div><div class="leaf l1"></div><div class="leaf l2"></div></div>
-</section>
 
-<section class="welcome strip">
-  <div><p class="eyebrow">Start anywhere</p><h2>You don't need the perfect words.</h2></div>
-  <p>Learn something. Tell a story. Ask a strange question. Take a breath. Or simply say, “I don't know.” Lil Bird can meet you where you are.</p>
-</section>
 
-<section id="learn" class="section">
-  <div class="section-head"><p class="eyebrow">The knowledge garden</p><h2>Psychology, explained like a human.</h2><p>Start simple, then go deeper. Every research-based topic will carry its sources and limits.</p></div>
-  <div class="topic-grid">
-    <a class="topic-card" href="#article-psychology"><span>01</span><h3>Psychology</h3><p>Foundations, history, theories, fields, cognition, social behavior, development and everyday psychology.</p></a>
-    <a class="topic-card" href="#article-neuroscience"><span>02</span><h3>Neuroscience</h3><p>Brain, nervous system, memory, emotion, learning, attention, sleep and neuroplasticity.</p></a>
-    <a class="topic-card" href="#mental-health"><span>03</span><h3>Mental health</h3><p>Wellbeing, distress, common experiences, conditions, support, recovery and when to seek help.</p></a>
-    <a class="topic-card" href="#article-research"><span>04</span><h3>How we know</h3><p>Research methods, evidence, correlation, causation, replication, bias and critical thinking.</p></a>
-    <a class="topic-card" href="#stories"><span>05</span><h3>Stories & cases</h3><p>Historical cases and psychological ideas explained with context, ethics and limitations.</p></a>
-    <a class="topic-card" href="#library"><span>06</span><h3>Books & research</h3><p>A growing reading and research library, separated from evidence claims.</p></a>
-  </div>
-</section>
+<!-- =====================================================
+     HERO
+===================================================== -->
 
-<section id="article-psychology" class="article section alt">
-  <div class="article-main">
-    <p class="eyebrow">Start here · Psychology</p><h2>What is psychology?</h2>
-    <p class="quick">Psychology is the scientific study of behavior and mental processes.</p>
-    <h3>Let's make it human</h3>
-    <p>Why do people remember some things and forget others? Why do we become attached to people? Why can the same event affect two people differently? Psychology asks questions like these and uses systematic methods to investigate them.</p>
-    <h3>Go a little deeper</h3>
-    <p>Psychology includes many fields and perspectives. Researchers study cognition, emotion, development, personality, social behavior, health, learning and the relationship between biological, psychological and social influences.</p>
-    <div class="callout"><strong>Important:</strong> Psychology is much larger than therapy. Psychologists also conduct research, assessment, education, consultation and work across health, education, organizations, technology and other settings.</div>
-    <h3>Want the science?</h3><p>Psychological claims can be evaluated through experiments, observational studies, surveys, interviews, longitudinal research, case studies and other methods. Different questions require different designs.</p>
-    <details><summary>Sources & further reading</summary><ul><li>American Psychological Association — About Psychology</li><li>APA — National Standards for High School Psychology Curricula</li></ul></details>
-  </div>
-  <aside class="article-side"><span>Ask Lil Bird</span><button data-chat="Explain psychology like a story.">Explain it like a story</button><button data-chat="What are the main branches of psychology?">Show me the branches</button><button data-chat="How does psychology become scientific evidence?">How do we know?</button></aside>
-</section>
+<section class="hero">
 
-<section id="article-neuroscience" class="section article">
-  <div class="article-main">
-    <p class="eyebrow">Brain & behavior</p><h2>What is neuroscience?</h2>
-    <p class="quick">Neuroscience studies the nervous system, including the brain, spinal cord, neurons and the biological processes that support behavior and mental functions.</p>
-    <h3>What does it explore?</h3>
-    <p>Neuroscience can examine memory, learning, movement, perception, emotion, attention, sleep and communication between nerve cells. It connects biology with questions about behavior and experience.</p>
-    <h3>A useful boundary</h3>
-    <p>The brain matters enormously, but human behavior is not explained by one brain region, one neurotransmitter or one “chemical.” Psychological, biological, social and environmental factors can interact.</p>
-    <div class="callout gold"><strong>Lil Bird rule:</strong> We won't turn neuroscience into motivational slogans. If evidence is uncertain or mixed, the page should say so.</div>
-    <details><summary>Sources & further reading</summary><ul><li>APA — Neuroscience and psychology educational resources</li><li>Britannica — Neuroplasticity and neuroscience background</li></ul></details>
-  </div>
-  <aside class="article-side"><span>Ask Lil Bird</span><button data-chat="Explain neuroplasticity simply.">Explain neuroplasticity</button><button data-chat="How does memory work?">How does memory work?</button><button data-chat="Why do emotions affect the body?">Brain + body + emotion</button></aside>
-</section>
+    <div>
 
-<section id="mental-health" class="section dark-panel">
-  <div class="section-head"><p class="eyebrow">Mental health</p><h2>Understanding without labeling yourself.</h2><p>Mental health includes wellbeing and the ability to cope, learn, work, connect and participate in life. Mental-health difficulties can take many forms and vary across people and circumstances.</p></div>
-  <div class="mh-grid">
-    <article><h3>Everyday experiences</h3><p>Stress · worry · loneliness · grief · burnout · self-esteem · sleep · emotional regulation · life transitions</p></article>
-    <article><h3>Education</h3><p>Anxiety · depression · trauma-related conditions · OCD · eating disorders · bipolar disorders · psychotic disorders · and more</p></article>
-    <article><h3>Support</h3><p>Self-reflection, trusted people, qualified professionals, community support and crisis services when appropriate.</p></article>
-  </div>
-  <div class="warning"><strong>Education is not diagnosis.</strong> A list of symptoms cannot tell you whether you have a mental disorder. Lil Bird can explain concepts and help you find appropriate support.</div>
-</section>
+        <p class="eyebrow">
+            psychology · neuroscience · human stories
+        </p>
 
-<section id="article-research" class="section alt">
-  <div class="section-head"><p class="eyebrow">How we know</p><h2>Psychology isn't just a collection of facts.</h2><p>It is a science that uses different methods to investigate different questions.</p></div>
-  <div class="method-grid">
-    <article><h3>Experiments</h3><p>Useful for testing causal questions under controlled conditions.</p></article>
-    <article><h3>Correlational research</h3><p>Measures relationships between variables but does not by itself establish causation.</p></article>
-    <article><h3>Longitudinal research</h3><p>Follows people or groups over time to examine change.</p></article>
-    <article><h3>Qualitative research</h3><p>Explores meaning, experience and context through methods such as interviews and observation.</p></article>
-    <article><h3>Systematic reviews</h3><p>Bring together evidence using explicit methods to answer focused questions.</p></article>
-    <article><h3>Replication</h3><p>Repeating research helps test how robust findings are.</p></article>
-  </div>
-</section>
 
-<section id="stories" class="section story-section">
-  <div class="section-head"><p class="eyebrow">Stories</p><h2>Sometimes a story explains what a definition can't.</h2></div>
-  <div class="story-layout">
-    <article class="story-card"><p class="story-label">Everyday psychology</p><h3>The comparison window</h3><p>Imagine checking your phone after a difficult day and seeing someone else's carefully edited highlight reel. Your mind begins comparing. The story is not “social media causes depression.” The useful question is: <em>what psychological processes might be happening here?</em></p><button class="text-link" data-chat="Explain social comparison using the comparison window story.">Ask Lil Bird about it →</button></article>
-    <article class="story-card lavender"><p class="story-label">Reflection</p><h3>The pause before the answer</h3><p>Sometimes the most useful next step is not another piece of advice. It is a small pause that gives you enough room to notice what you actually need.</p><button class="text-link" data-chat="Help me do a gentle reflection without diagnosing me.">Reflect with Lil Bird →</button></article>
-  </div>
-</section>
+        <h1>
+            Hey,<br>
+            <span>human.</span>
+        </h1>
 
-<section id="library" class="section">
-  <div class="section-head"><p class="eyebrow">Library</p><h2>Books, research, cases & a glossary.</h2></div>
-  <div class="library-grid">
-    <article><span class="icon">⌕</span><h3>Research</h3><p>Peer-reviewed research, systematic reviews and major reports. Evidence claims are linked to sources.</p></article>
-    <article><span class="icon">▤</span><h3>Books</h3><p>Academic books, popular psychology, neuroscience, memoir and psychological fiction—clearly labeled by type.</p></article>
-    <article><span class="icon">◌</span><h3>Cases & experiments</h3><p>Historical and contemporary examples with methods, findings, ethics and later reassessment.</p></article>
-    <article><span class="icon">A–Z</span><h3>Glossary</h3><p>Short explanations of psychological and neuroscience terms linked to deeper pages.</p></article>
-  </div>
-</section>
 
-<section id="talk" class="section talk">
-  <div class="section-head"><p class="eyebrow">Meet Lil Bird</p><h2>Before we chat, what do you need?</h2><p>You can choose an option, choose a communication style, share only what you want, or skip everything and talk.</p></div>
-  <div id="onboarding" class="onboarding">
-    <div class="option-grid" id="needs">
-      <button class="choice" data-need="help">I need help</button><button class="choice" data-need="chat">I just want to chat</button>
-      <button class="choice" data-need="information">I want information</button><button class="choice" data-need="story">I want to tell my story</button>
-      <button class="choice" data-need="difficult">Something difficult is on my mind</button><button class="choice" data-need="friend">Talk like a friend</button>
-      <button class="choice" data-need="teacher">Explain like a teacher</button><button class="choice" data-need="unknown">I don't know</button>
+        <p class="hero-description">
+
+            A curious little place for understanding
+            the human mind — without making you feel
+            like you're reading a textbook.
+
+        </p>
+
+
+        <div class="hero-buttons">
+
+            <a
+                class="btn btn-main"
+                href="#chat"
+            >
+                Talk to Lil Bird
+            </a>
+
+
+            <a
+                class="btn"
+                href="#worlds"
+            >
+                Explore the mind
+            </a>
+
+        </div>
+
+
+        <p class="hero-note">
+
+            Educational support · not diagnosis ·
+            not a replacement for professional care
+
+        </p>
+
     </div>
-    <div id="styleBox" class="subbox hidden"><h3>How should Lil Bird talk to you?</h3><div class="style-grid">
-      <button class="choice" data-style="friend">Friend — warm & casual</button><button class="choice" data-style="teacher">Teacher — clear</button><button class="choice" data-style="sibling">Big sibling — gentle</button>
-      <button class="choice" data-style="calm">Calm guide — slow</button><button class="choice" data-style="direct">Straight talk</button><button class="choice" data-style="listen">Just listen</button>
-    </div></div>
-    <div id="profileBox" class="subbox hidden"><h3>A little about you <small>(optional)</small></h3><p class="muted">We don't need your legal name. You can skip any question.</p>
-      <div class="form-grid">
-        <label>Age<select id="age"><option value="">Prefer not to say</option><option>Under 13</option><option>13–15</option><option>16–17</option><option>18–24</option><option>25–34</option><option>35–44</option><option>45–54</option><option>55+</option></select></label>
-        <label>Name / nickname<input id="nickname" placeholder="Optional"></label>
-        <label>Gender<select id="gender"><option value="">Prefer not to say</option><option>Woman</option><option>Man</option><option>Non-binary</option><option>Another identity</option></select></label>
-        <label>Country for resources<input id="country" placeholder="Optional"></label>
-      </div><button class="btn primary" id="enter">Enter chat</button><button class="text-link" id="skip">Skip and talk</button>
+
+
+
+    <!-- LIL BIRD -->
+
+    <div class="bird-stage">
+
+        <div class="bird-world">
+
+            <div class="orbit"></div>
+
+            <div class="orbit two"></div>
+
+
+            <div class="lil-bird">
+
+                <div class="eye left"></div>
+
+                <div class="eye right"></div>
+
+                <div class="wing"></div>
+
+            </div>
+
+
+            <span class="spark s1">
+                ✦
+            </span>
+
+            <span class="spark s2">
+                ✧
+            </span>
+
+            <span class="spark s3">
+                ·
+            </span>
+
+
+            <div class="bird-speech">
+
+                “Ask me something strange.”
+
+            </div>
+
+        </div>
+
     </div>
-  </div>
-  <div id="chat" class="chatbox hidden">
-    <div class="chathead"><div class="mini-bird">✦</div><div><strong>Lil Bird</strong><small>here · listening</small></div><button id="restart" class="text-link">Start over</button></div>
-    <div id="messages" class="messages"><div class="bubble bird-bubble">Hey, human. You don't have to make everything make sense before you talk. I'm listening. What's on your mind?</div></div>
-    <div class="quick"><button data-q="Explain what I'm feeling without diagnosing me.">Help me understand</button><button data-q="Teach me something about psychology.">Teach me</button><button data-q="I need a moment to pause.">I need a moment</button></div>
-    <form id="chatForm"><input id="chatInput" placeholder="Type anything..." autocomplete="off"><button>Send</button></form>
-    <p class="chat-note">Demo only. This version uses scripted responses and does not store your message on a server.</p>
-  </div>
+
 </section>
 
-<section id="resources" class="section resources">
-  <div class="section-head"><p class="eyebrow">Support beyond the screen</p><h2>When Lil Bird isn't enough.</h2><p>Hey Lil Bird should help people find the right kind of human support—not make people dependent on the AI.</p></div>
-  <div class="resource-grid"><article><h3>Learn</h3><p>Educational information and further reading.</p></article><article><h3>Self-reflection</h3><p>Gentle activities and wellbeing tools.</p></article><article><h3>Professional support</h3><p>Qualified human support pathways.</p></article><article><h3>Urgent help</h3><p>Location-aware crisis and emergency resources, verified before launch.</p></article></div>
+
+
+<!-- =====================================================
+     INTRO
+===================================================== -->
+
+<section class="intro">
+
+    <h2>
+        You don't need
+        the perfect words.
+    </h2>
+
+
+    <p>
+
+        Ask a question.
+        Tell a story.
+        Learn something weird about your brain.
+        Or simply say,
+        “I don't know.”
+
+        Lil Bird can start there.
+
+    </p>
+
 </section>
+
+
+
+<!-- =====================================================
+     WORLDS
+===================================================== -->
+
+<section
+    class="section"
+    id="worlds"
+>
+
+    <div class="section-header">
+
+        <p class="eyebrow">
+            enter a world
+        </p>
+
+        <h2>
+            Psychology shouldn't
+            feel like homework.
+        </h2>
+
+        <p>
+
+            Each part of Hey Lil Bird has its own
+            atmosphere. Learn through stories,
+            questions, visuals and evidence.
+
+        </p>
+
+    </div>
+
+
+
+    <div class="topic-worlds">
+
+
+        <article
+            class="world psychology"
+            onclick="talkAbout('psychology')"
+        >
+
+            <span class="world-number">
+                01 · THINKING
+            </span>
+
+            <h3>
+                Psychology
+            </h3>
+
+            <p>
+                Why we think, feel, learn,
+                remember, compare and behave.
+            </p>
+
+        </article>
+
+
+
+        <article
+            class="world neuroscience"
+            onclick="talkAbout('neuroscience')"
+        >
+
+            <span class="world-number">
+                02 · BRAIN
+            </span>
+
+            <h3>
+                Neuroscience
+            </h3>
+
+            <p>
+                Enter the strange electrical
+                world behind behavior and experience.
+            </p>
+
+        </article>
+
+
+
+        <article
+            class="world mental"
+            onclick="talkAbout('mental health')"
+        >
+
+            <span class="world-number">
+                03 · WELLBEING
+            </span>
+
+            <h3>
+                Mental Health
+            </h3>
+
+            <p>
+                Understand distress, wellbeing,
+                support and recovery without labels.
+            </p>
+
+        </article>
+
+
+
+        <article
+            class="world research"
+            onclick="talkAbout('research')"
+        >
+
+            <span class="world-number">
+                04 · EVIDENCE
+            </span>
+
+            <h3>
+                How We Know
+            </h3>
+
+            <p>
+                Experiments, correlation,
+                causation, evidence and uncertainty.
+            </p>
+
+        </article>
+
+
+
+        <article
+            class="world stories"
+            onclick="talkAbout('stories')"
+        >
+
+            <span class="world-number">
+                05 · HUMAN
+            </span>
+
+            <h3>
+                Stories
+            </h3>
+
+            <p>
+                Psychology through moments,
+                cases, history and lived experience.
+            </p>
+
+        </article>
+
+
+
+        <article
+            class="world library"
+            onclick="talkAbout('library')"
+        >
+
+            <span class="world-number">
+                06 · DISCOVER
+            </span>
+
+            <h3>
+                The Library
+            </h3>
+
+            <p>
+                Books, research, cases,
+                concepts and a growing glossary.
+            </p>
+
+        </article>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     ARTISTIC TRANSITION
+===================================================== -->
+
+<section class="art-strip">
+
+    <div class="paint one"></div>
+
+    <div class="paint two"></div>
+
+    <div class="paint three"></div>
+
+
+    <div class="art-text">
+
+        <h2>
+            Somewhere between
+            curiosity and understanding...
+        </h2>
+
+        <p>
+
+            ...there is a little more room
+            to understand yourself.
+
+        </p>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     CHARACTER
+===================================================== -->
+
+<section
+    class="section character"
+    id="character"
+>
+
+    <div class="character-layout">
+
+
+        <div class="bird-stage">
+
+            <div class="bird-world">
+
+                <div class="orbit"></div>
+
+                <div class="lil-bird">
+
+                    <div class="eye left"></div>
+
+                    <div class="eye right"></div>
+
+                    <div class="wing"></div>
+
+                </div>
+
+                <span class="spark s1">✦</span>
+                <span class="spark s2">✧</span>
+                <span class="spark s3">·</span>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="character-card">
+
+            <p class="eyebrow">
+                meet your little guide
+            </p>
+
+            <h3>
+                A little bird
+                with a big curiosity.
+            </h3>
+
+            <p>
+
+                Lil Bird is the conversational companion
+                inside Hey Lil Bird.
+
+                Curious enough to ask questions.
+                Gentle enough to listen.
+                Honest enough to say,
+                “I don't know.”
+
+            </p>
+
+
+            <div class="traits">
+
+                <span class="trait">
+                    curious
+                </span>
+
+                <span class="trait">
+                    warm
+                </span>
+
+                <span class="trait">
+                    playful
+                </span>
+
+                <span class="trait">
+                    evidence-led
+                </span>
+
+                <span class="trait">
+                    non-judgmental
+                </span>
+
+                <span class="trait">
+                    safety-first
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     LEARNING LAYERS
+===================================================== -->
+
+<section
+    class="section layers"
+    id="layers"
+>
+
+    <div class="section-header">
+
+        <p class="eyebrow">
+            learn your way
+        </p>
+
+        <h2>
+            One question.
+            Five ways in.
+        </h2>
+
+        <p>
+
+            Lil Bird shouldn't throw a giant textbook
+            at you. Information can arrive in layers.
+
+        </p>
+
+    </div>
+
+
+    <div class="layer-grid">
+
+        <article class="layer">
+
+            <strong>
+                01 · Tiny
+            </strong>
+
+            <p>
+                Give me the simple answer.
+            </p>
+
+        </article>
+
+
+        <article class="layer">
+
+            <strong>
+                02 · Human
+            </strong>
+
+            <p>
+                Show me an everyday example.
+            </p>
+
+        </article>
+
+
+        <article class="layer">
+
+            <strong>
+                03 · Story
+            </strong>
+
+            <p>
+                Explain it through a little story.
+            </p>
+
+        </article>
+
+
+        <article class="layer">
+
+            <strong>
+                04 · Science
+            </strong>
+
+            <p>
+                Give me the deeper psychology.
+            </p>
+
+        </article>
+
+
+        <article class="layer">
+
+            <strong>
+                05 · Evidence
+            </strong>
+
+            <p>
+                Show me what research says.
+            </p>
+
+        </article>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     CHAT
+===================================================== -->
+
+<section
+    class="section chat-section"
+    id="chat"
+>
+
+    <div class="section-header">
+
+        <p class="eyebrow">
+            talk to lil bird
+        </p>
+
+        <h2>
+            Okay, human.
+            What's on your mind?
+        </h2>
+
+        <p>
+
+            This version is still a local prototype.
+            The production version will connect to
+            a real AI backend, knowledge retrieval
+            and safety system.
+
+        </p>
+
+    </div>
+
+
+
+    <div class="chat-container">
+
+        <div class="chat-header">
+
+            <div class="chat-avatar">
+                ✦
+            </div>
+
+            <div>
+
+                <strong>
+                    Lil Bird
+                </strong>
+
+                <small>
+                    curious · listening
+                </small>
+
+            </div>
+
+        </div>
+
+
+
+        <div
+            class="messages"
+            id="messages"
+        >
+
+            <div class="message bird-message">
+
+                Hey, human.
+
+                I'm Lil Bird.
+
+                Ask me something —
+                psychology, emotions,
+                the brain, or just something
+                you've been wondering about.
+
+            </div>
+
+        </div>
+
+
+
+        <form
+            class="chat-form"
+            onsubmit="sendMessage(event)"
+        >
+
+            <input
+                id="chatInput"
+                class="chat-input"
+                placeholder="Ask Lil Bird anything..."
+                autocomplete="off"
+            >
+
+            <button
+                class="chat-send"
+                type="submit"
+            >
+                Send
+            </button>
+
+        </form>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     SAFETY
+===================================================== -->
 
 <section class="section safety">
-  <div><p class="eyebrow">Safety by design</p><h2>Kindness needs boundaries.</h2></div>
-  <div class="safety-list"><p><strong>Lil Bird will not:</strong> diagnose, prescribe medication, give instructions for self-harm or violence, encourage secrecy, impersonate a human professional, or promise absolute confidentiality.</p><p><strong>Lil Bird will:</strong> be honest about uncertainty, prioritize safety, encourage appropriate human support, minimize data collection, and route high-risk situations through defined safety procedures.</p></div>
+
+    <div class="section-header">
+
+        <p class="eyebrow">
+            kindness needs boundaries
+        </p>
+
+        <h2>
+            Lil Bird knows
+            what it isn't.
+        </h2>
+
+    </div>
+
+
+    <div class="safety-box">
+
+        <p>
+
+            Lil Bird is an educational and supportive
+            AI concept.
+
+            It does <strong>not</strong> diagnose
+            mental disorders, prescribe medication,
+            replace therapists or doctors, or provide
+            emergency care.
+
+        </p>
+
+        <br>
+
+        <p>
+
+            The production system will prioritize
+            safety, uncertainty, privacy,
+            appropriate human support and verified
+            crisis resources.
+
+        </p>
+
+    </div>
+
 </section>
 
-<section class="section privacy"><div class="section-head"><p class="eyebrow">Privacy</p><h2>Your story is yours.</h2><p>The production version will clearly explain what is collected, why, how long it is retained, who can access it, deletion controls, and any safety/legal exceptions. “Anonymous” will only be used when the technology actually supports anonymity.</p></div></section>
-</main>
 
-<footer><div><strong>hey lil bird</strong><p>Here for your assistance. Just ask, human.</p></div><div><a href="#learn">Learn</a> · <a href="#resources">Resources</a> · <a href="#talk">Talk</a></div><div><small>Prototype V2 · Built as an evolving project.</small></div></footer>
-<script src="script.js"></script>
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer>
+
+    <div>
+
+        <strong>
+            hey lil bird
+        </strong>
+
+        <p>
+            Here for your assistance.
+            Just ask, human.
+        </p>
+
+    </div>
+
+
+    <div>
+
+        <p>
+            Psychology · Neuroscience ·
+            Stories · Evidence
+        </p>
+
+    </div>
+
+
+    <div>
+
+        <p>
+            Prototype · 2026
+        </p>
+
+    </div>
+
+</footer>
+
+
+
+<!-- =====================================================
+     JAVASCRIPT
+===================================================== -->
+
+<script>
+
+/* =========================================================
+   LIL BIRD LOCAL BRAIN
+========================================================= */
+
+let lastTopic = "";
+
+
+function addMessage(text,type){
+
+    const messages =
+        document.getElementById("messages");
+
+    const bubble =
+        document.createElement("div");
+
+    bubble.className =
+        "message " +
+        (type === "user"
+            ? "user-message"
+            : "bird-message");
+
+    bubble.textContent = text;
+
+    messages.appendChild(bubble);
+
+    messages.scrollTop =
+        messages.scrollHeight;
+}
+
+
+
+function lilBirdResponse(text){
+
+    const x =
+        text
+        .toLowerCase()
+        .trim();
+
+
+    /* SAFETY */
+
+    if(
+        /kill myself|suicide|self harm|hurt myself|end my life|want to die/
+        .test(x)
+    ){
+
+        return `
+        I'm really glad you told me.
+
+        I can't help with instructions for
+        hurting yourself.
+
+        If you may be in immediate danger,
+        please contact local emergency services
+        or a trusted person who can stay with you.
+
+        You don't have to handle an immediate
+        safety crisis alone.
+        `;
+
+    }
+
+
+    /* NAME */
+
+    if(
+        /your name|who are you|what are you/
+        .test(x)
+    ){
+
+        lastTopic="identity";
+
+        return `
+        I'm Lil Bird.
+
+        I'm the little conversational companion
+        inside Hey Lil Bird.
+
+        I'm an AI — not a human and not a therapist.
+
+        I'm here to help you explore psychology,
+        mental health, emotions and the wonderfully
+        strange things humans do.
+        `;
+
+    }
+
+
+    /* HUMAN */
+
+    if(
+        /are you human|real person|are you alive/
+        .test(x)
+    ){
+
+        return `
+        Nope — I'm an AI.
+
+        I don't have a human life or personal
+        experiences.
+
+        But I can still listen to what you write,
+        explain ideas and help you explore questions.
+        `;
+
+    }
+
+
+    /* PSYCHOLOGY */
+
+    if(
+        /what is psychology|define psychology/
+        .test(x)
+    ){
+
+        lastTopic="psychology";
+
+        return `
+        Psychology is the scientific study of
+        behavior and mental processes.
+
+        In human words:
+
+        It's the science that asks why people
+        think, feel, learn, remember, develop,
+        make decisions and behave the way they do.
+
+        And psychology isn't only therapy.
+
+        It also includes research, education,
+        neuroscience, health, organizations,
+        technology and many other fields.
+
+        Want the tiny version, an everyday example,
+        or the deeper science?
+        `;
+
+    }
+
+
+    /* NEUROSCIENCE */
+
+    if(
+        /neuroscience|brain|neurons|neuron/
+        .test(x)
+    ){
+
+        lastTopic="neuroscience";
+
+        return `
+        Neuroscience is the study of the nervous
+        system — especially the brain, spinal cord
+        and neurons.
+
+        It helps us investigate things like:
+
+        memory
+        learning
+        attention
+        emotion
+        movement
+        sleep
+        perception
+
+        The interesting part?
+
+        The brain doesn't work like a collection
+        of isolated little boxes.
+
+        Networks and interactions matter.
+        `;
+
+    }
+
+
+    /* MEMORY */
+
+    if(
+        /memory|remember|forget/
+        .test(x)
+    ){
+
+        lastTopic="memory";
+
+        return `
+        Memory isn't a perfect video recording.
+
+        It involves processes such as encoding,
+        consolidation, storage and retrieval.
+
+        Attention affects what gets encoded,
+        and remembering can sometimes change
+        over time.
+
+        If you want, I can take you into
+        working memory, long-term memory,
+        or why memories can feel so vivid.
+        `;
+
+    }
+
+
+    /* ANXIETY */
+
+    if(
+        /anxiety|anxious|panic|stressed|stress|worried/
+        .test(x)
+    ){
+
+        lastTopic="anxiety";
+
+        return `
+        Let's slow down for a second.
+
+        Anxiety can involve thoughts,
+        body sensations, attention,
+        behavior and the situation around you.
+
+        Feeling anxious doesn't automatically
+        tell us that you have a disorder.
+
+        If you want, we can explore the psychology
+        behind anxiety without jumping to a diagnosis.
+        `;
+
+    }
+
+
+    /* PROCRASTINATION */
+
+    if(
+        /procrastinat/
+        .test(x)
+    ){
+
+        lastTopic="procrastination";
+
+        return `
+        Procrastination isn't simply
+        “being lazy.”
+
+        It can involve task aversion,
+        emotion regulation, habits,
+        motivation and difficulty starting.
+
+        A useful question is:
+
+        “What happens inside me immediately
+        before I avoid the task?”
+
+        That's often more interesting than
+        simply asking why you're lazy.
+        `;
+
+    }
+
+
+    /* SOCIAL COMPARISON */
+
+    if(
+        /compare myself|comparison|compare myself to/
+        .test(x)
+    ){
+
+        lastTopic="comparison";
+
+        return `
+        Humans naturally compare themselves
+        with other people.
+
+        Sometimes comparison gives us useful
+        information.
+
+        Sometimes it makes us judge ourselves
+        against someone else's highlight reel.
+
+        The interesting psychological question
+        isn't only “Why do I compare?”
+
+        It's also:
+
+        “What conclusion am I making about myself
+        because of the comparison?”
+        `;
+
+    }
+
+
+    /* WHY / FOLLOW UP */
+
+    if(
+        /why|explain more|tell me more|how/
+        .test(x)
+        &&
+        lastTopic
+    ){
+
+        if(lastTopic==="psychology"){
+
+            return `
+            Psychology doesn't have one single
+            explanation for human behavior.
+
+            Different perspectives look at different
+            pieces:
+
+            biological
+            cognitive
+            developmental
+            social
+            cultural
+            behavioral
+
+            Humans are complicated little creatures.
+            One explanation rarely explains everything.
+            `;
+
+        }
+
+
+        if(lastTopic==="neuroscience"){
+
+            return `
+            Here's the deeper idea:
+
+            behavior usually emerges from networks
+            and interactions rather than one isolated
+            “brain part.”
+
+            Biology matters.
+
+            Experience matters.
+
+            Environment matters.
+
+            And they can interact.
+            `;
+
+        }
+
+
+        if(lastTopic==="memory"){
+
+            return `
+            Here's the fun part:
+
+            remembering isn't exactly the same thing
+            as replaying.
+
+            Your brain reconstructs memories using
+            stored information and the context
+            surrounding retrieval.
+
+            That's one reason memory can be powerful
+            while still being imperfect.
+            `;
+
+        }
+
+    }
+
+
+    /* GREETING */
+
+    if(
+        /^(hi|hello|hey|hiya|heyy)$/
+        .test(x)
+    ){
+
+        return `
+        Hey, human.
+
+        Lil Bird reporting for duty.
+
+        What are we exploring today?
+        `;
+
+    }
+
+
+    /* THANK YOU */
+
+    if(
+        /thank you|thanks/
+        .test(x)
+    ){
+
+        return `
+        Anytime.
+
+        And remember:
+
+        You don't need a perfectly worded question
+        to be curious.
+        `;
+
+    }
+
+
+    /* DEFAULT */
+
+    return `
+    Hmm.
+
+    I don't want to pretend I understand
+    something when I don't.
+
+    You can tell me more, or choose what you want:
+
+    • listen
+    • explain the psychology
+    • give me an example
+    • go deeper into the science
+    • show me evidence
+
+    Where should we start?
+    `;
+
+}
+
+
+
+function sendMessage(event){
+
+    event.preventDefault();
+
+    const input =
+        document.getElementById("chatInput");
+
+    const text =
+        input.value.trim();
+
+    if(!text) return;
+
+
+    addMessage(
+        text,
+        "user"
+    );
+
+
+    input.value="";
+
+
+    setTimeout(()=>{
+
+        addMessage(
+            lilBirdResponse(text),
+            "bird"
+        );
+
+    },350);
+
+}
+
+
+
+/* =========================================================
+   TOPIC BUTTONS
+========================================================= */
+
+function talkAbout(topic){
+
+    document
+        .getElementById("chat")
+        .scrollIntoView({
+            behavior:"smooth"
+        });
+
+
+    setTimeout(()=>{
+
+        const input =
+            document.getElementById("chatInput");
+
+        input.value =
+            "Tell me about " + topic;
+
+        input.focus();
+
+    },500);
+
+}
+
+</script>
+
+
 </body>
 </html>
