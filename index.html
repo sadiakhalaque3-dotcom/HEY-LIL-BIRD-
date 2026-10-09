@@ -2,4145 +2,962 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#090713">
+<meta name="description" content="Hey Lil Bird — explore psychology, neuroscience, mental health education, and human stories.">
 <title>Hey Lil Bird — Explore the Human Mind</title>
 
-<meta name="description"
-content="Hey Lil Bird is a curious, evidence-aware learning space for psychology, neuroscience, mental health and the human experience.">
-
 <style>
-
-/* =========================================================
-   HEY LIL BIRD V5
-   ONE-FILE KNOWLEDGE + VISUAL + LIL BIRD PROTOTYPE
-========================================================= */
-
-:root{
-
-  --night:#090713;
-  --night2:#100b19;
-
-  --violet:#261732;
-  --violet2:#3f2548;
-
-  --indigo:#35369c;
-  --blue:#5e77b6;
-  --water:#357cb6;
-  --ice:#c8d6ea;
-
-  --sage:#83885a;
-  --sage2:#aead89;
-
-  --berry:#db3e8c;
+:root {
+  --bg:#090713;
+  --panel:#191326;
   --pink:#ffafeb;
-
-  --wine:#711f45;
-
+  --berry:#db3e8c;
+  --blue:#5e77b6;
+  --ice:#c8d6ea;
+  --sage:#aead89;
   --gold:#d5a25e;
-  --cream:#f3ead4;
-
-  --white:#f8f7f2;
-  --muted:#aaa4b5;
-
-  --glass:rgba(255,255,255,.065);
-  --glass2:rgba(255,255,255,.10);
-  --border:rgba(255,255,255,.13);
-
-  --shadow:0 30px 90px rgba(0,0,0,.35);
-}
-
-/* RESET */
-
-*{
-  box-sizing:border-box;
-  margin:0;
-  padding:0;
-}
-
-html{
-  scroll-behavior:smooth;
-}
-
-body{
-  background:var(--night);
-  color:var(--white);
-  font-family:
-    Inter,
-    ui-sans-serif,
-    system-ui,
-    -apple-system,
-    BlinkMacSystemFont,
-    "Segoe UI",
-    sans-serif;
-  overflow-x:hidden;
-}
-
-button,
-input,
-select{
-  font:inherit;
-}
-
-button{
-  cursor:pointer;
-}
-
-a{
-  color:inherit;
-  text-decoration:none;
-}
-
-/* =========================================================
-   BACKGROUND
-========================================================= */
-
-body:before{
-  content:"";
-  position:fixed;
-  inset:0;
-  pointer-events:none;
-  z-index:-10;
-
-  background:
-    radial-gradient(
-      circle at 15% 15%,
-      rgba(156,145,200,.13),
-      transparent 28%
-    ),
-    radial-gradient(
-      circle at 85% 70%,
-      rgba(53,124,182,.12),
-      transparent 30%
-    );
-}
-
-#particles{
-  position:fixed;
-  inset:0;
-  z-index:-5;
-  pointer-events:none;
-  overflow:hidden;
-}
-
-.particle{
-  position:absolute;
-  width:3px;
-  height:3px;
-  border-radius:50%;
-  background:rgba(255,255,255,.45);
-
-  animation:
-    rise
-    linear
-    infinite;
-}
-
-@keyframes rise{
-
-  from{
-    transform:translateY(110vh) scale(.5);
-    opacity:0;
-  }
-
-  15%{
-    opacity:.8;
-  }
-
-  85%{
-    opacity:.6;
-  }
-
-  to{
-    transform:translateY(-10vh) scale(1.2);
-    opacity:0;
-  }
-}
-
-/* =========================================================
-   NAV
-========================================================= */
-
-.nav{
-  position:fixed;
-  top:0;
-  left:0;
-  right:0;
-
-  height:72px;
-
-  padding:0 6vw;
-
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-
-  background:rgba(9,7,19,.76);
-  backdrop-filter:blur(20px);
-
-  border-bottom:1px solid rgba(255,255,255,.07);
-
-  z-index:1000;
-}
-
-.logo{
-  display:flex;
-  align-items:center;
-  gap:10px;
-
-  font-weight:900;
-  letter-spacing:-.04em;
-}
-
-.logo-mark{
-  width:38px;
-  height:38px;
-
-  border-radius:
-    50%
-    48%
-    45%
-    55%;
-
-  display:grid;
-  place-items:center;
-
-  color:#130c18;
-
-  background:
-    linear-gradient(
-      135deg,
-      var(--pink),
-      var(--blue),
-      var(--gold)
-    );
-
-  box-shadow:
-    0 0 30px rgba(219,62,140,.25);
-}
-
-.navlinks{
-  display:flex;
-  align-items:center;
-  gap:25px;
-
-  color:#b8b2c1;
-  font-size:.86rem;
-}
-
-.navlinks a:hover{
-  color:white;
-}
-
-.nav-actions{
-  display:flex;
-  gap:8px;
-}
-
-.small-btn{
-  padding:8px 13px;
-
-  border:1px solid var(--border);
-  border-radius:999px;
-
-  background:rgba(255,255,255,.04);
-  color:white;
-
-  font-size:.72rem;
-}
-
-.mobile-menu{
-  display:none;
-  background:none;
-  border:0;
-  color:white;
-  font-size:1.4rem;
-}
-
-/* =========================================================
-   GENERAL
-========================================================= */
-
-.section{
-  padding:110px 7vw;
-}
-
-.eyebrow{
-  text-transform:uppercase;
-  letter-spacing:.19em;
-
-  color:#aebce1;
-
-  font-size:.68rem;
-  font-weight:800;
-}
-
-.section-title{
-  margin-top:13px;
-
-  max-width:850px;
-
-  font-size:
-    clamp(
-      2.8rem,
-      6vw,
-      5.8rem
-    );
-
-  line-height:.92;
-
-  letter-spacing:-.06em;
-}
-
-.section-description{
-  margin-top:18px;
-
-  max-width:720px;
-
-  color:var(--muted);
-
-  line-height:1.7;
-}
-
-.btn{
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-
-  padding:13px 20px;
-
-  border-radius:999px;
-
-  border:1px solid var(--border);
-
-  background:rgba(255,255,255,.055);
-
-  color:white;
-
-  transition:.25s;
-}
-
-.btn:hover{
-  transform:translateY(-3px);
-  background:rgba(255,255,255,.1);
-}
-
-.btn-primary{
-  border:0;
-
-  color:#170f1a;
-
-  font-weight:900;
-
-  background:
-    linear-gradient(
-      135deg,
-      var(--pink),
-      var(--gold)
-    );
-}
-
-/* =========================================================
-   HERO
-========================================================= */
-
-.hero{
-  min-height:100vh;
-
-  padding:
-    140px
-    7vw
-    90px;
-
-  display:grid;
-
-  grid-template-columns:
-    minmax(0,1.1fr)
-    minmax(350px,.9fr);
-
-  align-items:center;
-
-  position:relative;
-  overflow:hidden;
-
-  background:
-
-    radial-gradient(
-      circle at 80% 25%,
-      rgba(53,54,156,.5),
-      transparent 27%
-    ),
-
-    radial-gradient(
-      circle at 65% 75%,
-      rgba(219,62,140,.15),
-      transparent 30%
-    ),
-
-    linear-gradient(
-      135deg,
-      #090713,
-      #261732 48%,
-      #071b37
-    );
-}
-
-.hero h1{
-  margin-top:18px;
-
-  font-size:
-    clamp(
-      4.3rem,
-      10vw,
-      9.5rem
-    );
-
-  line-height:.78;
-
-  letter-spacing:-.08em;
-}
-
-.hero h1 em{
-  color:var(--pink);
-
-  font-family:
-    Georgia,
-    serif;
-
-  font-weight:400;
-}
-
-.hero-copy{
-  max-width:680px;
-
-  margin-top:30px;
-
-  color:#c8c3cf;
-
-  font-size:1.08rem;
-
-  line-height:1.75;
-}
-
-.hero-buttons{
-  margin-top:30px;
-
-  display:flex;
-  flex-wrap:wrap;
-  gap:10px;
-}
-
-.hero-warning{
-  margin-top:18px;
-
-  color:#777181;
-
-  font-size:.72rem;
-}
-
-/* =========================================================
-   LIL BIRD
-========================================================= */
-
-.bird-zone{
-  min-height:510px;
-
-  display:grid;
-  place-items:center;
-
-  position:relative;
-}
-
-.bird-orb{
-  width:390px;
-  height:390px;
-
-  position:relative;
-
-  display:grid;
-  place-items:center;
-
-  border-radius:50%;
-
-  background:
-
-    radial-gradient(
-      circle at 50% 42%,
-      rgba(200,214,234,.13),
-      transparent 38%
-    ),
-
-    radial-gradient(
-      circle at 30% 25%,
-      rgba(255,175,235,.18),
-      transparent 32%
-    ),
-
-    #151022;
-
-  border:1px solid rgba(255,255,255,.13);
-
-  box-shadow:
-    0 0 100px rgba(53,54,156,.25),
-    inset 0 0 70px rgba(255,255,255,.035);
-
-  animation:
-    birdFloat
-    5s
-    ease-in-out
-    infinite;
-}
-
-@keyframes birdFloat{
-
-  0%,100%{
-    transform:translateY(0);
-  }
-
-  50%{
-    transform:translateY(-12px);
-  }
-}
-
-.orbit{
-  position:absolute;
-
-  border:1px solid rgba(200,214,234,.16);
-
-  border-radius:50%;
-}
-
-.orbit.a{
-  inset:30px;
-  transform:rotate(20deg);
-}
-
-.orbit.b{
-  inset:65px;
-  transform:rotate(-40deg);
-}
-
-.orbit.c{
-  inset:100px;
-  transform:rotate(65deg);
-}
-
-.bird{
-  width:155px;
-  height:155px;
-
-  position:relative;
-
-  border-radius:
-    52%
-    48%
-    55%
-    45%;
-
-  background:
-    radial-gradient(
-      circle at 35% 25%,
-      #c8d6ea,
-      #5e77b6 30%,
-      #35369c 67%,
-      #261732
-    );
-
-  box-shadow:
-    -18px 28px 0 -8px #261732,
-    18px 30px 0 -15px #db3e8c,
-    0 30px 60px rgba(0,0,0,.45);
-}
-
-.bird .eye{
-  width:18px;
-  height:23px;
-
-  position:absolute;
-  top:55px;
-
-  border-radius:50%;
-
-  background:#090713;
-}
-
-.bird .eye.left{
-  left:43px;
-}
-
-.bird .eye.right{
-  right:43px;
-}
-
-.bird .eye:after{
-  content:"";
-
-  position:absolute;
-
-  width:5px;
-  height:5px;
-
-  top:4px;
-  left:4px;
-
-  border-radius:50%;
-
-  background:white;
-}
-
-.bird .beak{
-  position:absolute;
-
-  width:37px;
-  height:30px;
-
-  right:-28px;
-  top:48px;
-
-  background:var(--gold);
-
-  clip-path:
-    polygon(
-      0 50%,
-      100% 0,
-      100% 100%
-    );
-}
-
-.bird .wing{
-  position:absolute;
-
-  width:70px;
-  height:100px;
-
-  left:7px;
-  bottom:-15px;
-
-  border-radius:
-    70%
-    30%
-    60%
-    40%;
-
-  background:
-    linear-gradient(
-      135deg,
-      var(--sage),
-      var(--indigo)
-    );
-
-  transform:rotate(18deg);
-}
-
-.bird .heart{
-  position:absolute;
-
-  right:-10px;
-  bottom:2px;
-
-  color:var(--pink);
-
-  font-size:22px;
-}
-
-.spark{
-  position:absolute;
-
-  color:#f6d88f;
-
-  animation:
-    sparkle
-    2.7s
-    ease-in-out
-    infinite;
-}
-
-.spark.one{
-  top:65px;
-  left:85px;
-}
-
-.spark.two{
-  right:72px;
-  bottom:75px;
-  animation-delay:.8s;
-}
-
-.spark.three{
-  left:70px;
-  bottom:70px;
-  animation-delay:1.3s;
-}
-
-@keyframes sparkle{
-
-  0%,100%{
-    opacity:.25;
-    transform:scale(.7) rotate(0);
-  }
-
-  50%{
-    opacity:1;
-    transform:scale(1.35) rotate(25deg);
-  }
-}
-
-.speech{
-  position:absolute;
-
-  right:-60px;
-  top:30px;
-
-  width:205px;
-
-  padding:14px 17px;
-
-  border-radius:
-    18px
-    18px
-    18px
-    5px;
-
-  background:rgba(255,255,255,.09);
-
-  border:1px solid rgba(255,255,255,.14);
-
-  backdrop-filter:blur(15px);
-
-  color:#ddd8e4;
-
-  font-size:.8rem;
-}
-
-/* =========================================================
-   INTRO
-========================================================= */
-
-.intro{
-  padding:65px 7vw;
-
-  display:grid;
-  grid-template-columns:1fr 1fr;
-
-  gap:50px;
-
-  align-items:center;
-
-  color:#24162a;
-
-  background:
-    linear-gradient(
-      90deg,
-      #c8d6ea,
-      #ffafeb,
-      #aead89
-    );
-}
-
-.intro h2{
-  font:
-    2.9rem/1
-    Georgia,
-    serif;
-}
-
-.intro p{
-  line-height:1.7;
-}
-
-/* =========================================================
-   WORLDS
-========================================================= */
-
-.world-grid{
-  margin-top:55px;
-
-  display:grid;
-
-  grid-template-columns:
-    repeat(3,1fr);
-
-  gap:18px;
-}
-
-.world{
-  min-height:330px;
-
-  position:relative;
-
-  padding:29px;
-
-  overflow:hidden;
-
-  border-radius:30px;
-
-  border:1px solid rgba(255,255,255,.12);
-
-  cursor:pointer;
-
-  transition:.3s;
-
-  box-shadow:0 20px 50px rgba(0,0,0,.16);
-}
-
-.world:hover{
-  transform:
-    translateY(-8px)
-    rotate(.3deg);
-
-  box-shadow:
-    0 35px 80px rgba(0,0,0,.3);
-}
-
-.world:after{
-  content:"";
-
-  position:absolute;
-
-  width:190px;
-  height:190px;
-
-  right:-70px;
-  bottom:-70px;
-
-  border-radius:50%;
-
-  background:rgba(255,255,255,.08);
-
-  filter:blur(2px);
-}
-
-.world-number{
-  font-size:.67rem;
-  letter-spacing:.18em;
-  opacity:.7;
-}
-
-.world-icon{
-  margin-top:45px;
-
-  font-size:2.4rem;
-}
-
-.world h3{
-  margin-top:14px;
-
-  font-size:2rem;
-
-  letter-spacing:-.04em;
-}
-
-.world p{
-  margin-top:9px;
-
-  max-width:340px;
-
-  color:rgba(255,255,255,.72);
-
-  line-height:1.6;
-}
-
-.world.psych{
-  background:
-    radial-gradient(
-      circle at 70% 20%,
-      rgba(219,62,140,.42),
-      transparent 38%
-    ),
-    linear-gradient(145deg,#261732,#711f45);
-}
-
-.world.brain{
-  background:
-    radial-gradient(
-      circle at 70% 25%,
-      rgba(200,214,234,.3),
-      transparent 35%
-    ),
-    linear-gradient(145deg,#07152e,#35369c);
-}
-
-.world.health{
-  background:
-    radial-gradient(
-      circle at 70% 20%,
-      rgba(181,228,200,.3),
-      transparent 35%
-    ),
-    linear-gradient(145deg,#17291f,#596443);
-}
-
-.world.cognitive{
-  background:
-    radial-gradient(
-      circle at 25% 25%,
-      rgba(156,145,200,.4),
-      transparent 35%
-    ),
-    linear-gradient(145deg,#16101d,#5150a6);
-}
-
-.world.social{
-  background:
-    radial-gradient(
-      circle at 75% 20%,
-      rgba(213,162,94,.28),
-      transparent 35%
-    ),
-    linear-gradient(145deg,#30182c,#711f45);
-}
-
-.world.development{
-  background:
-    radial-gradient(
-      circle at 30% 20%,
-      rgba(181,228,200,.32),
-      transparent 35%
-    ),
-    linear-gradient(145deg,#263225,#83885a);
-}
-
-.world.clinical{
-  background:
-    radial-gradient(
-      circle at 70% 25%,
-      rgba(255,175,235,.23),
-      transparent 35%
-    ),
-    linear-gradient(145deg,#211327,#3f2548);
-}
-
-.world.research{
-  background:
-    radial-gradient(
-      circle at 30% 20%,
-      rgba(200,214,234,.2),
-      transparent 35%
-    ),
-    linear-gradient(145deg,#0e1125,#35369c);
-}
-
-.world.stories{
-  background:
-    radial-gradient(
-      circle at 70% 20%,
-      rgba(213,162,94,.3),
-      transparent 35%
-    ),
-    linear-gradient(145deg,#48152d,#711f45);
-}
-
-.world.ethics{
-  background:
-    radial-gradient(
-      circle at 30% 30%,
-      rgba(174,173,137,.25),
-      transparent 35%
-    ),
-    linear-gradient(145deg,#17201a,#3f4c36);
-}
-
-.world.technology{
-  background:
-    radial-gradient(
-      circle at 70% 25%,
-      rgba(94,119,182,.35),
-      transparent 35%
-    ),
-    linear-gradient(145deg,#101129,#35369c);
-}
-
-.world.library{
-  background:
-    radial-gradient(
-      circle at 30% 20%,
-      rgba(200,214,234,.3),
-      transparent 35%
-    ),
-    linear-gradient(145deg,#071b37,#357cb6);
-}
-
-/* =========================================================
-   SEARCH
-========================================================= */
-
-.search-area{
-  margin-top:40px;
-
-  display:flex;
-  gap:10px;
-}
-
-.search{
-  width:min(700px,100%);
-
-  padding:16px 19px;
-
-  border-radius:16px;
-
-  border:1px solid var(--border);
-
-  background:rgba(255,255,255,.045);
-
-  color:white;
-
-  outline:none;
-}
-
-.search:focus{
-  border-color:#6c8ec9;
-}
-
-/* =========================================================
-   TOPIC READER
-========================================================= */
-
-.reader{
-  display:none;
-
-  min-height:100vh;
-
-  position:fixed;
-
-  inset:0;
-
-  z-index:2000;
-
-  overflow:auto;
-
-  padding:95px 6vw 60px;
-
-  background:
-    radial-gradient(
-      circle at 75% 10%,
-      rgba(94,119,182,.18),
-      transparent 25%
-    ),
-    #0b0812;
-}
-
-.reader.active{
-  display:block;
-}
-
-.reader-top{
-  max-width:1150px;
-  margin:auto;
-
-  display:flex;
-  justify-content:space-between;
-  gap:20px;
-  align-items:flex-start;
-}
-
-.reader-close{
-  width:42px;
-  height:42px;
-
-  border-radius:50%;
-
-  border:1px solid var(--border);
-
-  background:rgba(255,255,255,.06);
-
-  color:white;
-
-  font-size:1.2rem;
-}
-
-.reader-layout{
-  max-width:1150px;
-  margin:40px auto 0;
-
-  display:grid;
-
-  grid-template-columns:
-    minmax(0,1.25fr)
-    minmax(280px,.55fr);
-
-  gap:35px;
-}
-
-.article{
-  padding:40px;
-
-  border-radius:30px;
-
-  background:rgba(255,255,255,.045);
-
-  border:1px solid rgba(255,255,255,.1);
-}
-
-.article h1{
-  font-size:
-    clamp(
-      2.8rem,
-      6vw,
-      5.5rem
-    );
-
-  line-height:.9;
-
-  letter-spacing:-.06em;
-}
-
-.article .lead{
-  margin-top:20px;
-
-  color:#d1cbd7;
-
-  font-size:1.12rem;
-
-  line-height:1.75;
-}
-
-.article-section{
-  margin-top:42px;
-}
-
-.article-section h2{
-  font-size:1.65rem;
-}
-
-.article-section p{
-  margin-top:12px;
-
-  color:#b6b0bd;
-
-  line-height:1.85;
-}
-
-.article-section ul{
-  margin-top:15px;
-
-  padding-left:22px;
-
-  color:#b6b0bd;
-
-  line-height:1.9;
-}
-
-.misconception{
-  margin-top:18px;
-
-  padding:20px;
-
-  border-radius:18px;
-
-  background:rgba(219,62,140,.08);
-
-  border-left:3px solid var(--berry);
-}
-
-.evidence{
-  display:inline-flex;
-
-  margin-top:15px;
-
-  padding:8px 12px;
-
-  border-radius:999px;
-
-  font-size:.7rem;
-
-  background:rgba(200,214,234,.1);
-
-  color:#c8d6ea;
-}
-
-/* =========================================================
-   ARTICLE SIDEBAR
-========================================================= */
-
-.reader-sidebar{
-  display:flex;
-  flex-direction:column;
-  gap:15px;
-}
-
-.bird-help{
-  padding:25px;
-
-  border-radius:25px;
-
-  background:
-    linear-gradient(
-      145deg,
-      rgba(63,37,72,.95),
-      rgba(20,18,40,.95)
-    );
-
-  border:1px solid rgba(255,175,235,.12);
-}
-
-.bird-help h3{
-  font:
-    1.7rem/1.1
-    Georgia,
-    serif;
-
-  color:var(--pink);
-}
-
-.bird-help p{
-  margin-top:12px;
-
-  color:#b9b2c1;
-
-  font-size:.88rem;
-
-  line-height:1.65;
-}
-
-.quick-asks{
-  margin-top:18px;
-
-  display:flex;
-
-  flex-wrap:wrap;
-
-  gap:7px;
-}
-
-.quick-ask{
-  padding:9px 11px;
-
-  border-radius:999px;
-
-  border:1px solid rgba(255,255,255,.1);
-
-  background:rgba(255,255,255,.05);
-
-  color:#ddd8e2;
-
-  font-size:.7rem;
-}
-
-.quick-ask:hover{
-  background:rgba(255,255,255,.1);
-}
-
-.related{
-  padding:23px;
-
-  border-radius:22px;
-
-  background:rgba(255,255,255,.035);
-
-  border:1px solid rgba(255,255,255,.09);
-}
-
-.related h4{
-  color:#ddd7e3;
-}
-
-.related button{
-  display:block;
-
-  width:100%;
-
-  margin-top:9px;
-
-  padding:10px;
-
-  text-align:left;
-
-  border:0;
-
-  border-radius:10px;
-
-  background:rgba(255,255,255,.04);
-
-  color:#aaa4b5;
-}
-
-.related button:hover{
-  color:white;
-}
-
-/* =========================================================
-   CHAT
-========================================================= */
-
-.chat-section{
-  background:
-    radial-gradient(
-      circle at 75% 20%,
-      rgba(219,62,140,.13),
-      transparent 27%
-    ),
-    #0d0914;
-}
-
-.chat-shell{
-  max-width:1000px;
-
-  margin:50px auto 0;
-
-  border-radius:30px;
-
-  overflow:hidden;
-
-  background:rgba(255,255,255,.035);
-
-  border:1px solid rgba(255,255,255,.1);
-
-  box-shadow:var(--shadow);
-}
-
-.chat-head{
-  padding:19px;
-
-  display:flex;
-  align-items:center;
-  gap:12px;
-
-  border-bottom:1px solid rgba(255,255,255,.08);
-}
-
-.chat-avatar{
-  width:46px;
-  height:46px;
-
-  display:grid;
-  place-items:center;
-
-  border-radius:50%;
-
-  background:
-    linear-gradient(
-      135deg,
-      var(--pink),
-      var(--blue)
-    );
-
-  color:#130d18;
-}
-
-.chat-head small{
-  display:block;
-  color:#7f788a;
-  margin-top:3px;
-}
-
-.messages{
-  height:410px;
-
-  overflow-y:auto;
-
-  padding:25px;
-
-  display:flex;
-  flex-direction:column;
-  gap:12px;
-}
-
-.message{
-  max-width:78%;
-
-  padding:14px 17px;
-
-  border-radius:18px;
-
-  line-height:1.65;
-
-  font-size:.9rem;
-
-  white-space:pre-line;
-}
-
-.message.bird{
-  background:#20172e;
-  border:1px solid rgba(255,175,235,.08);
-  border-top-left-radius:5px;
-}
-
-.message.user{
-  align-self:flex-end;
-
-  background:#315b73;
-
-  border-top-right-radius:5px;
-}
-
-.chat-form{
-  display:flex;
-  gap:9px;
-
-  padding:15px;
-
-  border-top:1px solid rgba(255,255,255,.08);
-}
-
-.chat-input{
-  flex:1;
-
-  padding:14px 16px;
-
-  border-radius:14px;
-
-  border:1px solid rgba(255,255,255,.1);
-
-  background:#090713;
-
-  color:white;
-
-  outline:none;
-}
-
-.chat-input:focus{
-  border-color:#6686c2;
-}
-
-.chat-send{
-  padding:0 20px;
-
-  border:0;
-
-  border-radius:14px;
-
-  font-weight:900;
-
-  color:#160e18;
-
-  background:
-    linear-gradient(
-      135deg,
-      var(--pink),
-      var(--gold)
-    );
-}
-
-/* =========================================================
-   LEARNING LAYERS
-========================================================= */
-
-.layers{
-  color:#23172a;
-  background:#f3ead4;
-}
-
-.layers .section-description{
-  color:#625960;
-}
-
-.layer-grid{
-  margin-top:45px;
-
-  display:grid;
-
-  grid-template-columns:
-    repeat(5,1fr);
-
-  gap:10px;
-}
-
-.layer{
-  min-height:210px;
-
-  padding:23px;
-
-  border-radius:22px;
-
-  display:flex;
-  flex-direction:column;
-  justify-content:space-between;
-
-  transition:.25s;
-}
-
-.layer:hover{
-  transform:translateY(-6px);
-}
-
-.layer:nth-child(1){
-  background:#c8d6ea;
-}
-
-.layer:nth-child(2){
-  background:#aead89;
-}
-
-.layer:nth-child(3){
-  background:#9c91c8;
-  color:white;
-}
-
-.layer:nth-child(4){
-  background:#db3e8c;
-  color:white;
-}
-
-.layer:nth-child(5){
-  background:#35369c;
-  color:white;
-}
-
-.layer strong{
-  font-size:1.15rem;
-}
-
-.layer p{
-  line-height:1.5;
-}
-
-/* =========================================================
-   SAFETY
-========================================================= */
-
-.safety{
-  background:
-    linear-gradient(
-      135deg,
-      #151024,
-      #241633
-    );
-}
-
-.safety-grid{
-  margin-top:45px;
-
-  display:grid;
-
-  grid-template-columns:
-    repeat(3,1fr);
-
-  gap:14px;
-}
-
-.safety-card{
-  padding:25px;
-
-  border-radius:22px;
-
-  background:rgba(255,255,255,.045);
-
-  border:1px solid rgba(255,255,255,.09);
-}
-
-.safety-card h3{
-  color:var(--pink);
-}
-
-.safety-card p{
-  margin-top:10px;
-
-  color:#a8a1b1;
-
-  line-height:1.65;
-}
-
-/* =========================================================
-   FOOTER
-========================================================= */
-
-footer{
-  padding:50px 7vw;
-
-  display:flex;
-  justify-content:space-between;
-  gap:25px;
-  flex-wrap:wrap;
-
-  border-top:1px solid rgba(255,255,255,.08);
-
-  color:#85808e;
-}
-
-footer strong{
-  color:white;
-}
-
-/* =========================================================
-   MOBILE
-========================================================= */
-
-@media(max-width:950px){
-
-  .navlinks{
-    display:none;
-  }
-
-  .nav-actions{
-    display:none;
-  }
-
-  .mobile-menu{
-    display:block;
-  }
-
-  .hero{
-    grid-template-columns:1fr;
-  }
-
-  .bird-zone{
-    min-height:400px;
-  }
-
-  .world-grid{
-    grid-template-columns:1fr 1fr;
-  }
-
-  .reader-layout{
-    grid-template-columns:1fr;
-  }
-
-  .layer-grid{
-    grid-template-columns:repeat(2,1fr);
-  }
-
-  .safety-grid{
-    grid-template-columns:1fr;
-  }
-
-  .intro{
-    grid-template-columns:1fr;
-  }
-}
-
-@media(max-width:600px){
-
-  .section{
-    padding:80px 6vw;
-  }
-
-  .hero{
-    padding:120px 6vw 70px;
-  }
-
-  .hero h1{
-    font-size:4.4rem;
-  }
-
-  .bird-orb{
-    width:290px;
-    height:290px;
-  }
-
-  .speech{
-    right:-15px;
-    top:0;
-  }
-
-  .world-grid{
-    grid-template-columns:1fr;
-  }
-
-  .layer-grid{
-    grid-template-columns:1fr;
-  }
-
-  .article{
-    padding:25px;
-  }
-
-  .messages{
-    height:390px;
-  }
-
-  .message{
-    max-width:90%;
-  }
-
-  .chat-form{
-    flex-direction:column;
-  }
-
-  .chat-send{
-    min-height:48px;
-  }
-}
-
-/* =========================================================
-   ACCESSIBILITY
-========================================================= */
-
-:focus-visible{
-  outline:2px solid var(--pink);
-  outline-offset:3px;
-}
-
-@media(prefers-reduced-motion:reduce){
-
-  *,
-  *::before,
-  *::after{
-    animation:none!important;
-    transition:none!important;
-    scroll-behavior:auto!important;
-  }
-}
-
+  --muted:#bcb4c6;
+  --line:#ffffff20;
+}
+* {box-sizing:border-box}
+html {scroll-behavior:smooth;scroll-padding-top:90px}
+body {
+  margin:0;background:var(--bg);color:#f8f5f0;
+  font-family:Inter,system-ui,"Segoe UI",sans-serif;line-height:1.65
+}
+button,input,textarea,select {font:inherit}
+button,a {cursor:pointer}
+a {color:inherit;text-decoration:none}
+button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible {
+  outline:2px solid var(--pink);outline-offset:3px
+}
+button:disabled {opacity:.5;cursor:not-allowed}
+header {
+  position:sticky;top:0;z-index:5;display:flex;justify-content:space-between;
+  align-items:center;gap:20px;padding:14px 5vw;background:#090713ed;
+  backdrop-filter:blur(14px);border-bottom:1px solid var(--line)
+}
+.brand {font-weight:900;letter-spacing:-.04em;white-space:nowrap}
+.mark {
+  display:inline-grid;place-items:center;width:35px;height:35px;
+  border-radius:50%;margin-right:8px;color:#160e1a;
+  background:linear-gradient(135deg,var(--pink),var(--blue),var(--gold))
+}
+nav {display:flex;gap:20px;color:#c7c0d0;font-size:.9rem}
+nav a:hover {color:var(--pink)}
+.btn {
+  display:inline-block;padding:10px 15px;border:1px solid var(--line);
+  border-radius:999px;background:#ffffff0b;color:white
+}
+.primary {
+  background:linear-gradient(135deg,var(--pink),var(--gold));
+  color:#190f20;border:0;font-weight:800
+}
+.hero {
+  padding:90px 7vw;min-height:76vh;display:grid;
+  grid-template-columns:1.1fr .9fr;align-items:center;gap:30px;
+  background:radial-gradient(circle at 80% 30%,#35369c66,transparent 28%),
+  radial-gradient(circle at 70% 80%,#db3e8c24,transparent 28%),
+  linear-gradient(130deg,#090713,#261732 55%,#081a31)
+}
+.eyebrow {
+  text-transform:uppercase;letter-spacing:.16em;font-size:.72rem;
+  font-weight:800;color:var(--ice)
+}
+h1 {font-size:clamp(4rem,9vw,8rem);line-height:.88;letter-spacing:-.08em;margin:18px 0}
+h1 em {font-family:Georgia,serif;color:var(--pink);font-weight:400}
+.hero p,.desc {max-width:730px;color:#d0c9d6}
+.actions {display:flex;gap:10px;flex-wrap:wrap;margin-top:25px}
+.fine {font-size:.75rem;color:#958da0!important}
+.stage {display:grid;place-items:center;min-height:340px}
+.orb {
+  width:min(330px,75vw);aspect-ratio:1;border-radius:50%;
+  display:grid;place-items:center;position:relative;
+  background:radial-gradient(circle at 35% 25%,#ffafeb2b,transparent 35%),#ffffff08;
+  border:1px solid var(--line);box-shadow:0 0 80px #35369c40
+}
+.orbit {position:absolute;inset:25px;border:1px solid #c8d6ea33;border-radius:50%}
+.orbit.two {inset:55px;transform:rotate(40deg)}
+.bird {
+  position:relative;width:130px;height:120px;border-radius:52% 48% 53% 47%;
+  background:radial-gradient(circle at 32% 23%,#d8e6f4,#7d8fd0 35%,#35369c 72%,#261732);
+  box-shadow:0 25px 45px #0006
+}
+.eye {position:absolute;top:44px;width:15px;height:20px;border-radius:50%;background:#090713}
+.eye:after {content:"";position:absolute;top:3px;left:4px;width:4px;height:4px;background:white;border-radius:50%}
+.left {left:33px}.right {right:33px}
+.beak {
+  position:absolute;right:-25px;top:45px;width:34px;height:26px;
+  background:var(--gold);clip-path:polygon(0 50%,100% 0,100% 100%)
+}
+.wing {
+  position:absolute;left:0;bottom:-12px;width:55px;height:75px;
+  border-radius:70% 30% 60% 40%;
+  background:linear-gradient(135deg,var(--sage),var(--blue));transform:rotate(15deg)
+}
+.speech {
+  position:absolute;right:-5px;top:15px;max-width:170px;padding:12px 15px;
+  background:#ffffff15;border:1px solid var(--line);
+  border-radius:16px 16px 16px 4px;font-size:.82rem
+}
+section {padding:80px 7vw}
+.section-title {font-size:clamp(2.5rem,6vw,5rem);letter-spacing:-.06em;line-height:.98;margin:12px 0}
+.search {
+  width:min(700px,100%);margin:22px 0;padding:14px 16px;border-radius:14px;
+  border:1px solid var(--line);background:#ffffff08;color:white
+}
+.grid {display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:24px}
+.card {
+  padding:23px;min-height:205px;border-radius:24px;border:1px solid var(--line);
+  cursor:pointer;transition:transform .2s,filter .2s;text-align:left;color:white
+}
+.card:hover {transform:translateY(-4px);filter:brightness(1.12)}
+.card .icon {font-size:1.8rem}
+.card h3 {font-size:1.45rem;margin:8px 0}
+.card p {font-size:.9rem;color:#e0dbe5;margin:0}
+.count {display:block;margin-top:15px;font-size:.72rem;color:#ffffffa8}
+.psych {background:linear-gradient(145deg,#261732,#711f45)}
+.brain {background:linear-gradient(145deg,#07152e,#35369c)}
+.health {background:linear-gradient(145deg,#17291f,#596443)}
+.cognition {background:linear-gradient(145deg,#16101d,#5150a6)}
+.social {background:linear-gradient(145deg,#30182c,#711f45)}
+.growth {background:linear-gradient(145deg,#263225,#83885a)}
+.clinical {background:linear-gradient(145deg,#211327,#3f2548)}
+.research {background:linear-gradient(145deg,#0e1125,#35369c)}
+.stories {background:linear-gradient(145deg,#48152d,#711f45)}
+.ethics {background:linear-gradient(145deg,#17201a,#3f4c36)}
+.tech {background:linear-gradient(145deg,#101129,#35369c)}
+.library {background:linear-gradient(145deg,#071b37,#357cb6)}
+.callout {
+  padding:55px 7vw;background:linear-gradient(100deg,#c8d6ea,#ffafeb,#aead89);
+  color:#25162b;display:grid;grid-template-columns:1fr 1fr;gap:30px;align-items:center
+}
+.callout h2 {font:clamp(2rem,4vw,3.4rem)/1 Georgia,serif;margin:0}
+.chat-section {
+  background:radial-gradient(circle at 80% 15%,#db3e8c1c,transparent 30%),#0d0914
+}
+.chat {max-width:950px;margin:30px auto 0;border:1px solid var(--line);border-radius:25px;overflow:hidden;background:#ffffff05}
+.chathead {padding:17px 20px;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:12px}
+.avatar {
+  width:42px;height:42px;border-radius:50%;display:grid;place-items:center;
+  background:linear-gradient(135deg,var(--pink),var(--blue));color:#190f20
+}
+.chathead small {display:block;color:var(--muted)}
+#context {margin-left:auto;font-size:.75rem;color:var(--ice)}
+#messages {height:350px;overflow-y:auto;display:flex;flex-direction:column;gap:12px;padding:18px}
+.msg {
+  max-width:85%;padding:13px 16px;border-radius:17px;white-space:pre-wrap;
+  overflow-wrap:anywhere;font-size:.93rem
+}
+.msg.bot {align-self:flex-start;background:#20172e;border:1px solid #ffafeb17;border-top-left-radius:4px}
+.msg.user {align-self:flex-end;background:#315b73;border-top-right-radius:4px}
+.quick {display:flex;gap:8px;flex-wrap:wrap;padding:0 18px 15px}
+.quick button {
+  border:1px solid var(--line);background:#ffffff08;color:#ddd6e4;
+  border-radius:999px;padding:8px 11px;font-size:.78rem
+}
+.chatform {display:flex;gap:9px;padding:14px;border-top:1px solid var(--line)}
+.chatform input {
+  flex:1;min-width:0;padding:14px;border-radius:13px;
+  border:1px solid var(--line);background:#090713;color:white
+}
+.chatform button {
+  border:0;border-radius:13px;padding:0 20px;
+  background:linear-gradient(135deg,var(--pink),var(--gold));
+  color:#190f20;font-weight:850
+}
+.community {background:linear-gradient(160deg,#0d0914,#13212a 65%,#211327)}
+.community-grid {display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin:25px 0}
+.community-card {padding:20px;border:1px solid var(--line);border-radius:20px;background:#ffffff07}
+.community-card h3 {margin:8px 0}
+.community-card p {color:var(--muted);font-size:.9rem}
+.community-card .icon {font-size:1.8rem}
+.community-form {display:grid;gap:12px;max-width:800px}
+.community-form input,.community-form textarea {
+  width:100%;padding:14px;border-radius:12px;border:1px solid var(--line);
+  background:#ffffff08;color:white
+}
+.community-form textarea {min-height:100px;resize:vertical}
+#communityPosts {display:grid;gap:10px;margin-top:18px}
+.post {
+  padding:16px;border:1px solid var(--line);border-radius:15px;
+  background:#ffffff08;overflow-wrap:anywhere
+}
+.post small {display:block;color:var(--muted);margin-bottom:5px}
+.reader {
+  display:none;position:fixed;inset:0;z-index:10;overflow:auto;
+  padding:24px 5vw 45px;background:#0b0812
+}
+.reader.open {display:block}
+.readerbar {max-width:1200px;margin:0 auto 25px;display:flex;justify-content:space-between;align-items:center;gap:10px}
+.layout {max-width:1200px;margin:auto;display:grid;grid-template-columns:minmax(0,1fr) 285px;gap:20px}
+.article,.side {padding:clamp(20px,4vw,40px);border-radius:24px;border:1px solid var(--line);background:#ffffff05;min-width:0}
+.article h1 {font-size:clamp(2.7rem,6vw,5rem);margin:12px 0}
+.article h2 {margin:28px 0 8px;font-size:1.4rem}
+.article p,.article li {color:#c8c1d0;line-height:1.85}
+.article ul {padding-left:22px}
+.badge {display:inline-block;padding:6px 10px;border-radius:999px;background:#c8d6ea17;color:var(--ice);font-size:.75rem}
+.subgrid {display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:16px}
+.sub {
+  padding:14px;text-align:left;border-radius:14px;border:1px solid var(--line);
+  background:#ffffff07;color:white
+}
+.sub strong,.sub span {display:block}
+.sub span {color:var(--muted);font-size:.82rem}
+.side h3 {color:var(--pink);margin-top:0}
+.side p {color:var(--muted);font-size:.9rem}
+.side button {
+  display:block;width:100%;text-align:left;padding:10px;margin-top:8px;
+  border:1px solid var(--line);border-radius:10px;background:#ffffff08;color:#eee
+}
+footer {
+  padding:35px 7vw;border-top:1px solid var(--line);display:flex;
+  justify-content:space-between;gap:20px;flex-wrap:wrap;color:#928b9d;font-size:.85rem
+}
+@media(max-width:850px) {
+  nav {display:none}
+  .hero {grid-template-columns:1fr;padding:70px 6vw}
+  .grid,.community-grid {grid-template-columns:repeat(2,minmax(0,1fr))}
+  .callout {grid-template-columns:1fr}
+  .layout {grid-template-columns:1fr}
+}
+@media(max-width:560px) {
+  section {padding:60px 6vw}
+  .hero h1 {font-size:4.2rem}
+  .grid,.community-grid,.subgrid {grid-template-columns:1fr}
+  .chatform {flex-wrap:wrap}
+  .chatform input {flex-basis:100%}
+  .msg {max-width:95%}
+  #context {display:none}
+  .reader {padding:15px 4vw 30px}
+}
+@media(prefers-reduced-motion:reduce) {
+  *,*:before,*:after {animation:none!important;transition:none!important;scroll-behavior:auto!important}
+}
 </style>
 </head>
 
 <body>
-
-<div id="particles"></div>
-
-
-<!-- ======================================================
-     NAVIGATION
-====================================================== -->
-
-<header class="nav">
-
-  <a href="#" class="logo">
-
-    <span class="logo-mark">✦</span>
-
-    <span>hey lil bird</span>
-
-  </a>
-
-
-  <nav class="navlinks">
-
+<header>
+  <a class="brand" href="#top"><span class="mark">✦</span>hey lil bird</a>
+  <nav aria-label="Main navigation">
     <a href="#worlds">Explore</a>
-
-    <a href="#layers">How it works</a>
-
     <a href="#chat">Ask Lil Bird</a>
-
-    <a href="#safety">Safety</a>
-
+    <a href="#community">Community</a>
+    <a href="#about">Our approach</a>
   </nav>
-
-
-  <div class="nav-actions">
-
-    <button class="small-btn"
-      onclick="document.getElementById('chat').scrollIntoView({behavior:'smooth'})">
-      Talk
-    </button>
-
-  </div>
-
-
-  <button class="mobile-menu"
-    onclick="alert('Use the sections below to explore Hey Lil Bird.')">
-    ☰
-  </button>
-
+  <a class="btn" href="#chat">Talk to Lil Bird</a>
 </header>
 
-
-<!-- ======================================================
-     HERO
-====================================================== -->
-
+<main id="top">
 <section class="hero">
-
   <div>
-
-    <p class="eyebrow">
-      psychology · neuroscience · human stories
+    <div class="eyebrow">psychology · neuroscience · human stories</div>
+    <h1>Hey,<br><em>human.</em></h1>
+    <p>
+      A little universe for understanding the human mind.
+      Explore psychology, learn about emotions, question what you know,
+      and ask Lil Bird to help make complicated ideas easier to understand.
     </p>
-
-    <h1>
-      Hey,<br>
-      <em>human.</em>
-    </h1>
-
-    <p class="hero-copy">
-
-      Welcome to a little universe built for
-      understanding the human mind.
-
-      Learn psychology without feeling like you're
-      trapped inside a textbook.
-
-      Ask questions.
-      Follow your curiosity.
-      Get confused.
-      Ask Lil Bird to explain it again.
-
-    </p>
-
-
-    <div class="hero-buttons">
-
-      <a
-        href="#worlds"
-        class="btn btn-primary">
-        Explore the mind
-      </a>
-
-      <a
-        href="#chat"
-        class="btn">
-        Talk to Lil Bird
-      </a>
-
+    <div class="actions">
+      <a class="btn primary" href="#worlds">Explore the mind</a>
+      <a class="btn" href="#chat">Say hello to Lil Bird</a>
     </div>
-
-
-    <p class="hero-warning">
-
-      Educational information · not diagnosis ·
-      not emergency care · not a replacement for professionals
-
-    </p>
-
+    <p class="fine">An educational prototype. Lil Bird is AI, not a human or therapist.</p>
   </div>
-
-
-  <div class="bird-zone">
-
-    <div class="bird-orb">
-
-      <div class="orbit a"></div>
-      <div class="orbit b"></div>
-      <div class="orbit c"></div>
-
-
+  <div class="stage" aria-label="Illustration of the Lil Bird character">
+    <div class="orb">
+      <div class="orbit"></div><div class="orbit two"></div>
       <div class="bird">
-
-        <div class="eye left"></div>
-        <div class="eye right"></div>
-
-        <div class="wing"></div>
-
-        <div class="beak"></div>
-
-        <div class="heart">♥</div>
-
+        <span class="eye left"></span><span class="eye right"></span>
+        <span class="wing"></span><span class="beak"></span>
       </div>
-
-
-      <span class="spark one">✦</span>
-      <span class="spark two">✧</span>
-      <span class="spark three">·</span>
-
-
-      <div class="speech">
-
-        “You don't need the
-        perfect words.
-        Just ask.”
-
-      </div>
-
+      <div class="speech">Hey, human. What are you curious about today?</div>
     </div>
-
   </div>
-
 </section>
 
+<section id="worlds">
+  <div class="eyebrow">Your learning universe</div>
+  <h2 class="section-title">Choose a world.</h2>
+  <p class="desc">
+    Start anywhere. Open a world to explore its topics, read an introduction,
+    and ask Lil Bird questions about what you're learning.
+  </p>
+  <label for="search" class="eyebrow">Search learning topics</label><br>
+  <input id="search" class="search" type="search"
+    placeholder="Try memory, anxiety, attachment, neuroscience..."
+    autocomplete="off">
+  <div class="grid" id="worldGrid"></div>
+  <p id="noResults" hidden>No matching topics. Try another word.</p>
+</section>
 
-<!-- ======================================================
-     INTRO
-====================================================== -->
-
-<section class="intro">
-
-  <h2>
-    You can be curious
-    without already knowing.
-  </h2>
-
+<div class="callout">
+  <h2>Curiosity is a good place to begin.</h2>
   <p>
-
-    Psychology has complicated words.
-
-    Lil Bird's job is to help you understand
-    what those words actually mean.
-
-    Read something.
-
-    Get confused.
-
-    Ask.
-
-    That's the whole point.
-
+    You don't have to know the right words. Ask questions, explore ideas,
+    and take your time. Understanding the human mind is a journey, not a test.
   </p>
-
-</section>
-
-
-<!-- ======================================================
-     WORLDS
-====================================================== -->
-
-<section
-  class="section"
-  id="worlds">
-
-  <p class="eyebrow">
-    choose your world
-  </p>
-
-  <h2 class="section-title">
-    The human mind is
-    bigger than one subject.
-  </h2>
-
-  <p class="section-description">
-
-    Explore different areas of psychology,
-    neuroscience, mental health, research,
-    stories, ethics and human behavior.
-
-    Every world has its own atmosphere —
-    because learning doesn't have to look the same
-    everywhere.
-
-  </p>
-
-
-  <div class="search-area">
-
-    <input
-      id="topicSearch"
-      class="search"
-      placeholder="Search psychology topics..."
-      oninput="filterTopics()">
-
-  </div>
-
-
-  <div
-    id="worldGrid"
-    class="world-grid">
-
-  </div>
-
-</section>
-
-
-<!-- ======================================================
-     LEARNING LAYERS
-====================================================== -->
-
-<section
-  class="section layers"
-  id="layers">
-
-  <p class="eyebrow">
-    learn without getting lost
-  </p>
-
-  <h2 class="section-title">
-    One concept.
-    Different depths.
-  </h2>
-
-  <p class="section-description">
-
-    You don't have to understand a research paper
-    before you understand the basic idea.
-
-    Lil Bird can meet you where you are.
-
-  </p>
-
-
-  <div class="layer-grid">
-
-    <article class="layer">
-
-      <strong>01 · Tiny</strong>
-
-      <p>
-        Give me the simplest possible explanation.
-      </p>
-
-    </article>
-
-
-    <article class="layer">
-
-      <strong>02 · Human</strong>
-
-      <p>
-        Show me an everyday example.
-      </p>
-
-    </article>
-
-
-    <article class="layer">
-
-      <strong>03 · Story</strong>
-
-      <p>
-        Turn the idea into a memorable story.
-      </p>
-
-    </article>
-
-
-    <article class="layer">
-
-      <strong>04 · Science</strong>
-
-      <p>
-        Explain the deeper psychology and neuroscience.
-      </p>
-
-    </article>
-
-
-    <article class="layer">
-
-      <strong>05 · Evidence</strong>
-
-      <p>
-        Show me what research actually supports.
-      </p>
-
-    </article>
-
-  </div>
-
-</section>
-
-
-<!-- ======================================================
-     CHAT
-====================================================== -->
-
-<section
-  class="section chat-section"
-  id="chat">
-
-  <p class="eyebrow">
-    your little guide
-  </p>
-
-  <h2 class="section-title">
-    Ask Lil Bird.
-  </h2>
-
-  <p class="section-description">
-
-    If something on the website doesn't make sense,
-    don't leave the page.
-
-    Ask Lil Bird.
-
-    The prototype remembers the topic you're exploring
-    and tries to explain it in a more natural way.
-
-  </p>
-
-
-  <div class="chat-shell">
-
-    <div class="chat-head">
-
-      <div class="chat-avatar">
-        ✦
-      </div>
-
-      <div>
-
-        <strong>
-          Lil Bird
-        </strong>
-
-        <small>
-          curious · warm · evidence-aware
-        </small>
-
-      </div>
-
-    </div>
-
-
-    <div
-      id="messages"
-      class="messages">
-
-      <div class="message bird">
-
-        Hey, human.
-
-        I'm Lil Bird.
-
-        If something doesn't make sense,
-        you can literally say:
-
-        “Explain that like I'm new to psychology.”
-
-        We can go from there.
-
-      </div>
-
-    </div>
-
-
-    <form
-      class="chat-form"
-      onsubmit="sendChat(event)">
-
-      <input
-        id="chatInput"
-        class="chat-input"
-        placeholder="Ask Lil Bird anything..."
-        autocomplete="off">
-
-      <button
-        class="chat-send">
-        Send
-      </button>
-
-    </form>
-
-  </div>
-
-</section>
-
-
-<!-- ======================================================
-     SAFETY
-====================================================== -->
-
-<section
-  class="section safety"
-  id="safety">
-
-  <p class="eyebrow">
-    kindness needs boundaries
-  </p>
-
-  <h2 class="section-title">
-    Lil Bird knows
-    what it isn't.
-  </h2>
-
-  <p class="section-description">
-
-    A mental-health learning tool needs stronger
-    boundaries than an ordinary chatbot.
-
-  </p>
-
-
-  <div class="safety-grid">
-
-    <article class="safety-card">
-
-      <h3>
-        No diagnosis
-      </h3>
-
-      <p>
-        Lil Bird can explain symptoms,
-        conditions and psychological concepts,
-        but it should not determine whether
-        someone has a disorder.
-      </p>
-
-    </article>
-
-
-    <article class="safety-card">
-
-      <h3>
-        No prescribing
-      </h3>
-
-      <p>
-        Lil Bird can provide general educational
-        information about treatment approaches,
-        but it should not prescribe medication
-        or tell someone to change treatment.
-      </p>
-
-    </article>
-
-
-    <article class="safety-card">
-
-      <h3>
-        Human support matters
-      </h3>
-
-      <p>
-        Serious or immediate safety concerns
-        require appropriate human or emergency
-        support rather than endless chatbot conversation.
-      </p>
-
-    </article>
-
-  </div>
-
-</section>
-
-
-<!-- ======================================================
-     READER
-====================================================== -->
-
-<div
-  id="reader"
-  class="reader">
-
-  <div class="reader-top">
-
-    <div>
-
-      <p
-        id="readerCategory"
-        class="eyebrow">
-      </p>
-
-      <h1
-        id="readerTitle"
-        class="section-title">
-      </h1>
-
-      <p
-        id="readerLead"
-        class="section-description">
-      </p>
-
-    </div>
-
-
-    <button
-      class="reader-close"
-      onclick="closeReader()">
-
-      ×
-
-    </button>
-
-  </div>
-
-
-  <div class="reader-layout">
-
-    <article
-      id="article"
-      class="article">
-    </article>
-
-
-    <aside class="reader-sidebar">
-
-      <div class="bird-help">
-
-        <h3>
-          Ask Lil Bird.
-        </h3>
-
-        <p>
-
-          Didn't understand something?
-
-          Don't leave.
-
-          Ask me to explain it another way.
-
-        </p>
-
-
-        <div class="quick-asks">
-
-          <button
-            class="quick-ask"
-            onclick="quickAsk('Explain this simply.')">
-
-            Make it simple
-
-          </button>
-
-
-          <button
-            class="quick-ask"
-            onclick="quickAsk('Give me an everyday example.')">
-
-            Give me an example
-
-          </button>
-
-
-          <button
-            class="quick-ask"
-            onclick="quickAsk('Explain the science behind this.')">
-
-            Explain the science
-
-          </button>
-
-
-          <button
-            class="quick-ask"
-            onclick="quickAsk('What do people usually misunderstand about this?')">
-
-            Common mistake
-
-          </button>
-
-        </div>
-
-      </div>
-
-
-      <div class="related">
-
-        <h4>
-          Related topics
-        </h4>
-
-        <div id="relatedTopics"></div>
-
-      </div>
-
-    </aside>
-
-  </div>
-
 </div>
 
+<section id="chat" class="chat-section">
+  <div class="eyebrow">A little companion for your curiosity</div>
+  <h2 class="section-title">Talk to Lil Bird.</h2>
+  <p class="desc">
+    Ask about a topic, request a simpler explanation, or explore an example.
+    Select a learning topic first if you'd like the conversation to use that context.
+  </p>
 
-<!-- ======================================================
-     FOOTER
-====================================================== -->
+  <div class="chat">
+    <div class="chathead">
+      <div class="avatar">✦</div>
+      <div><strong>Lil Bird</strong><small>Learning companion · AI prototype</small></div>
+      <span id="context">No topic selected</span>
+    </div>
+    <div id="messages" aria-live="polite" aria-label="Conversation">
+      <div class="msg bot">
+        Hey, human! I'm Lil Bird. You can ask me about psychology,
+        emotions, the brain, relationships, or anything you're curious about.
+        I'm an AI, so I'll be honest about what I can and can't do.
+      </div>
+    </div>
+    <div class="quick">
+      <button type="button" data-prompt="Explain psychology simply">Explain simply</button>
+      <button type="button" data-prompt="Give me a real-life example">Give me an example</button>
+      <button type="button" data-prompt="What does research say?">Ask about evidence</button>
+      <button type="button" data-prompt="What are common misconceptions?">Common myths</button>
+    </div>
+    <form class="chatform" id="chatForm">
+      <input id="chatInput" aria-label="Message Lil Bird"
+        placeholder="Ask Lil Bird anything..." maxlength="1500" required>
+      <button type="submit">Send ↗</button>
+    </form>
+  </div>
+  <p class="fine">
+    This prototype uses scripted replies, not a live AI model. It is not a
+    crisis service and does not provide diagnosis or personalized treatment.
+  </p>
+</section>
+
+<section id="community" class="community">
+  <div class="eyebrow">A place to learn together</div>
+  <h2 class="section-title">We grow better<br>when we connect.</h2>
+  <p class="desc">
+    A future community for curiosity, study, reflection, and kind conversations.
+    You never have to share personal experiences to belong here.
+  </p>
+
+  <div class="community-grid">
+    <div class="community-card">
+      <div class="icon">☁</div><h3>Just Checking In</h3>
+      <p>Share everyday thoughts, small wins, or how your day is going.</p>
+    </div>
+    <div class="community-card">
+      <div class="icon">✧</div><h3>Curious Minds</h3>
+      <p>Ask questions about psychology, neuroscience, and human behaviour.</p>
+    </div>
+    <div class="community-card">
+      <div class="icon">🌱</div><h3>Small Steps</h3>
+      <p>Talk about study routines, goals, motivation, and everyday challenges.</p>
+    </div>
+    <div class="community-card">
+      <div class="icon">📖</div><h3>Stories & Reflection</h3>
+      <p>Share creative writing or personal reflections if you choose.</p>
+    </div>
+    <div class="community-card">
+      <div class="icon">♡</div><h3>Supportive Conversations</h3>
+      <p>Offer encouragement while respecting each person's boundaries.</p>
+    </div>
+    <div class="community-card">
+      <div class="icon">✎</div><h3>Study Circle</h3>
+      <p>Discuss assignments, books, research, and learning resources.</p>
+    </div>
+  </div>
+
+  <h3>Community preview</h3>
+  <p class="desc">
+    You can test how a post looks below. These preview posts are not sent
+    to other people and disappear when the page is reloaded.
+  </p>
+  <form class="community-form" id="communityForm">
+    <label for="displayName">Display name (optional)</label>
+    <input id="displayName" maxlength="40" placeholder="A nickname, or leave blank">
+    <label for="communityInput">What would you like to share?</label>
+    <textarea id="communityInput" maxlength="1000"
+      placeholder="Share a thought, a question, or something you learned..."
+      required></textarea>
+    <button class="btn primary" type="submit">Preview my post</button>
+  </form>
+  <div id="communityPosts" aria-live="polite"></div>
+
+  <div class="callout" style="margin-top:35px;border-radius:20px">
+    <h2>Kindness is the ground rule.</h2>
+    <p>
+      A real community needs reporting, blocking, moderation, privacy controls,
+      age-appropriate safeguards, and clear rules against harassment and
+      harmful advice. Those features must be implemented before public launch.
+    </p>
+  </div>
+</section>
+
+<section id="about">
+  <div class="eyebrow">Our approach</div>
+  <h2 class="section-title">Warm hearts.<br>Careful science.</h2>
+  <div class="grid">
+    <article class="card psych">
+      <div class="icon">✧</div><h3>Evidence matters</h3>
+      <p>We aim to distinguish research-supported findings from developing ideas, historical theories, and personal perspectives.</p>
+    </article>
+    <article class="card brain">
+      <div class="icon">◉</div><h3>Questions are welcome</h3>
+      <p>Complex concepts should be explained in accessible language without losing their important details.</p>
+    </article>
+    <article class="card health">
+      <div class="icon">♡</div><h3>Safety comes first</h3>
+      <p>Education and AI companionship do not replace professional mental-health care or emergency support.</p>
+    </article>
+  </div>
+</section>
+</main>
 
 <footer>
-
-  <div>
-
-    <strong>
-      hey lil bird
-    </strong>
-
-    <p>
-      Here for your assistance.
-      Just ask, human.
-    </p>
-
-  </div>
-
-
-  <div>
-    Psychology · Neuroscience ·
-    Mental Health · Evidence
-  </div>
-
-
-  <div>
-    Prototype · 2026
-  </div>
-
+  <div><strong>hey lil bird</strong><br>Here for your assistance. Just ask, human.</div>
+  <div>Educational prototype · Built for curiosity and care.</div>
 </footer>
 
+<div class="reader" id="reader" role="dialog" aria-modal="true"
+  aria-labelledby="articleTitle">
+  <div class="readerbar">
+    <a class="brand" href="#worlds"><span class="mark">✦</span>hey lil bird</a>
+    <button class="btn" id="closeReader" type="button">Close ×</button>
+  </div>
+  <div class="layout">
+    <article class="article" id="article"></article>
+    <aside>
+      <div class="side">
+        <h3>Keep exploring</h3>
+        <p>Ask Lil Bird about the page you're reading.</p>
+        <button id="askBird" type="button">Ask Lil Bird about this</button>
+        <button id="returnWorlds" type="button">Back to learning worlds</button>
+      </div>
+      <div class="side">
+        <h3>Academic reminder</h3>
+        <p>This prototype is not a fully referenced textbook. Verify claims using credible academic sources before citing them in assignments.</p>
+      </div>
+    </aside>
+  </div>
+</div>
 
 <script>
+"use strict";
 
-/* =========================================================
-   HEY LIL BIRD KNOWLEDGE BASE
-========================================================= */
+const $ = id => document.getElementById(id);
 
-const topics = [
-
-/* ---------------------------------------------------------
-   PSYCHOLOGY
---------------------------------------------------------- */
-
+const worlds = [
 {
- id:"psychology",
- category:"Psychology",
- icon:"✦",
- title:"Psychology",
- className:"psych",
-
- quick:
- "Psychology is the scientific study of behavior and mental processes.",
-
- human:
- "Imagine two people experiencing the same event but responding completely differently. Psychology asks what might help explain those differences — thoughts, learning, biology, development, relationships, culture and context.",
-
- deeper:
- "Psychology studies behavior and mental processes using systematic research. It includes both basic questions, such as how memory works, and applied questions involving health, education, organizations, relationships and technology.",
-
- examples:[
-  "Why do people procrastinate?",
-  "How does memory change?",
-  "Why do groups influence behavior?",
-  "How do children develop?",
-  "How do emotions affect decisions?"
- ],
-
- misconceptions:[
-  "Psychology is not only therapy.",
-  "Psychologists do not automatically know what someone is thinking.",
-  "A psychological explanation should be based on evidence rather than stereotypes."
- ],
-
- explore:[
-  "Foundations of psychology",
-  "History of psychology",
-  "Major psychological approaches",
-  "Research methods",
-  "Cognitive psychology",
-  "Social psychology",
-  "Developmental psychology",
-  "Personality",
-  "Emotion",
-  "Motivation",
-  "Learning",
-  "Clinical psychology"
- ],
-
- evidence:"Strong research foundation",
-
- sources:[
-  "Britannica — Psychology",
-  "American Psychological Association — Psychology"
+ id:"psychology",title:"Psychology",icon:"✧",style:"psych",
+ category:"Foundations of psychology",
+ intro:"Psychology is the scientific study of behaviour and mental processes. It investigates how people think, feel, learn, develop, relate to others, and respond to their environments.",
+ human:"Psychology asks questions such as why we remember certain moments, how habits develop, how people make decisions, and how relationships influence us.",
+ deep:"Psychology includes multiple approaches, including biological, cognitive, behavioural, psychodynamic, humanistic, evolutionary, and sociocultural perspectives. Researchers use different methods to investigate questions, and each method has strengths and limitations.",
+ mis:["Psychology is not simply common sense; scientific findings can challenge everyday assumptions.","A single theory rarely explains every person or situation.","Psychologists do not all work as therapists; many conduct research, teach, consult, or work in other fields."],
+ topics:[
+ ["What Is Psychology?","Definition, aims, and scope","Psychology systematically studies behaviour and mental processes using theory, observation, and research."],
+ ["History of Psychology","From philosophy to modern science","Psychology developed through philosophical questions, early laboratories, competing schools, and modern interdisciplinary research."],
+ ["Major Approaches","Different ways of understanding behaviour","Psychological approaches offer different explanations and can complement or challenge one another."],
+ ["Research Methods","How psychologists investigate questions","Methods include experiments, surveys, interviews, observation, case studies, and longitudinal research."],
+ ["Nature and Nurture","Genes, environments, and development","Human characteristics emerge through complex interactions among biological, developmental, social, and cultural influences."],
+ ["Psychology in Everyday Life","Applying psychological knowledge","Psychological concepts can inform learning, communication, decision-making, relationships, and wellbeing."]
  ]
 },
-
-/* ---------------------------------------------------------
-   BRAIN
---------------------------------------------------------- */
-
 {
- id:"neuroscience",
- category:"Brain & Neuroscience",
- icon:"✧",
- title:"Brain & Neuroscience",
- className:"brain",
-
- quick:
- "Neuroscience studies the nervous system and the biological processes that support behavior and mental functions.",
-
- human:
- "Think of your brain less like a collection of isolated boxes and more like an enormous network. Different systems communicate with one another while interacting with your body and environment.",
-
- deeper:
- "Neuroscience investigates neurons, synapses, neural circuits, brain regions, sensory systems, movement, memory, emotion, attention, sleep and many other biological processes. Psychological experience cannot always be reduced to one brain region.",
-
- examples:[
-  "How neurons communicate",
-  "How memory involves neural systems",
-  "Why sleep affects cognition",
-  "How attention works",
-  "What neuroplasticity means"
- ],
-
- misconceptions:[
-  "There is rarely one single brain area responsible for a complex behavior.",
-  "Neuroplasticity does not mean the brain can become anything instantly.",
-  "Brain scans do not automatically reveal someone's thoughts."
- ],
-
- explore:[
-  "Brain anatomy",
-  "Neurons",
-  "Synapses",
-  "Neurotransmitters",
-  "Neuroplasticity",
-  "Memory",
-  "Attention",
-  "Emotion",
-  "Sleep",
-  "Language"
- ],
-
- evidence:"Strong research foundation",
-
- sources:[
-  "Encyclopaedia Britannica — Neuroscience",
-  "National neuroscience research literature"
+ id:"brain",title:"Brain & Neuroscience",icon:"◉",style:"brain",
+ category:"Biological psychology",
+ intro:"Neuroscience investigates the nervous system, including the brain, spinal cord, nerves, cells, and processes involved in sensation, movement, thought, and behaviour.",
+ human:"Your brain and body continuously exchange information. Attention, memory, sleep, movement, and emotion involve interacting biological systems rather than one isolated brain area.",
+ deep:"Neurons communicate through electrical activity and chemical signalling at synapses. Neuroscience combines methods such as brain imaging, electrophysiology, behavioural tasks, and clinical observation. Brain functions are distributed and context-dependent.",
+ mis:["A brain scan alone cannot reveal everything a person thinks or feels.","Neurotransmitters do not have one simple effect in every context.","Neuroplasticity is real, but it does not mean every ability can change without limits."],
+ topics:[
+ ["Brain Anatomy","Major structures and their functions","Different brain structures participate in interconnected networks supporting movement, memory, emotion, perception, and regulation."],
+ ["Neurons and Synapses","How nerve cells communicate","Neurons receive, integrate, and transmit signals; synapses allow communication between cells."],
+ ["Neurotransmitters","Chemical signalling in the nervous system","Neurotransmitters affect signalling through receptor systems and depend on circuits, timing, and context."],
+ ["Memory and the Brain","Learning, storage, and retrieval","Memory involves multiple systems and dynamic changes across distributed neural networks."],
+ ["Sleep and Circadian Rhythms","Biology of rest and timing","Sleep and biological rhythms influence attention, learning, mood, and physical functioning."],
+ ["Neuroplasticity","Change in the nervous system","Neural systems can change with development, learning, experience, injury, and environmental demands."]
  ]
 },
-
-/* ---------------------------------------------------------
-   MENTAL HEALTH
---------------------------------------------------------- */
-
 {
- id:"mental-health",
- category:"Mental Health",
- icon:"◌",
- title:"Mental Health",
- className:"health",
-
- quick:
- "Mental health involves emotional, psychological and social functioning and exists on a broad spectrum rather than as a simple healthy/sick binary.",
-
- human:
- "Someone can be struggling and still have moments of joy. Someone can look fine while experiencing significant distress. Mental health is not always visible from the outside.",
-
- deeper:
- "Mental health includes wellbeing as well as psychological distress and mental disorders. Context, relationships, biology, development, environment and social conditions can all matter.",
-
- examples:[
-  "Stress",
-  "Anxiety",
-  "Low mood",
-  "Loneliness",
-  "Resilience",
-  "Recovery",
-  "Stigma",
-  "Seeking support"
- ],
-
- misconceptions:[
-  "Mental illness is not a character flaw.",
-  "People cannot be diagnosed responsibly from one short conversation.",
-  "Recovery does not always mean a simple permanent cure."
- ],
-
- explore:[
-  "Mental wellbeing",
-  "Mental disorders",
-  "Anxiety",
-  "Depression",
-  "Trauma",
-  "Stigma",
-  "Resilience",
-  "Recovery",
-  "Professional support",
-  "Crisis resources"
- ],
-
- evidence:"Strong research foundation",
-
- sources:[
-  "World Health Organization — Mental Disorders",
-  "CDC — Mental Health"
+ id:"cognition",title:"Thinking & Cognition",icon:"◇",style:"cognition",
+ category:"Cognitive psychology",
+ intro:"Cognitive psychology studies processes such as attention, perception, memory, language, reasoning, problem-solving, and decision-making.",
+ human:"Cognition is involved when you recognise a face, learn a new word, solve a puzzle, forget where you left something, or decide what to do next.",
+ deep:"Cognitive processes interact with emotion, motivation, bodily states, prior knowledge, and the environment. Researchers investigate them through experiments, behavioural measures, computational models, and neuroscience.",
+ mis:["Memory is reconstructive, not a perfect recording.","People are not always aware of every process influencing their decisions.","A cognitive bias is a tendency under certain conditions, not proof that someone is always irrational."],
+ topics:[
+ ["Attention","Selecting and sustaining information","Attention supports selection of relevant information but is limited and influenced by goals and surroundings."],
+ ["Perception","How we interpret sensory information","Perception combines incoming sensory information with context, expectations, and prior learning."],
+ ["Memory","Encoding, storage, and retrieval","Memory includes interacting systems, including working memory and long-term memory."],
+ ["Cognitive Biases","Patterns in judgement","Heuristics can be efficient, but under some conditions they contribute to predictable judgement errors."],
+ ["Decision-Making","How choices are formed","Decisions can depend on goals, uncertainty, available information, emotions, and social context."],
+ ["Language and Thought","Words, meaning, and reasoning","Language and thought interact in complex ways; their relationship remains an active research area."]
  ]
 },
-
-/* ---------------------------------------------------------
-   COGNITIVE
---------------------------------------------------------- */
-
 {
- id:"cognitive",
- category:"Cognitive Psychology",
- icon:"◇",
- title:"Thinking & Cognition",
- className:"cognitive",
-
- quick:
- "Cognitive psychology studies processes such as attention, perception, memory, learning, language, reasoning and decision-making.",
-
- human:
- "Your brain constantly decides what to notice, remember, ignore, interpret and act on. Cognitive psychology studies those processes.",
-
- deeper:
- "Cognition includes multiple interacting processes. Attention affects encoding; memory affects later decisions; beliefs can influence interpretation; and cognitive shortcuts can sometimes be useful while also producing predictable errors.",
-
- examples:[
-  "Working memory",
-  "Long-term memory",
-  "Attention",
-  "Perception",
-  "Problem solving",
-  "Decision making",
-  "Cognitive biases",
-  "Metacognition"
- ],
-
- misconceptions:[
-  "A cognitive bias does not mean someone is stupid.",
-  "Memory is not a perfect recording.",
-  "Being aware of a bias does not automatically eliminate it."
- ],
-
- explore:[
-  "Attention",
-  "Memory",
-  "Perception",
-  "Learning",
-  "Reasoning",
-  "Decision-making",
-  "Language",
-  "Creativity",
-  "Metacognition"
- ],
-
- evidence:"Strong research foundation",
-
- sources:[
-  "Cognitive psychology research literature"
+ id:"social",title:"People & Groups",icon:"♡",style:"social",
+ category:"Social psychology",
+ intro:"Social psychology examines how people influence and are influenced by other people, groups, relationships, social expectations, and cultural settings.",
+ human:"The way we behave around friends, family, classmates, strangers, or online communities can differ because situations and social expectations matter.",
+ deep:"Social psychologists study social cognition, identity, conformity, persuasion, attraction, prejudice, cooperation, conflict, and group processes using experiments, surveys, observation, and other methods.",
+ mis:["Social psychology does not mean everyone behaves the same way in groups.","Attachment styles are not permanent labels or complete explanations of relationships.","One action is not enough to establish another person's motives or personality."],
+ topics:[
+ ["Social Influence","How other people affect us","Social influence includes conformity, compliance, obedience, persuasion, and informational influence."],
+ ["Attachment and Relationships","Patterns of closeness and security","Relationship experiences can shape expectations, but patterns are not fixed destinies or diagnoses."],
+ ["Empathy and Helping","Understanding and responding to others","Helping behaviour may be influenced by empathy, norms, costs, relationships, and situational factors."],
+ ["Prejudice and Stereotypes","Social categories and unfair treatment","Researchers distinguish beliefs, attitudes, behaviours, and structural forms of discrimination."],
+ ["Group Behaviour","Identity, norms, and decision-making","Groups can shape identity, cooperation, conflict, information sharing, and collective decisions."],
+ ["Communication and Conflict","Understanding interpersonal interaction","Communication depends on interpretation, context, emotions, expectations, and power."]
  ]
 },
-
-/* ---------------------------------------------------------
-   SOCIAL
---------------------------------------------------------- */
-
 {
- id:"social",
- category:"Social Psychology",
- icon:"◎",
- title:"People & Groups",
- className:"social",
-
- quick:
- "Social psychology studies how other people, groups and social contexts influence thoughts, feelings and behavior.",
-
- human:
- "Sometimes you behave differently alone than you do around friends, classmates, family or strangers. Social psychology asks why.",
-
- deeper:
- "Social psychology investigates social influence, conformity, obedience, group behavior, identity, stereotypes, prejudice, relationships, persuasion, helping, aggression and social comparison.",
-
- examples:[
-  "Conformity",
-  "Obedience",
-  "Social identity",
-  "Persuasion",
-  "Bystander behavior",
-  "Groupthink",
-  "Social comparison"
- ],
-
- misconceptions:[
-  "People are not completely controlled by social pressure.",
-  "Group behavior is more complicated than saying everyone behaves the same.",
-  "Historical social psychology experiments have important ethical and methodological limitations."
- ],
-
- explore:[
-  "Social influence",
-  "Conformity",
-  "Obedience",
-  "Groups",
-  "Identity",
-  "Prejudice",
-  "Relationships",
-  "Helping",
-  "Persuasion"
- ],
-
- evidence:"Strong research foundation",
-
- sources:[
-  "Social psychology research literature"
+ id:"growth",title:"Growing & Changing",icon:"🌱",style:"growth",
+ category:"Developmental psychology",
+ intro:"Developmental psychology studies changes and continuities in physical, cognitive, emotional, and social functioning throughout the lifespan.",
+ human:"People learn language, develop relationships, build identities, adapt to responsibilities, and respond to aging across different stages of life.",
+ deep:"Development reflects interactions among biology, learning, relationships, culture, opportunity, and individual experience. Researchers use longitudinal, cross-sectional, observational, and experimental designs.",
+ mis:["Development does not follow an identical timetable for every person.","Childhood experiences matter, but they do not determine every future outcome.","Age-based theories describe patterns and questions, not rigid rules for all individuals."],
+ topics:[
+ ["Infancy and Early Childhood","Early learning and relationships","Early development involves changes in perception, movement, communication, attachment, and exploration."],
+ ["Attachment Development","Caregiving and emotional security","Attachment research investigates how children seek safety and develop expectations about caregivers."],
+ ["Adolescence","Identity, learning, and social change","Adolescence includes varied biological, cognitive, social, and emotional changes shaped by context."],
+ ["Identity Development","How self-understanding evolves","Identity can involve values, roles, belonging, culture, goals, and exploration over time."],
+ ["Adult Development","Change beyond adolescence","Adult development includes changes in relationships, work, cognition, responsibilities, and wellbeing."],
+ ["Aging","Lifespan change and adaptation","Aging involves varied changes; health, experience, social context, and individual differences all matter."]
  ]
 },
-
-/* ---------------------------------------------------------
-   DEVELOPMENT
---------------------------------------------------------- */
-
 {
- id:"development",
- category:"Developmental Psychology",
- icon:"❋",
- title:"Growing & Changing",
- className:"development",
-
- quick:
- "Developmental psychology studies psychological change across the lifespan.",
-
- human:
- "You are not psychologically identical to the person you were at five, fifteen or twenty-five. Development looks at how people change — and what remains relatively stable.",
-
- deeper:
- "Developmental psychology examines biological, cognitive, emotional and social changes from prenatal development through infancy, childhood, adolescence, adulthood and aging.",
-
- examples:[
-  "Attachment",
-  "Language development",
-  "Adolescent identity",
-  "Moral development",
-  "Adult development",
-  "Aging"
- ],
-
- misconceptions:[
-  "Development does not stop after childhood.",
-  "People do not all develop according to one identical timeline.",
-  "Culture and environment can influence development."
- ],
-
- explore:[
-  "Infancy",
-  "Attachment",
-  "Childhood",
-  "Adolescence",
-  "Identity",
-  "Emerging adulthood",
-  "Adult development",
-  "Aging"
- ],
-
- evidence:"Strong research foundation",
-
- sources:[
-  "Developmental psychology research literature"
+ id:"health",title:"Mental Health",icon:"☾",style:"health",
+ category:"Mental-health education",
+ intro:"Mental health includes emotional, psychological, and social aspects of life. It can influence how people cope with stress, relate to others, learn, work, and function.",
+ human:"Everyone experiences changes in mood and stress. Persistent distress or changes that interfere with daily life may be reasons to seek support.",
+ deep:"Mental-health difficulties can reflect interacting biological, psychological, social, developmental, and environmental factors. A diagnosis requires appropriate assessment by a qualified professional.",
+ mis:["Mental-health conditions are not signs of weakness.","A list of symptoms cannot establish a diagnosis by itself.","Recovery is individual and can include treatment, support, changes in functioning, and periods of difficulty."],
+ topics:[
+ ["Mental Wellbeing","Understanding wellbeing","Wellbeing includes more than feeling happy; functioning, relationships, meaning, and circumstances may all matter."],
+ ["Stress","Responses to demands and challenges","Stress responses involve interacting physiological, cognitive, emotional, and behavioural processes."],
+ ["Anxiety","Fear, worry, and uncertainty","Anxiety is a normal human experience, but persistent or severe anxiety may require professional assessment."],
+ ["Depression","Mood, interest, and functioning","Depression involves more than ordinary sadness; symptoms, duration, impact, and context require careful assessment."],
+ ["Stigma","Social attitudes and discrimination","Mental-health stigma can affect help-seeking, relationships, opportunities, and self-understanding."],
+ ["Support and Recovery","Finding appropriate help","Support may involve trusted people, community resources, professional care, and practical accommodations."]
  ]
 },
-
-/* ---------------------------------------------------------
-   PERSONALITY
---------------------------------------------------------- */
-
 {
- id:"personality",
- category:"Personality",
- icon:"◈",
- title:"Personality",
- className:"psych",
-
- quick:
- "Personality psychology studies relatively enduring patterns of thinking, feeling and behaving, as well as individual differences.",
-
- human:
- "Why can two people react very differently to the same situation? Personality research explores traits, temperament, identity, development and situations.",
-
- deeper:
- "Modern personality science includes trait approaches, individual differences, personality development, self-concept, temperament and interactions between people and situations.",
-
- examples:[
-  "Big Five traits",
-  "Temperament",
-  "Self-concept",
-  "Identity",
-  "Individual differences",
-  "Personality development"
- ],
-
- misconceptions:[
-  "Personality tests are not automatically diagnostic tools.",
-  "A personality trait is not a complete description of a person.",
-  "People can change while still showing some stable tendencies."
- ],
-
- explore:[
-  "Big Five",
-  "Temperament",
-  "Identity",
-  "Self-concept",
-  "Personality assessment",
-  "Trait theories"
- ],
-
- evidence:"Strong research foundation",
-
- sources:[
-  "Personality psychology research literature"
+ id:"clinical",title:"Clinical Psychology & Support",icon:"✦",style:"clinical",
+ category:"Clinical psychology",
+ intro:"Clinical psychology applies psychological science to the assessment, understanding, prevention, and treatment of psychological difficulties and mental-health conditions.",
+ human:"Clinical psychologists may assess difficulties, provide psychological interventions, conduct research, and collaborate with other professionals.",
+ deep:"Clinical work can include assessment, case formulation, evidence-based interventions, prevention, consultation, and outcome evaluation. Practice requires appropriate training, ethical standards, and attention to cultural context.",
+ mis:["Clinical psychology is not the same as every other mental-health profession.","An online quiz cannot replace a professional assessment.","Therapy approaches differ; suitability depends on the person, concern, evidence, and professional judgement."],
+ topics:[
+ ["Psychological Assessment","Understanding difficulties systematically","Assessment may combine interviews, observations, measures, history, and contextual information."],
+ ["Psychotherapy","Psychological approaches to support","Psychotherapy includes different approaches with varying theories, techniques, and evidence bases."],
+ ["Cognitive Behavioural Therapy","Thoughts, behaviours, and patterns","CBT often examines relationships among interpretations, behaviour, emotion, and maintaining cycles."],
+ ["Person-Centred Therapy","Empathy and personal agency","Person-centred approaches emphasise empathy, genuineness, and acceptance within the therapeutic relationship."],
+ ["Ethics and Boundaries","Responsible professional practice","Professional practice requires confidentiality, informed consent, competence, boundaries, and risk-sensitive decisions."],
+ ["Finding Professional Help","Preparing to seek support","People can ask about qualifications, approaches, costs, accessibility, privacy, and what to expect."]
  ]
 },
-
-/* ---------------------------------------------------------
-   EMOTION
---------------------------------------------------------- */
-
 {
- id:"emotion",
- category:"Emotion",
- icon:"♡",
- title:"Emotion",
- className:"stories",
-
- quick:
- "Emotion involves coordinated changes in experience, physiology, attention, interpretation and behavior.",
-
- human:
- "Emotions are not simply switches labeled happy or sad. They can influence what you notice, what your body does, what you remember and what actions feel possible.",
-
- deeper:
- "Psychological theories of emotion differ in how they explain the relationship between physiological responses, appraisal, subjective experience, expression and action.",
-
- examples:[
-  "Fear",
-  "Anger",
-  "Sadness",
-  "Joy",
-  "Shame",
-  "Guilt",
-  "Jealousy",
-  "Compassion",
-  "Empathy"
- ],
-
- misconceptions:[
-  "Emotions are not automatically irrational.",
-  "Emotional regulation does not mean suppressing every feeling.",
-  "Feeling an emotion does not automatically require acting on it."
- ],
-
- explore:[
-  "Emotion vs mood",
-  "Fear",
-  "Anger",
-  "Shame",
-  "Guilt",
-  "Empathy",
-  "Emotion regulation"
- ],
-
- evidence:"Strong research foundation",
-
- sources:[
-  "Emotion science research literature"
+ id:"trauma",title:"Trauma & Emotional Experiences",icon:"☁",style:"psych",
+ category:"Trauma-informed education",
+ intro:"Trauma-related education explores how overwhelming or threatening experiences can affect emotions, memories, bodily responses, relationships, and a person's sense of safety.",
+ human:"People respond differently to difficult experiences. There is no single correct way to feel, and no one should be pressured to tell a personal story.",
+ deep:"Responses can involve interacting physiological, cognitive, emotional, social, and contextual processes. Trauma-informed approaches prioritise safety, choice, collaboration, trust, and respect.",
+ mis:["Not everyone exposed to adversity develops a trauma-related disorder.","A person's response cannot be determined from one behaviour alone.","General grounding exercises are not a replacement for professional care when it is needed."],
+ topics:[
+ ["Stress Responses","Fight, flight, freeze, and other reactions","Stress responses describe patterns that can involve arousal, attention, action, and protective behaviour."],
+ ["Trauma and Memory","Remembering difficult experiences","Memory varies across people and experiences; no single pattern proves that a particular event occurred."],
+ ["Grounding and Present-Moment Skills","Orienting to the present","Grounding practices may help some people reconnect with present surroundings, though experiences differ."],
+ ["Trauma-Informed Care","Safety, choice, and respect","Trauma-informed approaches seek to avoid unnecessary harm and preserve dignity and control."],
+ ["PTSD Education","Understanding a trauma-related condition","PTSD is a clinical condition requiring appropriate assessment; educational information cannot diagnose it."],
+ ["Supporting Someone","Responding without pressure","Listening, respecting boundaries, offering choices, and helping someone access support can be useful."]
  ]
 },
-
-/* ---------------------------------------------------------
-   MOTIVATION & LEARNING
---------------------------------------------------------- */
-
 {
- id:"learning",
- category:"Motivation & Learning",
- icon:"✦",
- title:"Motivation & Learning",
- className:"development",
-
- quick:
- "Motivation concerns processes that influence goal-directed behavior, while learning involves relatively lasting changes associated with experience.",
-
- human:
- "Why can you desperately want something and still avoid doing it? Motivation is more complicated than simply wanting something enough.",
-
- deeper:
- "Learning research includes classical conditioning, operant conditioning, observational learning, reinforcement, feedback and skill acquisition. Motivation includes intrinsic and extrinsic motives, goals, self-efficacy and self-determination.",
-
- examples:[
-  "Procrastination",
-  "Habits",
-  "Rewards",
-  "Feedback",
-  "Goal setting",
-  "Self-efficacy",
-  "Study strategies"
- ],
-
- misconceptions:[
-  "Motivation is not always a stable amount you either have or don't have.",
-  "Rewards can influence behavior but do not explain every kind of motivation.",
-  "Learning strategies work differently depending on the task and learner."
- ],
-
- explore:[
-  "Classical conditioning",
-  "Operant conditioning",
-  "Observational learning",
-  "Habits",
-  "Procrastination",
-  "Self-efficacy",
-  "Goal setting"
- ],
-
- evidence:"Strong research foundation",
-
- sources:[
-  "Learning and motivation research literature"
+ id:"research",title:"How We Know",icon:"⌕",style:"research",
+ category:"Research methods and evidence",
+ intro:"Psychological science uses systematic methods to investigate questions, evaluate claims, and build explanations that can be revised when evidence changes.",
+ human:"A convincing story is not the same as strong evidence. Research asks how information was collected, what was measured, and what other explanations might exist.",
+ deep:"Research quality depends on design, measurement, sampling, analysis, transparency, replication, and interpretation. Correlation alone does not establish causation, and statistical significance is not the same as practical importance.",
+ mis:["One study rarely settles a complicated question.","A large sample cannot automatically fix poor measurement or biased sampling.","Peer review is useful quality control, not a guarantee that a finding is correct."],
+ topics:[
+ ["Experimental Research","Testing cause-and-effect questions","Experiments manipulate variables under defined conditions and use comparisons to test hypotheses."],
+ ["Correlation","Relationships between variables","Correlational findings describe associations but do not by themselves establish causation."],
+ ["Sampling and Participants","Who takes part in research","Sampling affects how well results may apply beyond the people studied."],
+ ["Reliability and Validity","Quality of measurement","Reliability concerns consistency; validity concerns whether interpretations and uses are justified."],
+ ["Statistics and Effect Sizes","Understanding results","Statistical estimates require context, uncertainty, assumptions, and attention to practical meaning."],
+ ["Replication and Open Science","Checking scientific findings","Replication, transparent methods, preregistration, and data sharing can strengthen scientific credibility."]
  ]
 },
-
-/* ---------------------------------------------------------
-   CLINICAL
---------------------------------------------------------- */
-
 {
- id:"clinical",
- category:"Clinical Psychology",
- icon:"⌁",
- title:"Clinical Psychology",
- className:"clinical",
-
- quick:
- "Clinical psychology applies psychological science to assessment, formulation, treatment, prevention, research and consultation.",
-
- human:
- "Clinical psychology isn't simply sitting in a room giving advice. It includes assessment, understanding patterns, evidence-based intervention, prevention and research.",
-
- deeper:
- "Clinical work integrates scientific evidence, professional expertise, ethical standards and the individual's circumstances and values. Assessment can include interviews, psychological tests, behavioral observation and risk assessment.",
-
- examples:[
-  "Assessment",
-  "Case formulation",
-  "Psychotherapy",
-  "Prevention",
-  "Risk assessment",
-  "Consultation",
-  "Research"
- ],
-
- misconceptions:[
-  "Clinical psychologists are not interchangeable with every other mental-health profession.",
-  "A diagnosis is not the same thing as a person's identity.",
-  "AI should not be presented as a clinical substitute."
- ],
-
- explore:[
-  "Assessment",
-  "Diagnosis education",
-  "Case formulation",
-  "Psychotherapy",
-  "Evidence-based practice",
-  "Ethics",
-  "Risk assessment"
- ],
-
- evidence:"Strong professional and research foundation",
-
- sources:[
-  "American Psychological Association",
-  "Clinical psychology literature"
+ id:"stories",title:"History & Stories",icon:"⌘",style:"stories",
+ category:"History of psychology",
+ intro:"The history of psychology explores how ideas about the mind and behaviour developed, how research methods changed, and how scientific and ethical standards evolved.",
+ human:"Historical studies can teach us about curiosity and discovery, but also about bias, poor methods, and the importance of protecting participants.",
+ deep:"Historical interpretation benefits from primary sources, scholarly histories, attention to social context, and awareness that famous stories may simplify complex events.",
+ mis:["Historical theories should not automatically be treated as current scientific consensus.","Famous experiments are sometimes retold inaccurately.","A memorable case study may illustrate a question without establishing a general rule."],
+ topics:[
+ ["Early Psychology","From philosophy to laboratories","Early psychology drew from philosophy, physiology, and efforts to study mental processes systematically."],
+ ["Behaviourism","Learning and observable behaviour","Behaviourist traditions emphasised learning and observable behaviour, influencing research and applications."],
+ ["Psychoanalytic Traditions","Unconscious processes and development","Psychoanalytic theories shaped clinical and cultural discussions, although individual claims differ in evidence."],
+ ["Humanistic Psychology","Meaning, dignity, and agency","Humanistic approaches emphasise lived experience, personal meaning, growth, and the therapeutic relationship."],
+ ["Famous Studies","Questions, methods, and criticism","Historical studies should be evaluated for methods, ethics, replication, and modern interpretations."],
+ ["Ethics in History","How standards have changed","Research ethics developed in response to broader debates and serious failures to protect participants."]
  ]
 },
-
-/* ---------------------------------------------------------
-   TRAUMA
---------------------------------------------------------- */
-
 {
- id:"trauma",
- category:"Trauma",
- icon:"◒",
- title:"Trauma & Difficult Experiences",
- className:"health",
-
- quick:
- "Trauma can refer to psychological responses to experiences that overwhelm a person's ability to cope, but reactions vary widely.",
-
- human:
- "Two people can experience similar events and respond differently. There is no single universal trauma response.",
-
- deeper:
- "Trauma-related responses can involve attention, memory, arousal, avoidance, emotion, sleep, beliefs and relationships. Some people develop trauma-related disorders; others experience distress without meeting diagnostic criteria.",
-
- examples:[
-  "Fight",
-  "Flight",
-  "Freeze",
-  "Avoidance",
-  "Hyperarousal",
-  "Intrusive memories",
-  "Grounding",
-  "Trauma-informed support"
- ],
-
- misconceptions:[
-  "Not every difficult experience produces PTSD.",
-  "Talking about trauma should not require graphic disclosure.",
-  "Trauma responses are not moral failures."
- ],
-
- explore:[
-  "Trauma responses",
-  "PTSD education",
-  "Childhood adversity",
-  "Memory",
-  "Grounding",
-  "Trauma-informed communication",
-  "Professional support"
- ],
-
- evidence:"Strong but clinically nuanced",
-
- sources:[
-  "World Health Organization",
-  "Clinical trauma research"
- ]
-},
-
-/* ---------------------------------------------------------
-   RELATIONSHIPS
---------------------------------------------------------- */
-
-{
- id:"relationships",
- category:"Relationships",
- icon:"∞",
- title:"Relationships & Attachment",
- className:"social",
-
- quick:
- "Relationship psychology studies attachment, communication, trust, conflict, attraction, boundaries and patterns of interaction.",
-
- human:
- "People don't exist in psychological isolation. Friends, partners, family and communities can shape how we think and feel.",
-
- deeper:
- "Relationship science includes attachment, communication, interpersonal perception, attraction, conflict, social support and patterns of dependence and independence.",
-
- examples:[
-  "Attachment",
-  "Boundaries",
-  "Communication",
-  "Trust",
-  "Conflict",
-  "Friendship",
-  "Breakups",
-  "Social support"
- ],
-
- misconceptions:[
-  "Attachment styles are not personality labels that explain everything.",
-  "Conflict does not automatically mean a relationship is unhealthy.",
-  "A relationship problem should not automatically be turned into a diagnosis."
- ],
-
- explore:[
-  "Attachment",
-  "Communication",
-  "Boundaries",
-  "Trust",
-  "Conflict",
-  "Friendship",
-  "Breakups"
- ],
-
- evidence:"Strong research foundation",
-
- sources:[
-  "Relationship psychology research literature"
- ]
-},
-
-/* ---------------------------------------------------------
-   TECHNOLOGY
---------------------------------------------------------- */
-
-{
- id:"technology",
- category:"Psychology & Technology",
- icon:"⌘",
- title:"Psychology & Technology",
- className:"technology",
-
- quick:
- "Technology can influence attention, habits, social interaction, identity and wellbeing.",
-
- human:
- "Your phone doesn't have to be evil to influence your behavior. Notifications, interfaces, algorithms and social feedback can shape what you notice and repeat.",
-
- deeper:
- "Research in psychology and human-computer interaction investigates attention, reinforcement, social comparison, online identity, parasocial relationships, cyberbullying, sleep and digital wellbeing.",
-
- examples:[
-  "Notifications",
-  "Doomscrolling",
-  "Social comparison",
-  "Online identity",
-  "Parasocial relationships",
-  "AI companionship",
-  "Algorithmic influence"
- ],
-
- misconceptions:[
-  "Technology effects are rarely identical for everyone.",
-  "Not every negative online experience is caused by technology alone.",
-  "AI companionship raises real psychological and ethical questions."
- ],
-
- explore:[
-  "Attention economy",
-  "Social media",
-  "Digital wellbeing",
-  "AI companionship",
-  "AI mental health",
-  "Privacy"
- ],
-
- evidence:"Developing research area",
-
- sources:[
-  "APA — Psychology and Technology",
-  "Current technology and mental-health research"
- ]
-},
-
-/* ---------------------------------------------------------
-   CULTURE
---------------------------------------------------------- */
-
-{
- id:"culture",
- category:"Culture",
- icon:"◉",
- title:"Culture & Human Experience",
- className:"development",
-
- quick:
- "Cultural psychology studies how culture, language, social norms and identity interact with psychological processes.",
-
- human:
- "What feels normal to one person may feel completely different to another because people grow up inside different cultural worlds.",
-
- deeper:
- "Culture can influence emotion, identity, family relationships, social expectations, concepts of wellbeing, communication and interpretations of mental health.",
-
- examples:[
-  "Collectivism and individualism",
-  "Family systems",
-  "Cultural identity",
-  "Migration",
-  "Language",
-  "Mental-health stigma"
- ],
-
- misconceptions:[
-  "No single culture should be treated as the default human experience.",
-  "Cultural differences are not automatically deficits.",
-  "Psychological theories can contain cultural assumptions."
- ],
-
- explore:[
-  "Cross-cultural psychology",
-  "Cultural identity",
-  "Language and thought",
-  "Family systems",
-  "Mental-health stigma"
- ],
-
- evidence:"Strong and culturally important",
-
- sources:[
-  "Cross-cultural psychology research literature"
- ]
-},
-
-/* ---------------------------------------------------------
-   RESEARCH
---------------------------------------------------------- */
-
-{
- id:"research",
- category:"How We Know",
- icon:"⌖",
- title:"How We Know",
- className:"research",
-
- quick:
- "Psychological claims should be evaluated by looking at the evidence, methods, limitations and uncertainty behind them.",
-
- human:
- "Someone saying 'research proves...' doesn't automatically mean the research proves what they claim. Lil Bird wants to know: what was actually studied?",
-
- deeper:
- "Research methods include experiments, correlational studies, observation, surveys, interviews, longitudinal studies, qualitative methods, quantitative methods and mixed-method designs. Researchers consider reliability, validity, sampling, effect sizes, uncertainty, replication and bias.",
-
- examples:[
-  "Correlation vs causation",
-  "Variables",
-  "Experiments",
-  "Sampling",
-  "Reliability",
-  "Validity",
-  "Replication",
-  "Meta-analysis"
- ],
-
- misconceptions:[
-  "A single study rarely settles a complex question.",
-  "Statistical significance is not the same as practical importance.",
-  "Correlation does not prove causation."
- ],
-
- explore:[
-  "Experiments",
-  "Correlation",
-  "Causation",
-  "Sampling",
-  "Reliability",
-  "Validity",
-  "Replication",
-  "Publication bias",
-  "Meta-analysis"
- ],
-
- evidence:"Core scientific foundation",
-
- sources:[
-  "Research-methods literature",
-  "Open science and replication literature"
- ]
-},
-
-/* ---------------------------------------------------------
-   ETHICS
---------------------------------------------------------- */
-
-{
- id:"ethics",
+ id:"ethics",title:"Ethics & Human Dignity",icon:"◇",style:"ethics",
  category:"Ethics",
- icon:"◇",
- title:"Psychology & Ethics",
- className:"ethics",
-
- quick:
- "Psychological research and practice require ethical standards to protect people, dignity, privacy, autonomy and wellbeing.",
-
- human:
- "Knowing something is scientifically interesting doesn't automatically mean researchers should do it.",
-
- deeper:
- "Psychological ethics includes informed consent, confidentiality, privacy, competence, professional boundaries, risk-benefit considerations, research integrity, justice and respect for people.",
-
- examples:[
-  "Informed consent",
-  "Confidentiality",
-  "Privacy",
-  "Research deception",
-  "Debriefing",
-  "Professional boundaries",
-  "Digital privacy"
- ],
-
- misconceptions:[
-  "Ethics is not just paperwork.",
-  "Historical experiments should be understood in their ethical context.",
-  "A useful AI system still needs privacy and safety boundaries."
- ],
-
- explore:[
-  "Research ethics",
-  "Consent",
-  "Confidentiality",
-  "Privacy",
-  "Professional boundaries",
-  "AI ethics"
- ],
-
- evidence:"Professional and research standard",
-
- sources:[
-  "APA ethical principles",
-  "Research ethics literature"
+ intro:"Ethics in psychology concerns responsible research and practice, including respect for people, informed consent, confidentiality, competence, and protection from harm.",
+ human:"Good intentions are not enough. Researchers and practitioners must think carefully about power, privacy, fairness, consequences, and the rights of people involved.",
+ deep:"Ethical practice requires context-sensitive judgement, professional standards, transparency, and appropriate safeguards. Research involving vulnerable groups or sensitive information requires special care.",
+ mis:["Consent is not simply a checkbox; people need understandable information and meaningful choice.","Privacy promises must match the system's actual data practices.","An educational chatbot should not present itself as a qualified clinician."],
+ topics:[
+ ["Informed Consent","Meaningful participation and choice","Consent requires understandable information, voluntary agreement, and appropriate opportunities to withdraw."],
+ ["Confidentiality and Privacy","Responsible handling of information","Privacy depends on data collection, access, storage, sharing, retention, and deletion practices."],
+ ["Research Ethics","Protecting participants","Research ethics considers risk, benefit, consent, fairness, oversight, and participant welfare."],
+ ["Professional Boundaries","Appropriate roles and responsibilities","Boundaries help protect trust, competence, and the wellbeing of people receiving support."],
+ ["AI Ethics","Responsible use of artificial intelligence","AI systems raise questions about bias, transparency, privacy, accountability, safety, and human oversight."],
+ ["Culture and Fairness","Respecting different contexts","Ethical work should consider language, culture, accessibility, power, and different lived circumstances."]
  ]
 },
-
-/* ---------------------------------------------------------
-   STORIES
---------------------------------------------------------- */
-
 {
- id:"stories",
- category:"History & Stories",
- icon:"✦",
- title:"Stories of Psychology",
- className:"stories",
-
- quick:
- "Psychology has a complicated history full of influential ideas, fascinating studies, useful discoveries and serious ethical failures.",
-
- human:
- "The history of psychology isn't a straight line of brilliant people discovering the truth. It's a messy story of theories, evidence, mistakes, criticism and revision.",
-
- deeper:
- "The field developed through philosophical roots, early laboratory psychology, psychoanalysis, behaviorism, Gestalt psychology, humanistic psychology, the cognitive revolution, biological approaches and modern interdisciplinary science.",
-
- examples:[
-  "Wundt",
-  "William James",
-  "Freud",
-  "Behaviorism",
-  "Gestalt",
-  "Humanistic psychology",
-  "Cognitive revolution",
-  "Modern neuroscience"
- ],
-
- misconceptions:[
-  "Historical theories are not automatically accepted modern science.",
-  "Famous experiments can have serious methodological limitations.",
-  "Psychology changes as evidence changes."
- ],
-
- explore:[
-  "History",
-  "Major theorists",
-  "Famous experiments",
-  "Case studies",
-  "Ethical controversies"
- ],
-
- evidence:"Historical + theoretical",
-
- sources:[
-  "Britannica — Psychology",
-  "Psychology history literature"
+ id:"tech",title:"Psychology & Technology",icon:"⌘",style:"tech",
+ category:"Technology and human behaviour",
+ intro:"Psychology and technology research examines how digital environments, platforms, algorithms, and AI systems interact with attention, behaviour, identity, relationships, and wellbeing.",
+ human:"Notifications, recommendation feeds, online communities, and AI tools can shape what people notice and how they spend time, but their effects differ across people and contexts.",
+ deep:"Technology effects depend on design, usage patterns, social context, individual differences, and outcomes measured. Research should distinguish correlation, causation, benefits, and risks.",
+ mis:["Screen time alone does not explain every digital experience.","An AI companion cannot provide the full responsibilities or care of a human relationship.","Claims about technology and mental health need careful evaluation rather than blanket conclusions."],
+ topics:[
+ ["Social Media and Attention","Feeds, notifications, and habits","Platform design can influence attention and habits, while user goals and circumstances also matter."],
+ ["AI Companions","Conversational systems and relationships","AI companions raise questions about usefulness, emotional reliance, accuracy, safety, and disclosure."],
+ ["Digital Wellbeing","Technology use and daily life","Digital wellbeing includes choices about boundaries, sleep, attention, accessibility, and meaningful activity."],
+ ["Online Identity","Self-presentation and belonging","Online identity is shaped by self-presentation, audience, platform features, and social expectations."],
+ ["Privacy and Algorithms","Data, recommendations, and control","Digital systems can collect data and shape recommendations; transparency and user control are important."],
+ ["Cyberbullying","Online harm and support","Cyberbullying can affect wellbeing and safety; prevention includes reporting, moderation, and support."]
  ]
 },
-
-/* ---------------------------------------------------------
-   LIBRARY
---------------------------------------------------------- */
-
 {
- id:"library",
- category:"Library",
- icon:"▤",
- title:"The Library",
- className:"library",
-
- quick:
- "A growing collection of books, research, cases, glossary terms and further reading.",
-
- human:
- "Sometimes you want a tiny explanation. Sometimes you want to disappear into a 400-page book. Both are allowed here.",
-
- deeper:
- "The Library separates introductory educational material from deeper academic reading, research papers, lived-experience writing and popular psychology. Sources should be evaluated according to their purpose and evidence.",
-
- examples:[
-  "Academic books",
-  "Research papers",
-  "Popular psychology",
-  "Memoirs",
-  "Psychological fiction",
-  "Glossary",
-  "Further reading"
- ],
-
- misconceptions:[
-  "A popular psychology book is not automatically equivalent to peer-reviewed evidence.",
-  "A memoir can provide lived experience without proving a general scientific claim.",
-  "A source's popularity is not the same as evidence quality."
- ],
-
- explore:[
-  "Books",
-  "Research papers",
-  "Glossary",
-  "Case studies",
-  "Further reading"
- ],
-
- evidence:"Mixed by source type",
-
- sources:[
-  "Individual sources should be evaluated on their own evidence and purpose."
+ id:"library",title:"Library, Glossary & Careers",icon:"▤",style:"library",
+ category:"Further learning",
+ intro:"The library brings together key terms, further reading, academic skills, and psychology-related careers so learners can continue exploring beyond introductory pages.",
+ human:"Learning becomes stronger when you can define important words, trace claims to sources, and explain why a particular piece of evidence supports your argument.",
+ deep:"Academic work requires accurate attribution, evaluation of source quality, synthesis rather than copying, and a clear distinction between evidence and interpretation.",
+ mis:["A popular book is not automatically a scientific source.","A reference list should include sources actually consulted.","A career title does not establish someone's qualifications or scope of practice."],
+ topics:[
+ ["Psychology Glossary","Key terms and definitions","A glossary supports accurate use of concepts, but definitions should be interpreted within their academic context."],
+ ["Academic Writing","Building a well-supported assignment","Academic writing defines a question, synthesises sources, evaluates evidence, and cites materials accurately."],
+ ["Reading Research","Evaluating academic papers","Readers should examine research questions, methods, participants, results, limitations, and conflicts of interest."],
+ ["Psychology Careers","Fields and professional pathways","Psychology-related careers include research, education, clinical work, organisational practice, and technology."],
+ ["Books and Further Reading","Continuing the learning journey","Further reading should be selected for relevance, credibility, level, and evidence quality."],
+ ["Psychology and Culture","Context and human differences","Culture can shape meaning, relationships, behaviour, and how psychological concepts are interpreted."]
  ]
 }
-
 ];
 
-
-/* =========================================================
-   STATE
-========================================================= */
-
+let currentWorld = null;
 let currentTopic = null;
 
-
-/* =========================================================
-   PARTICLES
-========================================================= */
-
-function makeParticles(){
-
-  const box =
-    document.getElementById("particles");
-
-  for(let i=0;i<55;i++){
-
-    const p =
-      document.createElement("span");
-
-    p.className="particle";
-
-    p.style.left =
-      Math.random()*100 + "%";
-
-    p.style.animationDuration =
-      (12 + Math.random()*16) + "s";
-
-    p.style.animationDelay =
-      (-Math.random()*20) + "s";
-
-    p.style.opacity =
-      .2 + Math.random()*.5;
-
-    box.appendChild(p);
-  }
+function escapeHTML(value) {
+  return String(value).replace(/[&<>"']/g, c => ({
+    "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
+  })[c]);
 }
 
+function renderWorlds(query="") {
+  const q = query.trim().toLowerCase();
+  const matches = worlds.map(w => ({
+    world:w,
+    topics:w.topics.filter(t =>
+      [w.title,w.intro,w.category,...t].join(" ").toLowerCase().includes(q)
+    )
+  })).filter(x => !q || x.world.title.toLowerCase().includes(q) || x.topics.length);
 
-/* =========================================================
-   WORLD CARDS
-========================================================= */
+  $("worldGrid").innerHTML = matches.map(({world:w,topics}) => `
+    <button class="card ${w.style}" type="button" data-world="${w.id}">
+      <span class="icon">${w.icon}</span>
+      <h3>${escapeHTML(w.title)}</h3>
+      <p>${escapeHTML(w.intro)}</p>
+      <span class="count">${q ? topics.length+" matching topics" : w.topics.length+" starting topics"} ↗</span>
+    </button>
+  `).join("");
 
-function renderWorlds(list=topics){
+  $("noResults").hidden = matches.length > 0;
 
-  const grid =
-    document.getElementById("worldGrid");
+  document.querySelectorAll("[data-world]").forEach(btn => {
+    btn.addEventListener("click", () => openWorld(btn.dataset.world));
+  });
+}
 
-  grid.innerHTML="";
+$("search").addEventListener("input", e => renderWorlds(e.target.value));
 
+function openWorld(id, topicIndex=null) {
+  currentWorld = worlds.find(w => w.id === id);
+  if (!currentWorld) return;
 
-  list.forEach(topic=>{
+  currentTopic = topicIndex === null ? null : currentWorld.topics[topicIndex];
+  const w = currentWorld;
+  const t = currentTopic;
+  const title = t ? t[0] : w.title;
+  const definition = t ? t[2] : w.intro;
+  const everyday = t ? t[1] : w.human;
+  const deeper = t ? w.deep : w.deep;
 
-    const card =
-      document.createElement("article");
+  $("context").textContent = "Reading: " + title;
 
-    card.className =
-      "world " + topic.className;
+  const topicsHTML = w.topics.map((topic,i) => `
+    <button class="sub" type="button" data-topic-index="${i}">
+      <strong>${escapeHTML(topic[0])}</strong>
+      <span>${escapeHTML(topic[1])}</span>
+    </button>
+  `).join("");
 
-    card.innerHTML=`
+  $("article").innerHTML = `
+    <span class="badge">${escapeHTML(w.category)}</span>
+    <h1 id="articleTitle">${escapeHTML(title)}</h1>
+    <p class="desc">${escapeHTML(definition)}</p>
 
-      <div class="world-number">
-        ${topic.category}
-      </div>
+    <h2>1. Introduction and definition</h2>
+    <p>${escapeHTML(definition)}</p>
 
-      <div class="world-icon">
-        ${topic.icon}
-      </div>
+    <h2>2. Explanation in everyday language</h2>
+    <p>${escapeHTML(everyday)}</p>
 
-      <h3>
-        ${topic.title}
-      </h3>
+    <h2>3. Core ideas and connections</h2>
+    <p>${escapeHTML(deeper)}</p>
 
-      <p>
-        ${topic.quick}
-      </p>
+    <h2>4. Why this topic matters</h2>
+    <p>Studying ${escapeHTML(title.toLowerCase())} can help learners understand human thought, feeling, learning, or behaviour. Its meaning depends on context and should be considered alongside biological, personal, social, and cultural factors.</p>
 
-    `;
+    <h2>5. Example and application</h2>
+    <p>${escapeHTML(everyday)} For an academic assignment, find a specific example in a credible source or clearly label your example as hypothetical. Explain how it illustrates the concept.</p>
 
-    card.onclick =
-      ()=>openTopic(topic.id);
+    <h2>6. Common misconceptions and limitations</h2>
+    <ul>${w.mis.map(m => `<li>${escapeHTML(m)}</li>`).join("")}</ul>
+    <p>Psychological explanations are rarely universal rules. Avoid using one theory, one study, or one person's experience to draw conclusions about everyone.</p>
 
-    grid.appendChild(card);
+    <h2>7. Questions to research</h2>
+    <ul>
+      <li>How do academic sources define this topic?</li>
+      <li>Which theories or models explain it?</li>
+      <li>How have researchers studied it?</li>
+      <li>What evidence supports the main claims, and what are the limitations?</li>
+      <li>How might culture, age, context, and individual differences affect it?</li>
+      <li>What ethical issues should be considered?</li>
+    </ul>
 
+    <h2>8. Assignment structure</h2>
+    <ol>
+      <li><strong>Introduction:</strong> define the topic, explain its importance, and state your aim.</li>
+      <li><strong>Background:</strong> explain relevant history, theories, and terminology.</li>
+      <li><strong>Main discussion:</strong> describe key concepts and how they connect.</li>
+      <li><strong>Evidence:</strong> discuss credible research and cite sources.</li>
+      <li><strong>Critical analysis:</strong> compare perspectives and acknowledge limitations.</li>
+      <li><strong>Applications:</strong> explain why the topic matters in real life.</li>
+      <li><strong>Conclusion:</strong> summarise what the evidence supports and what remains uncertain.</li>
+      <li><strong>References:</strong> cite the sources you actually consulted in the required format.</li>
+    </ol>
+
+    <h2>9. Sources and evidence</h2>
+    <p><strong>Academic note:</strong> this prototype is not yet a fully referenced academic chapter. Verify claims against academic textbooks, professional organisations, and peer-reviewed research before using them in an assignment. Do not cite a source you have not consulted.</p>
+
+    <h2>10. Explore subtopics</h2>
+    <p>Select a topic below to open its introduction. Each one will need further development with sourced explanations, research findings, examples, criticisms, and further reading.</p>
+    <div class="subgrid">${topicsHTML}</div>
+  `;
+
+  document.querySelectorAll("[data-topic-index]").forEach(btn => {
+    btn.addEventListener("click", () => openWorld(id, Number(btn.dataset.topicIndex)));
   });
 
+  $("reader").classList.add("open");
+  document.body.style.overflow = "hidden";
+  $("closeReader").focus();
 }
 
-
-/* =========================================================
-   SEARCH
-========================================================= */
-
-function filterTopics(){
-
-  const q =
-    document
-      .getElementById("topicSearch")
-      .value
-      .toLowerCase()
-      .trim();
-
-  if(!q){
-
-    renderWorlds();
-
-    return;
-  }
-
-
-  const result =
-    topics.filter(t=>
-
-      (
-        t.title+
-        " "+
-        t.category+
-        " "+
-        t.quick+
-        " "+
-        t.explore.join(" ")
-      )
-      .toLowerCase()
-      .includes(q)
-
-    );
-
-  renderWorlds(result);
-
+function closeReader() {
+  $("reader").classList.remove("open");
+  document.body.style.overflow = "";
+  $("context").textContent = currentTopic
+    ? "Last topic: " + currentTopic[0]
+    : currentWorld ? "Last world: " + currentWorld.title : "No topic selected";
 }
 
-
-/* =========================================================
-   OPEN TOPIC
-========================================================= */
-
-function openTopic(id){
-
-  const topic =
-    topics.find(t=>t.id===id);
-
-  if(!topic) return;
-
-  currentTopic=topic;
-
-  document
-    .getElementById("readerCategory")
-    .textContent =
-      topic.category;
-
-  document
-    .getElementById("readerTitle")
-    .textContent =
-      topic.title;
-
-  document
-    .getElementById("readerLead")
-    .textContent =
-      topic.quick;
-
-
-  const article =
-    document.getElementById("article");
-
-
-  article.innerHTML=`
-
-    <span class="evidence">
-      Evidence level: ${topic.evidence}
-    </span>
-
-
-    <div class="article-section">
-
-      <h2>
-        Quick answer
-      </h2>
-
-      <p>
-        ${topic.quick}
-      </p>
-
-    </div>
-
-
-    <div class="article-section">
-
-      <h2>
-        Let's make it human
-      </h2>
-
-      <p>
-        ${topic.human}
-      </p>
-
-    </div>
-
-
-    <div class="article-section">
-
-      <h2>
-        A little deeper
-      </h2>
-
-      <p>
-        ${topic.deeper}
-      </p>
-
-    </div>
-
-
-    <div class="article-section">
-
-      <h2>
-        Where you might see it
-      </h2>
-
-      <ul>
-
-        ${topic.examples
-          .map(x=>`<li>${x}</li>`)
-          .join("")}
-
-      </ul>
-
-    </div>
-
-
-    <div class="article-section">
-
-      <h2>
-        What people often misunderstand
-      </h2>
-
-      ${topic.misconceptions
-        .map(x=>`
-          <div class="misconception">
-            ${x}
-          </div>
-        `)
-        .join("")}
-
-    </div>
-
-
-    <div class="article-section">
-
-      <h2>
-        Explore inside this world
-      </h2>
-
-      <ul>
-
-        ${topic.explore
-          .map(x=>`<li>${x}</li>`)
-          .join("")}
-
-      </ul>
-
-    </div>
-
-
-    <div class="article-section">
-
-      <h2>
-        Sources & further reading
-      </h2>
-
-      <ul>
-
-        ${topic.sources
-          .map(x=>`<li>${x}</li>`)
-          .join("")}
-
-      </ul>
-
-    </div>
-
-  `;
-
-
-  renderRelated(topic);
-
-
-  document
-    .getElementById("reader")
-    .classList.add("active");
-
-  document.body.style.overflow="hidden";
-
-}
-
-
-/* =========================================================
-   RELATED TOPICS
-========================================================= */
-
-function renderRelated(topic){
-
-  const box =
-    document.getElementById("relatedTopics");
-
-  const related =
-    topics
-      .filter(t=>t.id!==topic.id)
-      .filter(t=>
-        t.category===topic.category ||
-        t.className===topic.className
-      )
-      .slice(0,5);
-
-
-  if(!related.length){
-
-    box.innerHTML =
-      "<p style='margin-top:10px;color:#8e8797'>More worlds are coming.</p>";
-
-    return;
-  }
-
-
-  box.innerHTML =
-    related
-      .map(t=>`
-
-        <button
-          onclick="openTopic('${t.id}')">
-
-          ${t.title}
-
-        </button>
-
-      `)
-      .join("");
-
-}
-
-
-/* =========================================================
-   CLOSE READER
-========================================================= */
-
-function closeReader(){
-
-  document
-    .getElementById("reader")
-    .classList.remove("active");
-
-  document.body.style.overflow="";
-
-}
-
-
-/* =========================================================
-   LIL BIRD BRAIN
-========================================================= */
-
-function lilBird(text){
-
-  const x =
-    text
-      .toLowerCase()
-      .trim();
-
-
-  const topicName =
-    currentTopic
-      ? currentTopic.title
-      : "this";
-
-
-  /* --------------------------------------------
-     SAFETY
-  -------------------------------------------- */
-
-  if(
-    /kill myself|suicide|self harm|self-harm|hurt myself|end my life|want to die|don't want to live|dont want to live/
-      .test(x)
-  ){
-
-    return `
-I'm really glad you told me.
-
-I can't help with instructions for hurting yourself.
-
-If you may be in immediate danger, please contact
-local emergency services or a trusted person who can
-stay with you right now.
-
-If you tell me your country, the full version of
-Hey Lil Bird can help connect you with appropriate
-verified crisis resources.
-
-You don't have to handle an immediate safety crisis alone.
-    `;
-
-  }
-
-
-  if(
-    /how to kill|how to hurt|make a bomb|make a weapon/
-      .test(x)
-  ){
-
-    return `
-I can't help with instructions for hurting someone
-or making a weapon.
-
-If something dangerous is happening right now,
-please create distance from the situation and contact
-appropriate human or emergency support.
-    `;
-
-  }
-
-
-  /* --------------------------------------------
-     IDENTITY
-  -------------------------------------------- */
-
-  if(
-    /your name|who are you|what are you/
-      .test(x)
-  ){
-
-    return `
-I'm Lil Bird.
-
-I'm the conversational guide inside
-Hey Lil Bird.
-
-I'm an AI — not a human, not a therapist,
-and not someone with personal experiences.
-
-My job here is a little different:
-
-I help you understand things.
-
-If something sounds complicated,
-you can ask me to make it simpler.
-
-If something sounds too simple,
-you can ask me to go deeper.
-
-And if I don't know something,
-I should say that instead of making it up.
-    `;
-
-  }
-
-
-  /* --------------------------------------------
-     HUMAN
-  -------------------------------------------- */
-
-  if(
-    /are you human|are you real|do you have feelings|are you alive/
-      .test(x)
-  ){
-
-    return `
-Nope — I'm an AI.
-
-I don't have a human life or personal experiences.
-
-But I can still respond conversationally,
-explain ideas, ask useful questions and help
-you explore what you're learning.
-
-Warm doesn't have to mean pretending to be human.
-    `;
-
-  }
-
-
-  /* --------------------------------------------
-     SIMPLE
-  -------------------------------------------- */
-
-  if(
-    /make it simple|simpler|easy to understand|i don't understand|i dont understand|confused|explain like i'm|explain like im/
-      .test(x)
-  ){
-
-    if(currentTopic){
-
-      return `
-Absolutely.
-
-Let's forget the textbook language for a second.
-
-${currentTopic.title} basically means:
-
-${currentTopic.quick}
-
-Now imagine this:
-
-${currentTopic.human}
-
-That's the tiny version.
-
-If you want, I can explain the same thing
-using a story, an analogy, or the deeper science.
-      `;
-
-    }
-
-    return `
-Absolutely.
-
-Tell me the exact word, sentence or idea
-that confused you.
-
-I'll break it down without the textbook language.
-    `;
-
-  }
-
-
-  /* --------------------------------------------
-     EXAMPLE
-  -------------------------------------------- */
-
-  if(
-    /example|real life|everyday|analogy|like what/
-      .test(x)
-  ){
-
-    if(currentTopic){
-
-      return `
-Okay, let's make ${currentTopic.title}
-feel less abstract.
-
-Here's the everyday version:
-
-${currentTopic.human}
-
-The trick is to connect the concept
-to something you already understand.
-
-Want another example?
-      `;
-
-    }
-
-  }
-
-
-  /* --------------------------------------------
-     SCIENCE
-  -------------------------------------------- */
-
-  if(
-    /science|scientific|neuroscience|brain|research|evidence/
-      .test(x)
-  ){
-
-    if(currentTopic){
-
-      return `
-Let's put the science glasses on.
-
-For ${currentTopic.title}:
-
-${currentTopic.deeper}
-
-One important thing, though:
-scientific evidence is rarely as simple as
-“research proves everything.”
-
-We should also ask about methods,
-limitations, replication and uncertainty.
-
-That's why this project has a whole
-“How We Know” world.
-      `;
-
-    }
-
-  }
-
-
-  /* --------------------------------------------
-     MISCONCEPTION
-  -------------------------------------------- */
-
-  if(
-    /misunderstand|wrong|myth|myths|false|not true/
-      .test(x)
-  ){
-
-    if(currentTopic){
-
-      return `
-Good question.
-
-A few things people often misunderstand
-about ${currentTopic.title} are:
-
-${currentTopic.misconceptions
-  .map((m,i)=>`${i+1}. ${m}`)
-  .join("\n")}
-
-So the short version is:
-be curious, but don't turn a complicated
-psychological idea into a slogan.
-      `;
-
-    }
-
-  }
-
-
-  /* --------------------------------------------
-     WHY
-  -------------------------------------------- */
-
-  if(
-    /^why\b|why does|why do|why is|why are/
-      .test(x)
-  ){
-
-    if(currentTopic){
-
-      return `
-That's the interesting part.
-
-For ${currentTopic.title},
-there usually isn't one magical explanation.
-
-Psychological processes can involve
-biology, learning, attention, development,
-relationships, culture and context.
-
-If you tell me which part of ${currentTopic.title}
-you're asking “why” about, I can narrow it down.
-      `;
-
-    }
-
-  }
-
-
-  /* --------------------------------------------
-     WHAT
-  -------------------------------------------- */
-
-  if(
-    /^what\b|what does|what is|what are/
-      .test(x)
-  ){
-
-    if(currentTopic){
-
-      return `
-If we're talking about ${currentTopic.title},
-the basic idea is:
-
-${currentTopic.quick}
-
-If there's a particular word you mean,
-send me that word and I'll unpack it.
-      `;
-
-    }
-
-  }
-
-
-  /* --------------------------------------------
-     CURRENT TOPIC
-  -------------------------------------------- */
-
-  if(currentTopic){
-
-    return `
-Hmm.
-
-I think you're asking about
-${currentTopic.title}.
-
-I don't want to pretend I understood
-something you didn't actually mean.
-
-You can ask me:
-
-“Make it simpler.”
-
-“Give me an example.”
-
-“Explain the science.”
-
-“What's the evidence?”
-
-“What do people misunderstand?”
-
-Or just ask your question normally.
-
-I'll follow you from there.
-    `;
-
-  }
-
-
-  /* --------------------------------------------
-     GENERAL
-  -------------------------------------------- */
-
-  return `
-I hear you.
-
-I don't want to guess what you mean
-and give you a confident answer to the wrong question.
-
-You can ask me normally.
-
-Or tell me:
-
-• make it simple
-• give me an example
-• explain the science
-• explain like a teacher
-• explain like a friend
-• go deeper
-• I don't understand this word
-
-Let's start there.
-  `;
-
-}
-
-
-/* =========================================================
-   CHAT
-========================================================= */
-
-function addMessage(text,type){
-
-  const box =
-    document.getElementById("messages");
-
-  const message =
-    document.createElement("div");
-
-  message.className =
-    "message " + type;
-
-  message.textContent=text;
-
-  box.appendChild(message);
-
-  box.scrollTop =
-    box.scrollHeight;
-
-}
-
-
-function sendChat(event){
-
-  event.preventDefault();
-
-  const input =
-    document.getElementById("chatInput");
-
-  const text =
-    input.value.trim();
-
-  if(!text) return;
-
-  addMessage(text,"user");
-
-  input.value="";
-
-
-  setTimeout(()=>{
-
-    addMessage(
-      lilBird(text),
-      "bird"
-    );
-
-  },350);
-
-}
-
-
-/* =========================================================
-   QUICK ASK FROM ARTICLE
-========================================================= */
-
-function quickAsk(question){
-
+$("closeReader").addEventListener("click", closeReader);
+$("returnWorlds").addEventListener("click", () => {
   closeReader();
+  $("worlds").scrollIntoView({behavior:"smooth"});
+});
+$("askBird").addEventListener("click", () => {
+  closeReader();
+  $("chat").scrollIntoView({behavior:"smooth"});
+  setTimeout(() => $("chatInput").focus(), 250);
+});
 
-  document
-    .getElementById("chat")
-    .scrollIntoView({
-      behavior:"smooth"
-    });
+$("reader").addEventListener("click", e => {
+  if (e.target === $("reader")) closeReader();
+});
 
+document.addEventListener("keydown", e => {
+  if (e.key === "Escape") closeReader();
+});
 
-  setTimeout(()=>{
-
-    const input =
-      document.getElementById("chatInput");
-
-    input.value=question;
-
-    input.focus();
-
-  },450);
-
+function addMessage(text, who) {
+  const el = document.createElement("div");
+  el.className = "msg " + who;
+  el.textContent = text;
+  $("messages").appendChild(el);
+  $("messages").scrollTop = $("messages").scrollHeight;
 }
 
+function normalise(s) {
+  return s.toLowerCase().trim().replace(/[’]/g,"'").replace(/[!?.,]+$/,"");
+}
 
-/* =========================================================
-   START
-========================================================= */
+function makeReply(raw) {
+  const x = normalise(raw);
+  const topic = currentTopic ? {
+    title:currentTopic[0],intro:currentTopic[2],human:currentTopic[1]
+  } : currentWorld ? {
+    title:currentWorld.title,intro:currentWorld.intro,
+    human:currentWorld.human,deep:currentWorld.deep,mis:currentWorld.mis
+  } : null;
 
-makeParticles();
+  if (/^(hi|hii+|hello|hey|heyy+|hiya|yo|sup|howdy|salam|assalamu alaikum|good morning|good afternoon|good evening)( human| lil bird| bird)?$/.test(x)
+      || /^(hi|hello|hey|hiya)\b/.test(x)) {
+    return "Hey, human! I'm glad you're here. You can ask me about psychology, neuroscience, emotions, relationships, or anything you're curious about. What's on your mind?";
+  }
+
+  if (/^(thanks|thank you|thx|ty|thank u)$/.test(x) || /\b(thank you|thanks so much)\b/.test(x)) {
+    return "You're welcome! Want to explore something else, or are we good for now?";
+  }
+
+  if (/\b(your name|who are you|what are you)\b/.test(x)) {
+    return "I'm Lil Bird, the learning companion inside Hey Lil Bird. I'm an AI, not a human or therapist. I can explain ideas and help you explore topics, but I don't have personal experiences.";
+  }
+
+  if (/\b(are you human|are you real|do you have feelings|are you alive)\b/.test(x)) {
+    return "I'm an AI, not a human, and I don't have personal experiences or feelings. I can still chat warmly, answer educational questions, and help you understand ideas honestly.";
+  }
+
+  if (/\b(kill myself|suicide|self[- ]harm|hurt myself|end my life|want to die|don't want to live|dont want to live)\b/.test(x)) {
+    return "I'm really glad you told me. I can't help with instructions for hurting yourself. If you may be in immediate danger, contact local emergency services or a trusted person who can stay with you now. If possible, move away from anything you could use to hurt yourself. If you share your country, I can help you find an appropriate crisis resource. You deserve support from a real person, too.";
+  }
+
+  if (/\b(make it simpler|simpler|explain simply|easy to understand|i don't understand|i dont understand|confused|explain like i'm|explain like im|in simple words)\b/.test(x)) {
+    return topic
+      ? "Absolutely. Let's leave the textbook language aside.\n\n" + topic.title + " means: " + topic.intro + "\n\nIn everyday language: " + topic.human + "\n\nWhich exact word or sentence should we unpack next?"
+      : "Absolutely. Send me the word, sentence, or idea that's confusing you. I'll explain it in everyday language, then we can add the science one step at a time.";
+  }
+
+  if (/\b(example|real life|everyday|analogy|like what)\b/.test(x)) {
+    return topic
+      ? "Let's make " + topic.title + " more concrete.\n\n" + topic.human + "\n\nWant another example, or should we go deeper?"
+      : "Sure! Which concept should I give an example of? You can open a topic above and I'll use it as context.";
+  }
+
+  if (/\b(science|scientific|research|evidence|source|study says)\b/.test(x)) {
+    return topic
+      ? "Let's look at the idea carefully.\n\n" + (topic.deep || topic.intro) + "\n\nThis is an introductory summary, not a verified research review. Good science includes limitations and uncertainty, not just confident wording."
+      : "Scientific claims need evidence, methods, and limitations—not just confidence. Open a topic and ask again, or tell me the claim you'd like to evaluate.";
+  }
+
+  if (/\b(misconception|myth|misunderstand|wrong about)\b/.test(x) && currentWorld) {
+    return "A few things people often misunderstand about " + currentWorld.title + ":\n\n"
+      + currentWorld.mis.map((m,i) => (i+1) + ". " + m).join("\n")
+      + "\n\nKeep the context—psychology is rarely as simple as a slogan.";
+  }
+
+  if (/\b(what is|what's|what are|define|meaning of)\b/.test(x)) {
+    const found = worlds.flatMap(w => w.topics.map(t => ({
+      name:t[0],desc:t[2],parent:w.title
+    }))).find(t => x.includes(t.name.toLowerCase()));
+
+    if (found) {
+      return found.name + ": " + found.desc + " (World: " + found.parent + "). Would you like a simpler explanation or an example?";
+    }
+
+    return topic
+      ? topic.title + ": " + topic.intro + "\n\n" + topic.human
+      : "I can help with that. Tell me the term you want explained, or choose a topic above. You can ask in your own words—no special format needed.";
+  }
+
+  if (/\b(bye|goodbye|see you|gotta go|that's all|thats all)\b/.test(x)) {
+    return "Take care, human. You're welcome back whenever curiosity strikes.";
+  }
+
+  if (topic) {
+    return "Okay, let's explore that together. Since you're looking at " + topic.title + ", here's our starting point:\n\n"
+      + topic.intro + "\n\n" + topic.human
+      + "\n\nAre you asking for a definition, an example, the deeper science, or help with a specific question?";
+  }
+
+  return "I'm listening. You can ask in your own words, or choose a topic above and I'll use that context. Try asking: “What is psychology?”, “Explain memory simply”, or “Give me an example of social influence.”";
+}
+
+$("chatForm").addEventListener("submit", e => {
+  e.preventDefault();
+  const input = $("chatInput");
+  const value = input.value.trim();
+  if (!value) return;
+
+  addMessage(value,"user");
+  input.value = "";
+
+  const typing = document.createElement("div");
+  typing.className = "msg bot";
+  typing.textContent = "Lil Bird is thinking…";
+  $("messages").appendChild(typing);
+  $("messages").scrollTop = $("messages").scrollHeight;
+
+  setTimeout(() => {
+    typing.remove();
+    addMessage(makeReply(value),"bot");
+  }, 250);
+});
+
+document.querySelectorAll("[data-prompt]").forEach(btn => {
+  btn.addEventListener("click", () => {
+    $("chatInput").value = btn.dataset.prompt;
+    $("chatForm").requestSubmit();
+  });
+});
+
+$("communityForm").addEventListener("submit", e => {
+  e.preventDefault();
+  const content = $("communityInput").value.trim();
+  const name = $("displayName").value.trim() || "Curious human";
+  if (!content) return;
+
+  const post = document.createElement("article");
+  post.className = "post";
+
+  const author = document.createElement("small");
+  author.textContent = name + " · Preview post";
+
+  const text = document.createElement("div");
+  text.textContent = content;
+
+  const note = document.createElement("p");
+  note.className = "fine";
+  note.textContent = "Local preview only. This post has not been shared with anyone.";
+
+  post.append(author,text,note);
+  $("communityPosts").prepend(post);
+  $("communityInput").value = "";
+});
 
 renderWorlds();
-
 </script>
-
 </body>
 </html>
