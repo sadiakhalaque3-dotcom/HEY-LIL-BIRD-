@@ -3,21 +3,30 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0c0918">
 
-<title>Hey Lil Bird — Learn, Share, Belong</title>
+<title>Hey Lil Bird — Psychology, Life & Community</title>
+
+<meta name="description"
+content="Explore psychology, everyday wellbeing, healthier routines,
+mental-health education, and a community for thoughtful stories and learning.">
 
 <style>
 :root {
-  --bg: #090713;
-  --panel: #191326;
-  --pink: #ffafeb;
-  --berry: #db3e8c;
-  --blue: #5e77b6;
-  --ice: #c8d6ea;
-  --sage: #aead89;
-  --gold: #d5a25e;
-  --muted: #bcb4c6;
-  --line: #ffffff20;
+  --bg: #0c0918;
+  --surface: #171326;
+  --surface2: #211a32;
+  --pink: #ffb0e8;
+  --berry: #df65b6;
+  --lavender: #c7b6ff;
+  --blue: #b9d9ff;
+  --sage: #c1d4ae;
+  --gold: #f1cf91;
+  --text: #f7f3fb;
+  --muted: #c0b7ce;
+  --border: #ffffff20;
+  --radius: 20px;
+  --max: 1180px;
 }
 
 * {
@@ -26,14 +35,18 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 110px;
 }
 
 body {
   margin: 0;
-  background: var(--bg);
-  color: #f8f5f0;
-  font-family: Inter, system-ui, "Segoe UI", sans-serif;
-  line-height: 1.6;
+  background:
+    radial-gradient(ellipse at 10% 0%, #34204755, transparent 40%),
+    radial-gradient(ellipse at 90% 25%, #17365033, transparent 35%),
+    var(--bg);
+  color: var(--text);
+  font-family: Inter, "Segoe UI", system-ui, sans-serif;
+  line-height: 1.7;
 }
 
 button,
@@ -45,101 +58,67 @@ select {
 
 button,
 a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+button {
   cursor: pointer;
 }
 
 a {
   color: inherit;
-  text-decoration: none;
 }
 
-button:focus-visible,
-a:focus-visible,
-input:focus-visible,
-textarea:focus-visible,
-select:focus-visible {
-  outline: 2px solid var(--pink);
-  outline-offset: 3px;
+img {
+  max-width: 100%;
 }
 
-/* HEADER */
-
-header {
-  position: sticky;
-  top: 0;
-  z-index: 5;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 20px;
-  padding: 14px 5vw;
-  background: #090713e8;
-  backdrop-filter: blur(14px);
-  border-bottom: 1px solid var(--line);
+:focus-visible {
+  outline: 3px solid var(--pink);
+  outline-offset: 4px;
 }
 
-.brand {
-  font-weight: 900;
-  letter-spacing: -.04em;
-  font-size: 1.3rem;
+[hidden] {
+  display: none !important;
 }
 
-.brand span {
-  color: var(--pink);
+.container {
+  width: min(var(--max), 90%);
+  margin-inline: auto;
 }
 
-nav {
-  display: flex;
-  gap: 18px;
-  flex-wrap: wrap;
-  align-items: center;
-}
-
-nav a {
+.muted {
   color: var(--muted);
-  font-size: .9rem;
-}
-
-nav a:hover {
-  color: var(--pink);
-}
-
-/* GENERAL LAYOUT */
-
-main {
-  max-width: 1200px;
-  margin: auto;
-  padding: 30px 5vw 70px;
-}
-
-section {
-  margin: 70px 0;
-  scroll-margin-top: 100px;
 }
 
 .eyebrow {
   color: var(--pink);
-  text-transform: uppercase;
-  letter-spacing: .15em;
-  font-size: .75rem;
+  font-size: .78rem;
   font-weight: 800;
+  letter-spacing: .16em;
+  text-transform: uppercase;
 }
 
 h1,
 h2,
 h3 {
   line-height: 1.2;
+  letter-spacing: -.025em;
 }
 
 h1 {
-  font-size: clamp(2.5rem, 6vw, 5rem);
+  font-size: clamp(2.7rem, 7vw, 5.8rem);
   letter-spacing: -.055em;
-  max-width: 850px;
+  margin: 18px 0;
 }
 
 h2 {
-  font-size: clamp(1.8rem, 4vw, 3rem);
-  letter-spacing: -.035em;
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  margin: 12px 0;
+}
+
+h3 {
+  font-size: 1.2rem;
 }
 
 p {
@@ -147,75 +126,181 @@ p {
 }
 
 .lead {
-  font-size: 1.15rem;
+  max-width: 740px;
+  font-size: 1.1rem;
+}
+
+section {
+  padding-block: 65px;
+}
+
+.section-heading {
+  max-width: 780px;
+  margin-bottom: 30px;
+}
+
+.section-heading > p {
   max-width: 720px;
 }
 
-button,
+.gradient-text {
+  background: linear-gradient(
+    100deg,
+    var(--pink),
+    var(--lavender),
+    var(--blue)
+  );
+  color: transparent;
+  background-clip: text;
+  -webkit-background-clip: text;
+}
+
+/* Navigation */
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: #0c0918ed;
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+}
+
+.nav-inner {
+  min-height: 76px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+
+.brand {
+  font-size: 1.35rem;
+  font-weight: 900;
+  text-decoration: none;
+  letter-spacing: -.04em;
+  white-space: nowrap;
+}
+
+.brand span {
+  color: var(--pink);
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.nav-links a {
+  text-decoration: none;
+  font-size: .9rem;
+  color: var(--muted);
+}
+
+.nav-links a:hover {
+  color: var(--pink);
+}
+
+.menu-button {
+  display: none;
+}
+
+/* Buttons */
+
 .button {
-  border: 1px solid var(--line);
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid var(--border);
   border-radius: 999px;
-  padding: 11px 18px;
-  background: var(--panel);
-  color: #fff;
-  display: inline-block;
+  background: var(--surface2);
+  color: var(--text);
+  padding: 11px 19px;
+  text-decoration: none;
+  font-weight: 650;
+  transition: transform .2s, border-color .2s;
 }
 
-.button.primary,
-button.primary {
-  background: var(--pink);
-  color: #201020;
-  border-color: var(--pink);
-  font-weight: 800;
-}
-
-button:hover,
 .button:hover {
-  transform: translateY(-1px);
+  transform: translateY(-2px);
   border-color: var(--pink);
+}
+
+.button.primary {
+  background: var(--pink);
+  color: #241327;
+  border-color: var(--pink);
+}
+
+.button.small {
+  padding: 7px 13px;
+  font-size: .9rem;
+}
+
+.button:disabled {
+  opacity: .5;
+  cursor: not-allowed;
 }
 
 .actions {
   display: flex;
-  gap: 12px;
   flex-wrap: wrap;
-  margin-top: 24px;
+  gap: 12px;
+  margin-top: 25px;
 }
 
-/* HERO */
+/* Hero */
 
 .hero {
-  min-height: 70vh;
+  min-height: 620px;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 65px 0;
+  align-items: center;
   position: relative;
-}
-
-.hero h1 span {
-  color: var(--pink);
-}
-
-.hero-decoration {
-  position: absolute;
-  right: 4%;
-  top: 20%;
-  font-size: clamp(5rem, 15vw, 12rem);
-  opacity: .15;
-  pointer-events: none;
+  overflow: hidden;
 }
 
 .hero-content {
   position: relative;
   z-index: 1;
+  padding-block: 70px;
+}
+
+.hero h1 {
+  max-width: 880px;
 }
 
 .hero p {
-  max-width: 680px;
+  max-width: 700px;
 }
 
-/* CARDS */
+.hero-orb {
+  position: absolute;
+  width: 350px;
+  height: 350px;
+  right: 1%;
+  top: 16%;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle at 35% 35%,
+    #ffb0e866,
+    #9a7aff22 40%,
+    transparent 70%
+  );
+  filter: blur(8px);
+  pointer-events: none;
+}
+
+.hero-note {
+  display: inline-block;
+  margin-top: 22px;
+  color: var(--sage);
+  font-size: .92rem;
+}
+
+/* Cards */
 
 .grid {
   display: grid;
@@ -224,98 +309,210 @@ button:hover,
 }
 
 .card {
-  background: linear-gradient(145deg, #21182f, #141020);
-  border: 1px solid var(--line);
-  border-radius: 22px;
-  padding: 23px;
   min-width: 0;
+  padding: 24px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: linear-gradient(145deg, var(--surface2), var(--surface));
   transition: border-color .2s, transform .2s;
 }
 
 .card:hover {
-  border-color: #ffafeb75;
+  border-color: #ffb0e866;
   transform: translateY(-3px);
 }
 
-.card h3 {
-  margin-top: 10px;
-}
-
 .card p {
-  font-size: .95rem;
+  font-size: .96rem;
 }
 
 .card-icon {
   font-size: 1.8rem;
+  margin-bottom: 10px;
+}
+
+.card h3 {
+  margin: 10px 0;
+}
+
+.card .button {
+  margin-top: 10px;
 }
 
 .tag {
   display: inline-block;
+  border: 1px solid #ffb0e844;
   color: var(--pink);
-  border: 1px solid #ffafeb55;
-  padding: 4px 9px;
+  padding: 3px 10px;
   border-radius: 999px;
   font-size: .75rem;
 }
 
-/* FORMS */
+/* Learning topics */
+
+.topic-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 15px;
+}
+
+details.topic {
+  padding: 20px;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  background: #171326cc;
+}
+
+details.topic summary {
+  cursor: pointer;
+  font-weight: 750;
+}
+
+details.topic summary::marker {
+  color: var(--pink);
+}
+
+details.topic p {
+  margin-bottom: 0;
+}
+
+.resource-note {
+  border-left: 3px solid var(--gold);
+  padding: 12px 17px;
+  background: #f1cf910c;
+  border-radius: 0 12px 12px 0;
+}
+
+/* Forms */
 
 form {
   display: grid;
-  gap: 15px;
+  gap: 16px;
+}
+
+.field {
+  min-width: 0;
 }
 
 label {
   display: block;
-  margin-bottom: 6px;
   font-weight: 700;
+  margin-bottom: 7px;
 }
 
 input,
 textarea,
 select {
   width: 100%;
-  padding: 12px 14px;
-  color: #fff;
-  background: #0e0b18;
   border: 1px solid #ffffff30;
   border-radius: 12px;
-}
-
-textarea {
-  min-height: 150px;
-  resize: vertical;
+  padding: 12px 14px;
+  background: #0f0b1a;
+  color: var(--text);
 }
 
 input::placeholder,
 textarea::placeholder {
-  color: #93899f;
+  color: #9b90aa;
 }
 
-.field {
-  margin-bottom: 5px;
+textarea {
+  min-height: 145px;
+  resize: vertical;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  border-color: var(--pink);
 }
 
 .form-note {
-  font-size: .85rem;
+  font-size: .84rem;
 }
 
-/* COMMUNITY */
+.status {
+  padding: 12px 15px;
+  border-radius: 12px;
+  background: #ffffff0a;
+  color: var(--sage);
+  overflow-wrap: anywhere;
+}
+
+.status.error {
+  color: #ffb5b5;
+}
+
+/* Life lab */
+
+.life-lab-banner {
+  padding: clamp(24px, 5vw, 45px);
+  border: 1px solid var(--border);
+  border-radius: 28px;
+  background:
+    radial-gradient(ellipse at top right, #5c477a44, transparent 55%),
+    var(--surface);
+}
+
+.routine-result {
+  margin-top: 24px;
+  border: 1px solid #ffb0e855;
+  border-radius: 16px;
+  padding: 20px;
+  background: #ffb0e80a;
+}
+
+.routine-result li {
+  margin: 10px 0;
+  color: var(--muted);
+}
+
+/* Community */
 
 .community-layout {
   display: grid;
-  grid-template-columns: 1.5fr 1fr;
+  grid-template-columns: 1.25fr .9fr;
   gap: 22px;
   align-items: start;
 }
 
+.filter-row {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-block: 18px;
+}
+
+.filter-button {
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 7px 12px;
+  background: transparent;
+  color: var(--muted);
+}
+
+.filter-button.active {
+  color: #241327;
+  background: var(--pink);
+  border-color: var(--pink);
+}
+
+.search-box {
+  margin-bottom: 16px;
+}
+
 .post {
+  border-bottom: 1px solid var(--border);
   padding: 18px 0;
-  border-bottom: 1px solid var(--line);
+  overflow-wrap: anywhere;
+}
+
+.post:last-child {
+  border-bottom: none;
 }
 
 .post h3 {
-  margin-bottom: 8px;
+  margin: 8px 0;
 }
 
 .post-meta {
@@ -328,67 +525,57 @@ textarea::placeholder {
   overflow-wrap: anywhere;
 }
 
-.filter-row {
+.post-actions {
   display: flex;
-  gap: 10px;
+  gap: 9px;
   flex-wrap: wrap;
-  margin: 20px 0;
+  margin-top: 12px;
 }
 
-.filter-row button.active {
-  background: var(--pink);
-  color: #201020;
-}
-
-/* EVERYDAY LIFE LAB */
-
-.routine-box {
-  background: linear-gradient(145deg, #21182f, #10101e);
-  border: 1px solid var(--line);
-  border-radius: 25px;
-  padding: clamp(20px, 4vw, 40px);
-}
-
-.routine-result {
-  margin-top: 20px;
-  padding: 20px;
-  border-left: 3px solid var(--pink);
-  background: #ffffff08;
-  border-radius: 0 14px 14px 0;
-}
-
-.routine-result li {
-  margin-bottom: 10px;
-}
-
-/* EDUCATIONAL CONTENT */
-
-.article-content {
-  max-width: 850px;
-}
-
-.article-content h3 {
-  margin-top: 30px;
-}
-
-.article-content li {
-  margin-bottom: 10px;
+.post-actions button {
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: transparent;
   color: var(--muted);
+  padding: 6px 12px;
 }
 
-.disclaimer {
-  border: 1px solid #d5a25e55;
-  background: #d5a25e0b;
-  padding: 18px;
-  border-radius: 16px;
-  margin-top: 25px;
+.post-actions button:hover {
+  border-color: var(--pink);
 }
 
-/* FOOTER */
+.comment-box {
+  margin-top: 15px;
+  padding: 14px;
+  background: #ffffff08;
+  border-radius: 12px;
+}
+
+.comment {
+  border-bottom: 1px solid var(--border);
+  padding: 8px 0;
+}
+
+.comment p {
+  margin: 5px 0;
+}
+
+.empty-state {
+  padding: 20px 0;
+}
+
+/* Safety */
+
+.safety-box {
+  padding: 24px;
+  border: 1px solid #f1cf9155;
+  background: #f1cf910b;
+  border-radius: 18px;
+}
 
 footer {
-  border-top: 1px solid var(--line);
-  padding: 35px 5vw;
+  border-top: 1px solid var(--border);
+  padding: 35px 0;
   text-align: center;
 }
 
@@ -396,9 +583,9 @@ footer p {
   font-size: .9rem;
 }
 
-/* RESPONSIVE DESIGN */
+/* Responsive */
 
-@media (max-width: 850px) {
+@media (max-width: 900px) {
   .grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -407,29 +594,55 @@ footer p {
     grid-template-columns: 1fr;
   }
 
-  header {
+  .nav-inner {
     align-items: flex-start;
+    padding-block: 15px;
     flex-direction: column;
+  }
+
+  .nav-links {
+    gap: 14px;
   }
 }
 
-@media (max-width: 550px) {
-  .grid {
+@media (max-width: 600px) {
+  .container {
+    width: 92%;
+  }
+
+  section {
+    padding-block: 45px;
+  }
+
+  .grid,
+  .topic-list {
     grid-template-columns: 1fr;
-  }
-
-  nav {
-    gap: 12px;
-  }
-
-  main {
-    padding-left: 18px;
-    padding-right: 18px;
   }
 
   .hero {
     min-height: auto;
-    padding: 55px 0;
+  }
+
+  .hero-content {
+    padding-block: 65px;
+  }
+
+  .hero-orb {
+    width: 230px;
+    height: 230px;
+    right: -100px;
+  }
+
+  .nav-links {
+    gap: 12px;
+  }
+
+  .nav-links a {
+    font-size: .84rem;
+  }
+
+  .card {
+    padding: 20px;
   }
 }
 
@@ -439,7 +652,6 @@ footer p {
   *::after {
     scroll-behavior: auto !important;
     transition: none !important;
-    animation: none !important;
   }
 }
 </style>
@@ -447,41 +659,43 @@ footer p {
 
 <body>
 
-<header>
-  <a class="brand" href="#home">
-    Hey <span>Lil Bird</span>
-  </a>
+<header class="site-header">
+  <div class="container nav-inner">
+    <a href="#home" class="brand" aria-label="Hey Lil Bird home">
+      Hey <span>Lil Bird</span>
+    </a>
 
-  <nav aria-label="Main navigation">
-    <a href="#home">Home</a>
-    <a href="#library">Psychology Library</a>
-    <a href="#life-lab">Everyday Life Lab</a>
-    <a href="#community">Community</a>
-    <a href="#contact">Contact</a>
-  </nav>
+    <nav class="nav-links" aria-label="Main navigation">
+      <a href="#library">Psychology</a>
+      <a href="#life-lab">Life Lab</a>
+      <a href="#routine">Routines</a>
+      <a href="#community">Community</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
 </header>
 
 <main>
 
-<!-- HERO SECTION -->
+<!-- HOME -->
 
 <section class="hero" id="home">
-  <div class="hero-decoration" aria-hidden="true">✦</div>
+  <div class="hero-orb" aria-hidden="true"></div>
 
-  <div class="hero-content">
+  <div class="container hero-content">
     <span class="eyebrow">
-      Psychology · Everyday life · Community
+      Psychology · Everyday life · Human connection
     </span>
 
     <h1>
-      A little more understanding.
-      <span>A little more room to grow.</span>
+      Understand your mind.
+      <span class="gradient-text">Make room for life.</span>
     </h1>
 
     <p class="lead">
-      Welcome to Hey Lil Bird, a place to explore psychology,
-      understand everyday experiences, discover healthier routines,
-      share your stories, and learn alongside others.
+      Hey Lil Bird is a place to explore psychology, learn about
+      everyday challenges, build gentler routines, share stories,
+      and discover new perspectives alongside others.
     </p>
 
     <div class="actions">
@@ -490,8 +704,59 @@ footer p {
       </a>
 
       <a class="button" href="#community">
-        Join the conversation
+        Visit the Community
       </a>
+    </div>
+
+    <span class="hero-note">
+      Here for your assistance. Just ask, human.
+    </span>
+  </div>
+</section>
+
+<!-- INTRODUCTION -->
+
+<section id="about">
+  <div class="container">
+    <div class="section-heading">
+      <span class="eyebrow">A space to learn and reflect</span>
+      <h2>Life doesn't come with a manual.</h2>
+
+      <p class="lead">
+        Understanding ourselves can help us ask better questions,
+        recognise patterns, and make more informed choices.
+        We bring psychology into everyday conversations without
+        pretending that every human experience has one answer.
+      </p>
+    </div>
+
+    <div class="grid">
+      <article class="card">
+        <div class="card-icon">🧠</div>
+        <h3>Learn</h3>
+        <p>
+          Explore psychological concepts, brain science,
+          behaviour, emotions, and research.
+        </p>
+      </article>
+
+      <article class="card">
+        <div class="card-icon">🌿</div>
+        <h3>Practice</h3>
+        <p>
+          Explore realistic routines, everyday self-care,
+          study habits, rest, and healthy boundaries.
+        </p>
+      </article>
+
+      <article class="card">
+        <div class="card-icon">🪶</div>
+        <h3>Connect</h3>
+        <p>
+          Share stories, exchange perspectives, and learn
+          from experiences without judgement.
+        </p>
+      </article>
     </div>
   </div>
 </section>
@@ -499,553 +764,1237 @@ footer p {
 <!-- PSYCHOLOGY LIBRARY -->
 
 <section id="library">
-  <span class="eyebrow">Learn at your own pace</span>
-
-  <h2>The Psychology Library</h2>
-
-  <p class="lead">
-    Explore the mind, behaviour, emotions, relationships,
-    neuroscience, and the ways people experience the world.
-  </p>
-
-  <div class="grid">
-
-    <article class="card">
-      <div class="card-icon">🧠</div>
-      <h3>Introduction to Psychology</h3>
+  <div class="container">
+    <div class="section-heading">
+      <span class="eyebrow">Build your understanding</span>
+      <h2>The Psychology Library</h2>
       <p>
-        Explore the study of behaviour, mental processes,
-        psychological perspectives, and research methods.
+        Begin with foundational concepts and explore how psychology
+        studies thoughts, feelings, actions, relationships, and
+        human development.
       </p>
-      <a class="button" href="#psychology-basics">
-        Explore topic
-      </a>
-    </article>
+    </div>
 
-    <article class="card">
-      <div class="card-icon">🌿</div>
-      <h3>Emotions and Behaviour</h3>
-      <p>
-        Learn about emotions, motivation, emotional regulation,
-        and the influences on everyday behaviour.
-      </p>
-      <a class="button" href="#life-lab">
-        Explore topic
-      </a>
-    </article>
+    <div class="topic-list">
 
-    <article class="card">
-      <div class="card-icon">🔬</div>
-      <h3>Brain and Neuroscience</h3>
-      <p>
-        Discover the nervous system, brain functions,
-        learning, memory, and the science of sleep.
-      </p>
-      <a class="button" href="#sleep">
-        Explore topic
-      </a>
-    </article>
+      <details class="topic">
+        <summary>Introduction to Psychology</summary>
+        <p>
+          Psychology is the scientific study of behaviour and
+          mental processes. Researchers use different methods to
+          investigate learning, emotion, attention, perception,
+          memory, motivation, and social interaction.
+        </p>
+        <p>
+          Major perspectives include biological, cognitive,
+          behavioural, developmental, social, cultural, and
+          psychodynamic approaches. Each can help explain some
+          aspects of human experience, but none explains everything.
+        </p>
+      </details>
 
-    <article class="card">
-      <div class="card-icon">🪞</div>
-      <h3>Identity and Self-Understanding</h3>
-      <p>
-        Explore self-concept, identity development,
-        confidence, and social influences.
-      </p>
-      <a class="button" href="#identity">
-        Explore topic
-      </a>
-    </article>
+      <details class="topic">
+        <summary>Emotions and Emotional Regulation</summary>
+        <p>
+          Emotions involve interacting physiological, cognitive,
+          behavioural, and subjective processes. Emotional regulation
+          refers to ways people influence how emotions develop,
+          how they are experienced, and how they are expressed.
+        </p>
+        <p>
+          Strategies can include identifying an emotion, considering
+          context, changing an unhelpful situation where possible,
+          and seeking support. Suppressing emotion is not always
+          helpful or harmful; outcomes depend on the situation.
+        </p>
+      </details>
 
-    <article class="card">
-      <div class="card-icon">🤝</div>
-      <h3>Social Psychology</h3>
-      <p>
-        Understand social influence, group behaviour,
-        relationships, and interpersonal communication.
-      </p>
-      <a class="button" href="#relationships">
-        Explore topic
-      </a>
-    </article>
+      <details class="topic">
+        <summary>Learning, Memory, and Attention</summary>
+        <p>
+          Learning involves changes associated with experience.
+          Memory includes processes such as encoding, storage,
+          and retrieval. Attention helps prioritise information,
+          but it has limits and is influenced by context.
+        </p>
+        <p>
+          Retrieval practice, spaced learning, sleep, and
+          appropriately challenging practice can support learning.
+          No single study technique works equally well for every task.
+        </p>
+      </details>
 
-    <article class="card">
-      <div class="card-icon">📚</div>
-      <h3>Research and Critical Thinking</h3>
-      <p>
-        Learn how psychological evidence is studied,
-        interpreted, and distinguished from misinformation.
-      </p>
-      <a class="button" href="#research">
-        Explore topic
-      </a>
-    </article>
+      <details class="topic">
+        <summary>Development Across the Lifespan</summary>
+        <p>
+          Developmental psychology investigates changes in physical,
+          cognitive, emotional, and social functioning throughout
+          life. Development is shaped by interacting biological,
+          environmental, relational, and cultural influences.
+        </p>
+        <p>
+          Developmental theories offer frameworks for understanding
+          patterns, but individual lives do not always follow a
+          single fixed timeline.
+        </p>
+      </details>
 
-  </div>
-</section>
+      <details class="topic">
+        <summary>Social and Cultural Psychology</summary>
+        <p>
+          People are influenced by relationships, group norms,
+          social roles, institutions, culture, and historical
+          circumstances. Social psychology examines how these
+          influences interact with individual processes.
+        </p>
+        <p>
+          Cultural context matters when interpreting behaviour.
+          Avoid assuming that a finding from one population
+          applies identically to every society.
+        </p>
+      </details>
 
-<!-- PSYCHOLOGY BASICS -->
+      <details class="topic">
+        <summary>Psychological Research and Evidence</summary>
+        <p>
+          Psychological research uses methods including experiments,
+          surveys, interviews, observation, and longitudinal studies.
+          Different methods answer different questions and have
+          different limitations.
+        </p>
+        <p>
+          Correlation alone does not establish causation.
+          Sample size, measurement quality, bias, replication,
+          and uncertainty matter when interpreting findings.
+        </p>
+      </details>
 
-<section id="psychology-basics">
-  <span class="eyebrow">Start with the foundations</span>
+      <details class="topic">
+        <summary>Personality and Individual Differences</summary>
+        <p>
+          Personality research examines patterns in how people
+          tend to think, feel, and behave. Traits are tendencies,
+          not complete descriptions of a person or predictions
+          of every action.
+        </p>
+        <p>
+          Personality questionnaires should not automatically
+          be treated as diagnoses or unquestionable statements
+          about identity.
+        </p>
+      </details>
 
-  <h2>What is psychology?</h2>
+      <details class="topic">
+        <summary>Neuroscience and the Brain</summary>
+        <p>
+          Neuroscience investigates the nervous system and its
+          relationships with behaviour and cognition. Brain functions
+          emerge through interacting networks rather than one
+          isolated region responsible for every complex experience.
+        </p>
+        <p>
+          Brain imaging and biological explanations can be useful,
+          but they require careful interpretation and do not
+          automatically explain an individual's experience.
+        </p>
+      </details>
 
-  <div class="article-content">
-    <p>
-      Psychology is the scientific study of behaviour and mental
-      processes. It investigates how people think, feel, learn,
-      remember, make decisions, and interact with others.
-    </p>
-
-    <h3>Major perspectives</h3>
-
-    <ul>
-      <li>
-        <strong>Biological perspective:</strong>
-        Investigates the relationships between behaviour,
-        the brain, the nervous system, hormones, and genetics.
-      </li>
-
-      <li>
-        <strong>Cognitive perspective:</strong>
-        Studies attention, perception, memory, reasoning,
-        language, and decision-making.
-      </li>
-
-      <li>
-        <strong>Behavioural perspective:</strong>
-        Examines learning through environmental experiences,
-        consequences, and observable behaviour.
-      </li>
-
-      <li>
-        <strong>Social and cultural perspectives:</strong>
-        Explore how relationships, communities, culture,
-        and social environments influence people.
-      </li>
-
-      <li>
-        <strong>Developmental perspective:</strong>
-        Studies changes in thinking, emotions, relationships,
-        and behaviour across the lifespan.
-      </li>
-    </ul>
-
-    <h3>What psychology cannot tell us</h3>
-
-    <p>
-      Psychology does not provide a perfect explanation for every
-      person or situation. Findings may have limitations, and
-      individual experiences differ. A psychological concept should
-      not automatically be treated as a diagnosis or a universal rule.
-    </p>
+    </div>
   </div>
 </section>
 
 <!-- EVERYDAY LIFE LAB -->
 
 <section id="life-lab">
-  <span class="eyebrow">Real life, real questions</span>
-
-  <h2>Everyday Life Lab</h2>
-
-  <p class="lead">
-    Practical, evidence-informed learning for the challenges
-    young people encounter in everyday life.
-  </p>
-
-  <div class="grid">
-
-    <article class="card" id="sleep">
-      <div class="card-icon">🌙</div>
-      <span class="tag">Sleep and health</span>
-      <h3>Sleep and Rest</h3>
-      <p>
-        Explore sleep routines, circadian rhythms, sleep hygiene,
-        and when persistent sleep difficulties deserve professional
-        attention.
+  <div class="container">
+    <div class="section-heading">
+      <span class="eyebrow">Psychology meets everyday life</span>
+      <h2>Everyday Life Lab</h2>
+      <p class="lead">
+        Explore common challenges affecting young people,
+        from sleep and study pressure to relationships, money,
+        identity, digital life, and uncertainty about the future.
       </p>
-    </article>
+    </div>
 
-    <article class="card" id="stress">
-      <div class="card-icon">🌧️</div>
-      <span class="tag">Emotional wellbeing</span>
-      <h3>Stress and Overwhelm</h3>
-      <p>
-        Understand common stress responses, identify sources
-        of pressure, and explore manageable coping strategies.
-      </p>
-    </article>
+    <div class="grid">
 
-    <article class="card" id="study">
-      <div class="card-icon">📖</div>
-      <span class="tag">Study and work</span>
-      <h3>Focus and Procrastination</h3>
-      <p>
-        Explore attention, task initiation, realistic goals,
-        study breaks, and ways to make difficult tasks manageable.
-      </p>
-    </article>
+      <article class="card">
+        <div class="card-icon">🌙</div>
+        <span class="tag">Sleep and rest</span>
+        <h3>Sleep and Insomnia Awareness</h3>
+        <p>
+          Learn about sleep routines, circadian rhythms, rest,
+          and when persistent sleep problems may need professional
+          assessment.
+        </p>
+      </article>
 
-    <article class="card" id="identity">
-      <div class="card-icon">🪞</div>
-      <span class="tag">Self-understanding</span>
-      <h3>Self-Esteem and Identity</h3>
-      <p>
-        Reflect on self-image, perfectionism, comparison,
-        personal values, and identity development.
-      </p>
-    </article>
+      <article class="card">
+        <div class="card-icon">🕰️</div>
+        <span class="tag">Daily living</span>
+        <h3>Schedules and Time Management</h3>
+        <p>
+          Explore realistic planning, prioritisation, flexible
+          routines, transitions between tasks, and recovery time.
+        </p>
+      </article>
 
-    <article class="card" id="relationships">
-      <div class="card-icon">🫶</div>
-      <span class="tag">Relationships</span>
-      <h3>Friendships and Boundaries</h3>
-      <p>
-        Learn about communication, consent, conflict,
-        respect, boundaries, and healthy relationships.
-      </p>
-    </article>
+      <article class="card">
+        <div class="card-icon">🥗</div>
+        <span class="tag">Everyday healthcare</span>
+        <h3>Self-Care and Healthy Habits</h3>
+        <p>
+          Explore general wellbeing, hygiene, nutrition,
+          movement, preventive care, and knowing when to
+          consult a healthcare professional.
+        </p>
+      </article>
 
-    <article class="card">
-      <div class="card-icon">📱</div>
-      <span class="tag">Digital wellbeing</span>
-      <h3>Social Media and Comparison</h3>
-      <p>
-        Explore online identity, attention, social comparison,
-        cyberbullying, privacy, and digital habits.
-      </p>
-    </article>
+      <article class="card">
+        <div class="card-icon">🌧️</div>
+        <span class="tag">Mental wellbeing</span>
+        <h3>Stress and Overwhelm</h3>
+        <p>
+          Understand stress responses, competing demands,
+          emotional overload, and manageable coping strategies.
+        </p>
+      </article>
 
-    <article class="card">
-      <div class="card-icon">💼</div>
-      <span class="tag">Future and career</span>
-      <h3>Career Uncertainty</h3>
-      <p>
-        Reflect on career decisions, workplace stress,
-        expectations, uncertainty, and practical planning.
-      </p>
-    </article>
+      <article class="card">
+        <div class="card-icon">📚</div>
+        <span class="tag">Education</span>
+        <h3>Exam Anxiety and Study Pressure</h3>
+        <p>
+          Explore study planning, learning strategies,
+          performance anxiety, realistic goals, and recovery
+          after difficult academic experiences.
+        </p>
+      </article>
 
-    <article class="card">
-      <div class="card-icon">💰</div>
-      <span class="tag">Everyday challenges</span>
-      <h3>Financial Stress</h3>
-      <p>
-        Explore the emotional impact of financial pressure
-        and ways to approach planning without shame.
-      </p>
-    </article>
+      <article class="card">
+        <div class="card-icon">⏳</div>
+        <span class="tag">Habits</span>
+        <h3>Procrastination and Motivation</h3>
+        <p>
+          Examine task avoidance, uncertainty, task difficulty,
+          reward, motivation, and ways to begin with manageable steps.
+        </p>
+      </article>
 
-    <article class="card">
-      <div class="card-icon">🌍</div>
-      <span class="tag">Life in context</span>
-      <h3>Family and Cultural Expectations</h3>
-      <p>
-        Consider family responsibilities, cultural values,
-        peer pressure, independence, and belonging.
-      </p>
-    </article>
+      <article class="card">
+        <div class="card-icon">🪞</div>
+        <span class="tag">Identity</span>
+        <h3>Self-Esteem and Perfectionism</h3>
+        <p>
+          Explore self-evaluation, comparison, unrealistic standards,
+          identity, and self-compassion without treating them
+          as substitutes for professional care.
+        </p>
+      </article>
 
+      <article class="card">
+        <div class="card-icon">🫶</div>
+        <span class="tag">Relationships</span>
+        <h3>Friendships, Dating, and Breakups</h3>
+        <p>
+          Learn about communication, boundaries, consent,
+          trust, conflict, rejection, and relationship changes.
+        </p>
+      </article>
+
+      <article class="card">
+        <div class="card-icon">🏡</div>
+        <span class="tag">Family and culture</span>
+        <h3>Family Expectations</h3>
+        <p>
+          Reflect on family responsibilities, cultural values,
+          generational differences, peer pressure, and belonging.
+        </p>
+      </article>
+
+      <article class="card">
+        <div class="card-icon">📱</div>
+        <span class="tag">Digital life</span>
+        <h3>Social Media and Comparison</h3>
+        <p>
+          Explore online identity, comparison, attention,
+          digital boundaries, misinformation, and cyberbullying.
+        </p>
+      </article>
+
+      <article class="card">
+        <div class="card-icon">💼</div>
+        <span class="tag">Career</span>
+        <h3>Career and Workplace Stress</h3>
+        <p>
+          Explore uncertainty, workplace communication,
+          professional boundaries, competing responsibilities,
+          and career decision-making.
+        </p>
+      </article>
+
+      <article class="card">
+        <div class="card-icon">💰</div>
+        <span class="tag">Financial wellbeing</span>
+        <h3>Money Anxiety</h3>
+        <p>
+          Understand the emotional effects of financial pressure,
+          uncertainty, budgeting demands, and social expectations
+          without blaming people for circumstances beyond their control.
+        </p>
+      </article>
+
+      <article class="card">
+        <div class="card-icon">🌍</div>
+        <span class="tag">Modern life</span>
+        <h3>Climate Anxiety and World Events</h3>
+        <p>
+          Explore uncertainty, distress about global events,
+          media exposure, community action, and ways to stay
+          informed without becoming overwhelmed.
+        </p>
+      </article>
+
+      <article class="card">
+        <div class="card-icon">🧍</div>
+        <span class="tag">Social connection</span>
+        <h3>Loneliness and Belonging</h3>
+        <p>
+          Explore social connection, isolation, friendship,
+          community participation, and the difference between
+          being alone and feeling lonely.
+        </p>
+      </article>
+
+      <article class="card">
+        <div class="card-icon">🧭</div>
+        <span class="tag">Life transitions</span>
+        <h3>Growing Up and Uncertainty</h3>
+        <p>
+          Reflect on changing priorities, independence,
+          expectations, identity, and making decisions
+          when the future is unclear.
+        </p>
+      </article>
+
+      <article class="card">
+        <div class="card-icon">🛡️</div>
+        <span class="tag">Personal safety</span>
+        <h3>Boundaries and Consent</h3>
+        <p>
+          Learn about autonomy, respectful communication,
+          consent, coercion, privacy, and seeking support
+          when a situation feels unsafe.
+        </p>
+      </article>
+
+    </div>
   </div>
 </section>
 
 <!-- ROUTINE BUILDER -->
 
-<section id="routine-builder">
-  <span class="eyebrow">Start small</span>
+<section id="routine">
+  <div class="container">
+    <div class="life-lab-banner">
+      <span class="eyebrow">Small steps count</span>
+      <h2>Build a Gentle Routine</h2>
 
-  <h2>Build a Gentle Routine</h2>
+      <p class="lead">
+        Choose what you need today. This tool creates a simple,
+        flexible starting plan rather than a strict timetable.
+      </p>
 
-  <p class="lead">
-    Create a flexible starting point for your day.
-    This tool offers general ideas, not medical advice
-    or a personalised clinical treatment plan.
-  </p>
+      <form id="routineForm">
+        <div class="field">
+          <label for="routineGoal">
+            What would you like help with?
+          </label>
 
-  <div class="routine-box">
-    <form id="routineForm">
+          <select id="routineGoal">
+            <option value="balanced">A more balanced day</option>
+            <option value="sleep">A calmer evening and sleep routine</option>
+            <option value="study">Study or work focus</option>
+            <option value="stress">Stress and overwhelm</option>
+            <option value="connection">Connection and less isolation</option>
+            <option value="selfcare">Everyday self-care</option>
+          </select>
+        </div>
 
-      <div class="field">
-        <label for="routineGoal">
-          What would you like support with?
-        </label>
+        <div class="field">
+          <label for="energyLevel">
+            How much energy do you have right now?
+          </label>
 
-        <select id="routineGoal" required>
-          <option value="balanced">
-            A more balanced day
-          </option>
+          <select id="energyLevel">
+            <option value="low">Low energy</option>
+            <option value="medium">Some energy</option>
+            <option value="high">High energy</option>
+          </select>
+        </div>
 
-          <option value="sleep">
-            A calmer evening and sleep routine
-          </option>
+        <div class="field">
+          <label for="availableTime">
+            How much time can you spare?
+          </label>
 
-          <option value="study">
-            Study or work focus
-          </option>
+          <select id="availableTime">
+            <option value="5">About 5 minutes</option>
+            <option value="15">About 15 minutes</option>
+            <option value="30">About 30 minutes</option>
+          </select>
+        </div>
 
-          <option value="stress">
-            Stress and overwhelm
-          </option>
+        <button class="button primary" type="submit">
+          Create my starting plan
+        </button>
+      </form>
 
-          <option value="connection">
-            Connection and less isolation
-          </option>
-        </select>
+      <div id="routineResult"
+           class="routine-result"
+           aria-live="polite"
+           hidden>
       </div>
 
-      <div class="field">
-        <label for="energyLevel">
-          How much energy do you have today?
-        </label>
-
-        <select id="energyLevel" required>
-          <option value="low">Low energy</option>
-          <option value="medium">Some energy</option>
-          <option value="high">High energy</option>
-        </select>
-      </div>
-
-      <button class="primary" type="submit">
-        Build my starting plan
-      </button>
-
-    </form>
-
-    <div
-      id="routineResult"
-      class="routine-result"
-      aria-live="polite"
-      hidden
-    ></div>
+      <p class="form-note">
+        These are general wellbeing suggestions, not medical advice.
+        Adjust them to your circumstances and needs.
+      </p>
+    </div>
   </div>
 </section>
 
 <!-- COMMUNITY -->
 
 <section id="community">
-  <span class="eyebrow">Stories connect us</span>
-
-  <h2>The Lil Bird Community</h2>
-
-  <p class="lead">
-    A space for thoughtful stories, psychology writing,
-    questions, reflections, and shared learning.
-  </p>
-
-  <div class="community-layout">
-
-    <div class="card">
-      <h3>Community Posts</h3>
-
-      <p>
-        Share an experience, ask a question, publish an article,
-        or recommend a useful resource.
+  <div class="container">
+    <div class="section-heading">
+      <span class="eyebrow">Stories, ideas, and learning</span>
+      <h2>The Lil Bird Community</h2>
+      <p class="lead">
+        Share thoughtful writing, personal reflections,
+        psychology articles, questions, and useful resources.
       </p>
-
-      <div class="filter-row">
-        <button type="button" class="active" data-filter="all">
-          All
-        </button>
-
-        <button type="button" data-filter="story">
-          Stories
-        </button>
-
-        <button type="button" data-filter="psychology">
-          Psychology
-        </button>
-
-        <button type="button" data-filter="question">
-          Questions
-        </button>
-
-        <button type="button" data-filter="resource">
-          Resources
-        </button>
-      </div>
-
-      <div id="communityPosts" aria-live="polite">
-        <p>
-          Your community can begin with stories, questions,
-          thoughtful reflections, and learning resources.
-        </p>
-      </div>
     </div>
 
-    <div class="card">
-      <h3>Share Something</h3>
+    <div class="community-layout">
 
-      <form id="communityForm">
+      <div class="card">
+        <h3>Explore Community Posts</h3>
 
-        <div class="field">
-          <label for="postTitle">Title</label>
-          <input
-            id="postTitle"
-            type="text"
-            maxlength="120"
-            required
-            placeholder="Give your post a title"
-          >
+        <label for="postSearch">Search posts</label>
+        <input
+          id="postSearch"
+          class="search-box"
+          type="search"
+          placeholder="Search stories, topics, or questions..."
+        >
+
+        <div class="filter-row" aria-label="Filter posts">
+          <button class="filter-button active"
+                  type="button" data-filter="all">
+            All
+          </button>
+
+          <button class="filter-button"
+                  type="button" data-filter="story">
+            Stories
+          </button>
+
+          <button class="filter-button"
+                  type="button" data-filter="psychology">
+            Psychology
+          </button>
+
+          <button class="filter-button"
+                  type="button" data-filter="question">
+            Questions
+          </button>
+
+          <button class="filter-button"
+                  type="button" data-filter="resource">
+            Resources
+          </button>
         </div>
 
-        <div class="field">
-          <label for="postCategory">Category</label>
-
-          <select id="postCategory" required>
-            <option value="story">Stories and reflections</option>
-            <option value="psychology">Psychology writing</option>
-            <option value="question">Questions and discussion</option>
-            <option value="resource">Learning resources</option>
-          </select>
-        </div>
-
-        <div class="field">
-          <label for="postContent">Your writing</label>
-
-          <textarea
-            id="postContent"
-            maxlength="5000"
-            required
-            placeholder="Share your thoughts..."
-          ></textarea>
-        </div>
-
-        <button class="primary" type="submit">
-          Save my post
-        </button>
+        <div id="communityPosts" aria-live="polite"></div>
 
         <p class="form-note">
-          Prototype notice: posts are saved in this browser only.
-          They are not published to a shared online community.
+          Posts saved here are visible only in this browser.
+          They are not shared with other visitors.
+        </p>
+      </div>
+
+      <div class="card">
+        <h3>Share Something</h3>
+
+        <p>
+          Your voice matters. Share an idea, question,
+          reflection, or educational resource.
         </p>
 
-      </form>
-    </div>
+        <form id="communityForm">
+          <div class="field">
+            <label for="postTitle">Title</label>
+            <input
+              id="postTitle"
+              type="text"
+              maxlength="120"
+              required
+              placeholder="Give your post a title"
+            >
+          </div>
 
+          <div class="field">
+            <label for="postCategory">Category</label>
+            <select id="postCategory">
+              <option value="story">Stories and reflections</option>
+              <option value="psychology">Psychology writing</option>
+              <option value="question">Questions and discussion</option>
+              <option value="resource">Resources and reading</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="postAuthor">Display name (optional)</label>
+            <input
+              id="postAuthor"
+              type="text"
+              maxlength="50"
+              placeholder="A nickname or pen name"
+            >
+          </div>
+
+          <div class="field">
+            <label for="postContent">Your writing</label>
+            <textarea
+              id="postContent"
+              maxlength="5000"
+              required
+              placeholder="Write your story, question, or article..."
+            ></textarea>
+          </div>
+
+          <label>
+            <input
+              id="postConsent"
+              type="checkbox"
+              required
+              style="width:auto"
+            >
+            I understand this prototype saves my post in this browser.
+          </label>
+
+          <button class="button primary" type="submit">
+            Save my post
+          </button>
+
+          <div id="postStatus"
+               class="status"
+               aria-live="polite"
+               hidden>
+          </div>
+        </form>
+      </div>
+
+    </div>
   </div>
 </section>
 
 <!-- CONTACT -->
 
 <section id="contact">
-  <span class="eyebrow">Get in touch</span>
-
-  <h2>Questions, ideas, or feedback?</h2>
-
-  <p class="lead">
-    Send a message draft or share an idea for the future
-    of Hey Lil Bird.
-  </p>
-
-  <div class="card">
-    <form id="contactForm">
-
-      <div class="field">
-        <label for="contactEmail">
-          Email address (optional)
-        </label>
-
-        <input
-          id="contactEmail"
-          type="email"
-          placeholder="you@example.com"
-        >
-      </div>
-
-      <div class="field">
-        <label for="contactSubject">Subject</label>
-
-        <input
-          id="contactSubject"
-          type="text"
-          maxlength="150"
-          required
-          placeholder="What would you like to ask?"
-        >
-      </div>
-
-      <div class="field">
-        <label for="contactMessage">Message</label>
-
-        <textarea
-          id="contactMessage"
-          maxlength="5000"
-          required
-          placeholder="Write your message here..."
-        ></textarea>
-      </div>
-
-      <button class="primary" type="submit">
-        Prepare message
-      </button>
-
-      <p id="contactStatus" aria-live="polite"></p>
-
-      <p class="form-note">
-        This prototype does not send messages to an inbox.
-        Do not include passwords, private medical details,
-        or other sensitive information.
+  <div class="container">
+    <div class="section-heading">
+      <span class="eyebrow">Get in touch</span>
+      <h2>Questions, ideas, or feedback?</h2>
+      <p>
+        Send a message to the Hey Lil Bird team.
+        You can prepare an email using your device's email application.
       </p>
+    </div>
 
-    </form>
+    <div class="card">
+      <form id="contactForm">
+
+        <div class="field">
+          <label for="contactEmail">Your email (optional)</label>
+          <input
+            id="contactEmail"
+            type="email"
+            maxlength="254"
+            placeholder="you@example.com"
+          >
+        </div>
+
+        <div class="field">
+          <label for="contactSubject">Subject</label>
+          <input
+            id="contactSubject"
+            type="text"
+            maxlength="150"
+            required
+            placeholder="What would you like to ask?"
+          >
+        </div>
+
+        <div class="field">
+          <label for="contactMessage">Message</label>
+          <textarea
+            id="contactMessage"
+            maxlength="5000"
+            required
+            placeholder="Write your message here..."
+          ></textarea>
+        </div>
+
+        <button class="button primary" type="submit">
+          Prepare email
+        </button>
+
+        <div id="contactStatus"
+             class="status"
+             aria-live="polite"
+             hidden>
+        </div>
+
+        <p class="form-note">
+          This prototype does not transmit or store your message
+          on a server. Preparing an email may open your default
+          email application. No message is sent automatically.
+        </p>
+      </form>
+    </div>
   </div>
 </section>
 
-<!-- SAFETY AND RESPONSIBLE USE -->
+<!-- SAFETY -->
 
-<section id="responsible-use">
-  <span class="eyebrow">Care and responsibility</span>
+<section id="safety">
+  <div class="container">
+    <div class="safety-box">
+      <span class="eyebrow">Care and responsibility</span>
+      <h2>Learning with care</h2>
 
-  <h2>A thoughtful space for learning</h2>
+      <p>
+        Hey Lil Bird is an educational project. Its content is
+        not a diagnosis, personalised medical advice, or a
+        substitute for professional mental-health care.
+      </p>
 
-  <div class="card">
-    <p>
-      Hey Lil Bird provides educational information about
-      psychology, mental health, relationships, and everyday life.
-      It does not diagnose conditions or replace professional care.
-    </p>
+      <p>
+        Psychological research can be uncertain, culturally
+        limited, or misinterpreted. Consider the quality of
+        evidence and the context in which findings were obtained.
+      </p>
 
-    <p>
-      Psychological research does not offer one universal solution
-      for everyone. Consider your own circumstances, needs,
-      cultural context, and access to support.
-    </p>
+      <p>
+        You do not have to share private experiences to belong
+        here. Avoid publishing identifying information, passwords,
+        private medical details, or someone else's personal story
+        without permission.
+      </p>
 
-    <p>
-      If you are experiencing persistent distress or difficulties
-      affecting daily life, consider speaking with a qualified
-      healthcare professional.
-    </p>
+      <p>
+        If you are experiencing persistent distress, consider
+        speaking with a qualified healthcare professional.
+        If you are in immediate danger, contact local emergency
+        services or a trusted person who can help you in person.
+      </p>
 
-    <p>
-      If you are in immediate danger, contact local emergency
-      services or seek help from a trusted person who can support
-      you in person.
-    </p>
+      <p>
+        A future public community should include moderation,
+        reporting, privacy controls, and clear rules against
+        harassment, exploitation, and harmful misinformation.
+      </p>
+    </div>
   </div>
 </section>
 
 </main>
 
 <footer>
-  <a class="brand" href="#home">
-    Hey <span>Lil Bird</span>
-  </a>
+  <div class="container">
+    <a class="brand" href="#home">
+      Hey <span>Lil Bird</span>
+    </a>
 
-  <p>
-    Here for your assistance. Just ask, human.
-  </p>
+    <p>Here for your assistance. Just ask, human.</p>
 
-  <p>
-    Learn gently. Think critically. Treat people with care.
-  </p>
+    <p>Learn gently. Think critically. Treat people with care.</p>
 
-  <p>
-    © <span id="currentYear"></span> Hey Lil Bird
-  </p>
+    <p>
+      © <span id="currentYear"></span> Hey Lil Bird
+    </p>
+  </div>
 </footer>
 
 <script>
+"use strict";
+
+/* -------------------------------------------------------
+   GENERAL HELPERS
+------------------------------------------------------- */
+
+const $ = (selector, root = document) =>
+  root.querySelector(selector);
+
+const $$ = (selector, root = document) =>
+  Array.from(root.querySelectorAll(selector));
+
+$("#currentYear").textContent = new Date().getFullYear();
+
+function safeRead(key, fallback) {
+  try {
+    const value = localStorage.getItem(key);
+    return value === null ? fallback : JSON.parse(value);
+  } catch (error) {
+    return fallback;
+  }
+}
+
+function safeWrite(key, value) {
+  try {
+    localStorage.setItem(key, JSON.stringify(value));
+    return true;
+  } catch (error) {
+    return false;
+  }
+}
+
+function makeElement(tag, className, text) {
+  const element = document.createElement(tag);
+
+  if (className) {
+    element.className = className;
+  }
+
+  if (text !== undefined) {
+    element.textContent = text;
+  }
+
+  return element;
+}
+
+/* -------------------------------------------------------
+   ROUTINE BUILDER
+------------------------------------------------------- */
+
+const routinePlans = {
+  balanced: {
+    title: "A more balanced day",
+    steps: [
+      "Choose one important task instead of making an overwhelming list.",
+      "Include food, water, basic care, and a reasonable opportunity to rest.",
+      "Make room for one enjoyable or meaningful activity.",
+      "Adjust your plan when circumstances change."
+    ]
+  },
+
+  sleep: {
+    title: "A calmer evening",
+    steps: [
+      "Choose a realistic wind-down time that fits your responsibilities.",
+      "If possible, reduce stimulating activities and bright light before bed.",
+      "Create a comfortable, quiet sleeping environment.",
+      "If sleep problems persist or interfere with daily life, seek professional advice."
+    ]
+  },
+
+  study: {
+    title: "A manageable study session",
+    steps: [
+      "Choose one clearly defined task.",
+      "Break the task into a small first step.",
+      "Work for a period that feels manageable, then take a break.",
+      "Use retrieval practice or spaced review when appropriate.",
+      "Finish by noting the next step for your next session."
+    ]
+  },
+
+  stress: {
+    title: "When everything feels like too much",
+    steps: [
+      "Pause and identify what is most urgent rather than solving everything at once.",
+      "Choose one small action that is within your control.",
+      "Consider a grounding activity or gentle breathing if comfortable.",
+      "Reach out to someone trustworthy if you need support.",
+      "Reduce nonessential demands where possible."
+    ]
+  },
+
+  connection: {
+    title: "Making room for connection",
+    steps: [
+      "Consider contacting one person you trust.",
+      "Choose a form of contact that feels comfortable, such as a short message.",
+      "Look for low-pressure opportunities to participate in a shared interest.",
+      "Remember that meaningful connection can develop gradually."
+    ]
+  },
+
+  selfcare: {
+    title: "Everyday self-care",
+    steps: [
+      "Check whether you need food, water, rest, movement, or a break.",
+      "Choose one basic task that would make your day easier.",
+      "Make space for a restorative activity when possible.",
+      "Seek appropriate healthcare support for persistent or concerning symptoms."
+    ]
+  }
+};
+
+$("#routineForm").addEventListener("submit", function(event) {
+  event.preventDefault();
+
+  const goal = $("#routineGoal").value;
+  const energy = $("#energyLevel").value;
+  const minutes = Number($("#availableTime").value);
+
+  const plan = routinePlans[goal];
+
+  if (!plan) {
+    return;
+  }
+
+  let steps = [...plan.steps];
+
+  if (energy === "low") {
+    steps = steps.slice(0, 3);
+    steps.unshift(
+      "Keep the plan small today. Rest is a valid need, not a failure."
+    );
+  }
+
+  if (energy === "high") {
+    steps.push(
+      "Leave some flexibility in your schedule rather than filling every available minute."
+    );
+  }
+
+  if (minutes === 5) {
+    steps = steps.slice(0, 2);
+  }
+
+  if (minutes === 15) {
+    steps = steps.slice(0, 3);
+  }
+
+  const result = $("#routineResult");
+  result.replaceChildren();
+
+  result.appendChild(
+    makeElement("h3", "", plan.title)
+  );
+
+  result.appendChild(
+    makeElement(
+      "p",
+      "",
+      `A flexible ${minutes}-minute starting point. Adapt it to your circumstances.`
+    )
+  );
+
+  const list = makeElement("ol");
+
+  steps.forEach(step => {
+    list.appendChild(makeElement("li", "", step));
+  });
+
+  result.appendChild(list);
+
+  result.appendChild(
+    makeElement(
+      "p",
+      "muted",
+      "This is a general planning tool, not a personalised health recommendation."
+    )
+  );
+
+  result.hidden = false;
+});
+
+/* -------------------------------------------------------
+   COMMUNITY STORAGE
+------------------------------------------------------- */
+
+/*
+  This is a local prototype.
+
+  Posts are saved in the current browser only.
+  They are not uploaded to a server and are not visible
+  to other visitors.
+
+  A production community requires a backend, authentication,
+  privacy controls, moderation, reporting, and security testing.
+*/
+
+const POST_KEY = "heyLilBirdCommunityPostsV1";
+const COMMENT_KEY = "heyLilBirdCommunityCommentsV1";
+
+let posts = safeRead(POST_KEY, []);
+let comments = safeRead(COMMENT_KEY, []);
+let activeFilter = "all";
+let searchTerm = "";
+
+const categoryLabels = {
+  story: "Stories and reflections",
+  psychology: "Psychology writing",
+  question: "Questions and discussion",
+  resource: "Resources and reading"
+};
+
+function savePosts() {
+  return safeWrite(POST_KEY, posts);
+}
+
+function saveComments() {
+  return safeWrite(COMMENT_KEY, comments);
+}
+
+function renderCommunity() {
+  const container = $("#communityPosts");
+  container.replaceChildren();
+
+  const visiblePosts = posts.filter(post => {
+    const categoryMatch =
+      activeFilter === "all" ||
+      post.category === activeFilter;
+
+    const searchable = [
+      post.title,
+      post.content,
+      post.author,
+      categoryLabels[post.category] || ""
+    ].join(" ").toLowerCase();
+
+    const searchMatch = searchable.includes(searchTerm);
+
+    return categoryMatch && searchMatch;
+  });
+
+  if (visiblePosts.length === 0) {
+    container.appendChild(
+      makeElement(
+        "p",
+        "empty-state",
+        posts.length === 0
+          ? "Your community begins with a story, question, or idea."
+          : "No posts match this search. Try another word or category."
+      )
+    );
+
+    return;
+  }
+
+  visiblePosts.forEach(post => {
+    const article = makeElement("article", "post");
+
+    const meta = makeElement(
+      "div",
+      "post-meta",
+      `${categoryLabels[post.category] || "Community"} · ${post.author || "Anonymous"} · ${post.date}`
+    );
+
+    const title = makeElement("h3", "", post.title);
+    const body = makeElement("p", "post-body", post.content);
+
+    article.append(meta, title, body);
+
+    const actions = makeElement("div", "post-actions");
+
+    const commentButton = makeElement(
+      "button",
+      "",
+      "Show comments"
+    );
+
+    commentButton.type = "button";
+    commentButton.setAttribute(
+      "aria-expanded",
+      "false"
+    );
+
+    actions.appendChild(commentButton);
+
+    const commentArea = makeElement("div", "comment-box");
+    commentArea.hidden = true;
+
+    commentButton.addEventListener("click", () => {
+      commentArea.hidden = !commentArea.hidden;
+
+      commentButton.textContent = commentArea.hidden
+        ? "Show comments"
+        : "Hide comments";
+
+      commentButton.setAttribute(
+        "aria-expanded",
+        String(!commentArea.hidden)
+      );
+    });
+
+    const postComments = comments.filter(
+      comment => comment.postId === post.id
+    );
+
+    if (postComments.length === 0) {
+      commentArea.appendChild(
+        makeElement(
+          "p",
+          "muted",
+          "No local comments yet."
+        )
+      );
+    }
+
+    postComments.forEach(comment => {
+      const commentItem = makeElement("div", "comment");
+
+      commentItem.appendChild(
+        makeElement(
+          "strong",
+          "",
+          comment.author || "Anonymous"
+        )
+      );
+
+      commentItem.appendChild(
+        makeElement("p", "", comment.content)
+      );
+
+      commentArea.appendChild(commentItem);
+    });
+
+    const commentForm = makeElement("form");
+    commentForm.style.marginTop = "12px";
+
+    const nameInput = makeElement("input");
+    nameInput.type = "text";
+    nameInput.maxLength = 50;
+    nameInput.placeholder = "Display name (optional)";
+    nameInput.setAttribute("aria-label", "Comment display name");
+
+    const textInput = makeElement("textarea");
+    textInput.required = true;
+    textInput.maxLength = 1000;
+    textInput.rows = 3;
+    textInput.style.minHeight = "85px";
+    textInput.placeholder = "Write a thoughtful comment...";
+    textInput.setAttribute("aria-label", "Comment");
+
+    const submit = makeElement(
+      "button",
+      "button small",
+      "Save comment"
+    );
+    submit.type = "submit";
+
+    commentForm.append(nameInput, textInput, submit);
+
+    commentForm.addEventListener("submit", event => {
+      event.preventDefault();
+
+      const content = textInput.value.trim();
+
+      if (!content) {
+        return;
+      }
+
+      comments.push({
+        id: createId(),
+        postId: post.id,
+        author: nameInput.value.trim().slice(0, 50),
+        content: content.slice(0, 1000),
+        date: new Date().toLocaleDateString()
+      });
+
+      if (!saveComments()) {
+        comments.pop();
+
+        alert(
+          "Your comment could not be saved in this browser. " +
+          "Check browser storage settings."
+        );
+
+        return;
+      }
+
+      renderCommunity();
+    });
+
+    commentArea.appendChild(commentForm);
+
+    article.append(actions, commentArea);
+    container.appendChild(article);
+  });
+}
+
+function createId() {
+  if (
+    window.crypto &&
+    typeof window.crypto.randomUUID === "function"
+  ) {
+    return window.crypto.randomUUID();
+  }
+
+  return String(Date.now()) + Math.random().toString(36).slice(2);
+}
+
+$("#communityForm").addEventListener("submit", function(event) {
+  event.preventDefault();
+
+  const title = $("#postTitle").value.trim();
+  const category = $("#postCategory").value;
+  const author = $("#postAuthor").value.trim();
+  const content = $("#postContent").value.trim();
+  const consent = $("#postConsent").checked;
+
+  if (!title || !content || !consent) {
+    return;
+  }
+
+  const post = {
+    id: createId(),
+    title: title.slice(0, 120),
+    category,
+    author: author.slice(0, 50),
+    content: content.slice(0, 5000),
+    date: new Date().toLocaleDateString()
+  };
+
+  posts.unshift(post);
+
+  if (!savePosts()) {
+    posts.shift();
+
+    $("#postStatus").textContent =
+      "The post could not be saved. Check your browser storage settings.";
+
+    $("#postStatus").hidden = false;
+    $("#postStatus").classList.add("error");
+
+    return;
+  }
+
+  this.reset();
+
+  $("#postStatus").textContent =
+    "Your post was saved in this browser. It has not been published online.";
+
+  $("#postStatus").hidden = false;
+  $("#postStatus").classList.remove("error");
+
+  activeFilter = "all";
+  searchTerm = "";
+  $("#postSearch").value = "";
+
+  $$(".filter-button").forEach(button => {
+    button.classList.toggle(
+      "active",
+      button.dataset.filter === "all"
+    );
+  });
+
+  renderCommunity();
+});
+
+$$(".filter-button").forEach(button => {
+  button.addEventListener("click", () => {
+    activeFilter = button.dataset.filter;
+
+    $$(".filter-button").forEach(item => {
+      item.classList.toggle("active", item === button);
+    });
+
+    renderCommunity();
+  });
+});
+
+$("#postSearch").addEventListener("input", event => {
+  searchTerm = event.target.value.trim().toLowerCase();
+  renderCommunity();
+});
+
+/* -------------------------------------------------------
+   CONTACT FORM
+------------------------------------------------------- */
+
+/*
+  The destination email address has not been configured.
+  This form opens a draft in the visitor's email application.
+  It does not send a message or store data on a server.
+
+  Replace the placeholder below with your real project email
+  before publishing this feature.
+*/
+
+const CONTACT_EMAIL = "";
+
+$("#contactForm").addEventListener("submit", function(event) {
+  event.preventDefault();
+
+  const email = $("#contactEmail").value.trim();
+  const subject = $("#contactSubject").value.trim();
+  const message = $("#contactMessage").value.trim();
+
+  const status = $("#contactStatus");
+
+  if (!subject || !message) {
+    return;
+  }
+
+  if (!CONTACT_EMAIL) {
+    status.textContent =
+      "Your message is ready to configure, but the project " +
+      "contact email has not been added yet. No message was sent.";
+
+    status.hidden = false;
+    status.classList.add("error");
+
+    return;
+  }
+
+  const fullMessage =
+    message +
+    (email ? "\n\nReply-to email: " + email : "");
+
+  const mailto =
+    "mailto:" + encodeURIComponent(CONTACT_EMAIL) +
+    "?subject=" + encodeURIComponent(subject) +
+    "&body=" + encodeURIComponent(fullMessage);
+
+  status.textContent =
+    "Your email application should open with a draft. " +
+    "Review it and send it yourself.";
+
+  status.hidden = false;
+  status.classList.remove("error");
+
+  window.location.href = mailto;
+});
+
+/* -------------------------------------------------------
+   INITIALISE
+------------------------------------------------------- */
+
+renderCommunity();
+
+/* -------------------------------------------------------
+   IMPORTANT PROJECT NOTES
+
+   1. This is a single-file front-end prototype.
+   2. Local browser storage is not a shared community database.
+   3. Comments are local and are not visible to other visitors.
+   4. No user accounts or authentication are implemented.
+   5. No email is sent automatically.
+   6. Educational content should be reviewed and sourced
+      before presenting it as a comprehensive resource.
+   7. A public mental-health community requires privacy
+      protections, moderation, reporting, security testing,
+      and appropriate professional review.
+------------------------------------------------------- */
+</script>
+
+</body>
+</html>
